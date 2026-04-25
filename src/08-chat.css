@@ -14,23 +14,30 @@
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Header de salon (subtitleContainer) — glass ── */
+/* ── Header de salon (subtitleContainer) — Shine inset ─────
+ *  PAS de backdrop-filter ici : subtitleContainer_ est à
+ *  l'intérieur de chatContent_ (déjà flouté). Un double
+ *  backdrop-filter crée un fond noir opaque invisible.
+ *  On utilise les inset box-shadows Shine à la place.
+ * ─────────────────────────────────────────────────────── */
 #app-mount [class*="subtitleContainer_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.30) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.52) inset,
+    0  1px   2px 0 rgba(255, 255, 255, 0.18) inset !important;
   margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
   padding: 0 12px !important;
   z-index: 10 !important;
   transition: border-color 200ms ease !important;
 }
 #app-mount [class*="subtitleContainer_"]:hover {
-  border-color: var(--lg-bord-h) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
 }
-/* Titre intérieur — transparent (glass du container suffit) */
 #app-mount [class*="subtitleContainer_"] [class*="title_"] {
   background: transparent !important;
   border: none !important;

@@ -44,6 +44,24 @@
   color: rgba(255, 255, 255, 1.00) !important;
 }
 
+/* ── Barre de recherche amis — Shine inset ──────── */
+#app-mount [class*="searchBar_"],
+#app-mount [class*="searchField_"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.35) inset !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="searchBar_"]:focus-within,
+#app-mount [class*="searchField_"]:focus-within {
+  border-color: rgba(255, 255, 255, 0.40) !important;
+}
+
 /* ── Conteneurs internes — transparent ──────────── */
 #app-mount [class*="friendsContainer_"],
 #app-mount [class*="peopleList_"],
