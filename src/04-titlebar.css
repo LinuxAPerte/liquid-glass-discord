@@ -52,12 +52,14 @@
   box-shadow: 0 0 6px rgba(255, 95, 87, 0.60) !important;
 }
 
-[class*="winButtonMinMax_"]:nth-child(2)::after {
+/* Réduire = 1er winButtonMinMax_ dans winButtons_ */
+[class*="winButtonMinMax_"]:nth-child(1)::after {
   background: #ffbd2e !important;
-  box-shadow: 0 0 6px rgba(255, 189, 46, 0.50) !important;
+  box-shadow: 0 0 6px rgba(255, 189, 46, 0.55) !important;
 }
 
-[class*="winButtonMinMax_"]:nth-child(3)::after {
+/* Agrandir = 2e winButtonMinMax_ dans winButtons_ */
+[class*="winButtonMinMax_"]:nth-child(2)::after {
   background: #28c840 !important;
-  box-shadow: 0 0 6px rgba(40, 200, 64, 0.50) !important;
+  box-shadow: 0 0 6px rgba(40, 200, 64, 0.55) !important;
 }

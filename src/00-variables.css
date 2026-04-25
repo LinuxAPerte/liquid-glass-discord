@@ -18,7 +18,7 @@
   --lg-bord-h:  rgba(255, 255, 255, 0.58);  /* hover — signature Midnight */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(40px) saturate(200%) brightness(115%);
+  --lg-blur: blur(40px) saturate(140%) brightness(118%);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:

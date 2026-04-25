@@ -1,35 +1,46 @@
 /*
  * ═══════════════════════════════════════════════════
- *  01 — FOND ANIMÉ
+ *  01 — FOND ANIMÉ — LIQUID GLASS NOIR & BLANC
  *  Liquid Glass Discord Theme
  * ═══════════════════════════════════════════════════
  *
- *  Deux blobs lumineux sur fond très sombre :
- *    - Blanc/bleu en haut à gauche
- *    - Violet en bas à droite
- *  Animation douce 18s en boucle.
+ *  Quatre blobs blanc/argenté qui dérivent sur fond
+ *  quasi-noir — style Apple Vision Pro / iOS 26.
+ *  Aucune teinte colorée : pur noir & blanc.
  * ═══════════════════════════════════════════════════
  */
 
 @keyframes lg-bg {
-  0%   { background-position: 0%  0%,  100% 100%; }
-  33%  { background-position: 25% 15%, 75%  85%;  }
-  66%  { background-position: 10% 40%, 90%  60%;  }
-  100% { background-position: 0%  0%,  100% 100%; }
+  0%   { background-position: 0%  0%,   100% 100%, 50% 20%,  20% 80%; }
+  25%  { background-position: 35% 25%,  65%  75%, 15% 65%,  75% 25%; }
+  50%  { background-position: 65% 55%,  35%  45%, 80% 35%,  40% 55%; }
+  75%  { background-position: 20% 80%,  80%  20%, 55% 80%,  10% 35%; }
+  100% { background-position: 0%  0%,   100% 100%, 50% 20%,  20% 80%; }
 }
 
 html, body {
-  background-color: #030210 !important;
+  background-color: #060606 !important;
   background-image:
-    radial-gradient(ellipse 90% 80% at 0% 0%,
-      rgba(90,  190, 255, 0.80) 0%,
-      rgba(50,  130, 255, 0.40) 35%,
-      transparent 65%),
-    radial-gradient(ellipse 80% 90% at 100% 100%,
-      rgba(150,  30, 255, 0.90) 0%,
-      rgba( 90,  10, 220, 0.50) 40%,
-      transparent 70%) !important;
+    /* Blob principal — haut gauche */
+    radial-gradient(ellipse 72% 58% at 20% 22%,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(220, 215, 235, 0.09) 44%,
+      transparent 70%),
+    /* Blob principal — bas droite */
+    radial-gradient(ellipse 65% 78% at 80% 78%,
+      rgba(240, 235, 255, 0.22) 0%,
+      rgba(200, 195, 225, 0.08) 48%,
+      transparent 74%),
+    /* Accent milieu-haut */
+    radial-gradient(ellipse 50% 40% at 55% 8%,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(210, 210, 230, 0.05) 40%,
+      transparent 64%),
+    /* Micro accent bas-gauche */
+    radial-gradient(ellipse 40% 35% at 12% 88%,
+      rgba(230, 225, 255, 0.13) 0%,
+      transparent 58%) !important;
   background-attachment: fixed !important;
-  background-size: 200% 200% !important;
-  animation: lg-bg 18s ease-in-out infinite !important;
+  background-size: 200% 200%, 200% 200%, 190% 190%, 160% 160% !important;
+  animation: lg-bg 26s ease-in-out infinite !important;
 }
