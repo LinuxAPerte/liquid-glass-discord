@@ -5,9 +5,9 @@
  * ═══════════════════════════════════════════════════
  *
  *  Boutons macOS style :
- *    nth-child(1) = Fermer  → #ff5f57
- *    nth-child(2) = Réduire → #ffbd2e
- *    nth-child(3) = Agrandir → #28c840
+ *    winButtonClose_              = Fermer   → #ff5f57 (rouge)
+ *    winButtonMinMax_ nth-child(1) = Réduire  → #ffbd2e (jaune)
+ *    winButtonMinMax_ nth-child(2) = Agrandir → #28c840 (vert)
  *
  *  Technique ::after centré via inset:0 + margin:auto
  * ═══════════════════════════════════════════════════

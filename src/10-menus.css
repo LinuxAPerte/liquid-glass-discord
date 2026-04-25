@@ -15,7 +15,7 @@
 /* ── Menus contextuels (clic droit) ─────────────── */
 [class*="menu_"],
 [class*="contentWrapper_"] {
-  background: rgba(10, 10, 24, 0.92) !important;
+  background: rgba(8, 8, 10, 0.94) !important;
   backdrop-filter: blur(32px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
   box-shadow:
@@ -36,7 +36,7 @@
 [class*="userProfileOuter_"],
 [class*="profileModal_"],
 [class*="userProfileInner_"] {
-  background: rgba(10, 10, 24, 0.92) !important;
+  background: rgba(8, 8, 10, 0.94) !important;
   backdrop-filter: blur(40px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
   box-shadow:
@@ -50,7 +50,7 @@
 /* ── Modales (paramètres, etc.) ──────────────────── */
 [class*="container__8a031"],
 [class*="modal_"] {
-  background: rgba(10, 10, 24, 0.94) !important;
+  background: rgba(8, 8, 10, 0.96) !important;
   backdrop-filter: blur(40px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
   box-shadow:
