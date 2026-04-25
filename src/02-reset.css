@@ -31,10 +31,14 @@
 #app-mount [class*="privateChannels_"],
 #app-mount [class*="members_"],
 #app-mount [class*="member_"],
+#app-mount [class*="title_"],
+#app-mount [class*="subtitleContainer_"],
 #app-mount [class*="scroller__99"],
 #app-mount [class*="container__2637"],
 #app-mount [class*="homeWrapper_"],
 #app-mount [class*="wrapper_cdf"],
-#app-mount [class*="wrapper_fc8"] {
+#app-mount [class*="wrapper_fc8"],
+#app-mount [class*="callContainer_"],
+#app-mount [class*="wrapper_cb9"] {
   background-color: transparent !important;
 }

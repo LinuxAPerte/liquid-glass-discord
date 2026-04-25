@@ -7,24 +7,24 @@
 
 :root {
   /* ── Layout ──────────────────────────────────── */
-  --lg-gap: 8px;       /* espace entre panneaux et bord  */
-  --lg-r:   16px;      /* arrondi principal               */
-  --lg-rsm: 10px;      /* arrondi secondaire              */
-  --lg-rxs: 6px;       /* arrondi petit (boutons, tags)   */
+  --lg-gap: 8px;
+  --lg-r:   16px;
+  --lg-rsm: 10px;
+  --lg-rxs: 6px;
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.12);
-  --lg-border:  rgba(255, 255, 255, 0.36);
-  --lg-bord-h:  rgba(255, 255, 255, 0.58);  /* hover — signature Midnight */
+  --lg-glass:   rgba(255, 255, 255, 0.10);
+  --lg-border:  rgba(255, 255, 255, 0.32);
+  --lg-bord-h:  rgba(255, 255, 255, 0.55);
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(40px) saturate(140%) brightness(118%);
+  --lg-blur: blur(36px) saturate(130%) brightness(116%);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0 8px 40px  rgba(0, 0, 0, 0.55),
-    inset 0 1px 0   rgba(255, 255, 255, 0.52),
-    inset 0 0   0 1px rgba(255, 255, 255, 0.14);
+    0 8px 40px  rgba(0, 0, 0, 0.60),
+    inset 0 1px 0   rgba(255, 255, 255, 0.48),
+    inset 0 0   0 1px rgba(255, 255, 255, 0.12);
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.07);
@@ -37,4 +37,61 @@
     0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset,
     0  1px   2px 0 rgba(255, 255, 255, 0.20) inset,
     0  2px  12px 0 rgba(0,   0,   0,   0.22);
+}
+
+/* ════════════════════════════════════════════════
+   OVERRIDE VARIABLES DISCORD — approche Midnight
+   Force les fonds natifs à transparent pour que
+   notre gradient animé traverse partout.
+   Les textes → blanc pour lisibilité sur fond sombre.
+════════════════════════════════════════════════ */
+:root,
+.theme-dark {
+  /* ── Fonds principaux → transparent ─────────── */
+  --background-primary:              transparent !important;
+  --background-secondary:            transparent !important;
+  --background-secondary-alt:        transparent !important;
+  --background-tertiary:             transparent !important;
+  --background-accent:               rgba(255,255,255,0.06) !important;
+  --background-floating:             rgba(6, 6, 6, 0.92)   !important;
+  --background-nested-floating:      rgba(6, 6, 6, 0.92)   !important;
+  --background-mobile-primary:       transparent !important;
+  --background-mobile-secondary:     transparent !important;
+  --deprecated-card-bg:              rgba(255,255,255,0.04) !important;
+  --deprecated-store-bg:             transparent !important;
+
+  /* ── États hover / sélection ─────────────────── */
+  --background-message-hover:        rgba(255,255,255,0.04) !important;
+  --background-modifier-hover:       rgba(255,255,255,0.06) !important;
+  --background-modifier-active:      rgba(255,255,255,0.10) !important;
+  --background-modifier-selected:    rgba(255,255,255,0.13) !important;
+  --background-modifier-accent:      rgba(255,255,255,0.06) !important;
+
+  /* ── Zone de saisie ──────────────────────────── */
+  --channeltextarea-background:      rgba(255,255,255,0.09) !important;
+
+  /* ── Texte → blanc lisible sur fond sombre ───── */
+  --text-normal:            rgba(255, 255, 255, 0.90) !important;
+  --text-muted:             rgba(255, 255, 255, 0.45) !important;
+  --text-faint:             rgba(255, 255, 255, 0.25) !important;
+  --text-link:              rgba(130, 210, 255, 1.00) !important;
+  --text-positive:          rgba( 80, 220, 120, 1.00) !important;
+  --text-warning:           rgba(255, 200,  80, 1.00) !important;
+  --text-danger:            rgba(255,  90,  90, 1.00) !important;
+  --header-primary:         rgba(255, 255, 255, 0.95) !important;
+  --header-secondary:       rgba(255, 255, 255, 0.55) !important;
+
+  /* ── Channels & icônes ───────────────────────── */
+  --channels-default:                rgba(255,255,255,0.62) !important;
+  --channel-icon:                    rgba(255,255,255,0.45) !important;
+  --channel-text-area-placeholder:   rgba(255,255,255,0.30) !important;
+
+  /* ── États interactifs ───────────────────────── */
+  --interactive-normal:   rgba(255,255,255,0.75) !important;
+  --interactive-hover:    rgba(255,255,255,0.92) !important;
+  --interactive-active:   rgba(255,255,255,1.00) !important;
+  --interactive-muted:    rgba(255,255,255,0.35) !important;
+
+  /* ── Séparateurs ─────────────────────────────── */
+  --background-modifier-border: rgba(255,255,255,0.08) !important;
 }
