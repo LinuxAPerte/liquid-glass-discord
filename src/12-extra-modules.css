@@ -375,3 +375,164 @@
 #vc-spotify-player {
   background: transparent !important;
 }
+
+/* ══════════════════════════════════════════════════
+   FRIENDS PAGE OUTER — conteneur transparent
+   Midnight : .container__133bf → background: none
+   Sans ça, tout ce qui est à l'intérieur reste noir
+══════════════════════════════════════════════════ */
+#app-mount [class*="container__133b"],
+#app-mount [class*="page__5e43"] {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   DM LIST — "Recherche ou lance une conversation"
+   + items de navigation (Amis, Ton Nitro, Boutique…)
+   Midnight : .channel__972a0, .interactive__972a0
+══════════════════════════════════════════════════ */
+
+/* Bouton "Recherche ou lance une conversation" */
+#app-mount [class*="privateChannels_"] [class*="searchBar_"],
+#app-mount [class*="sidebarList_"] [class*="searchBar_"],
+#app-mount [class*="privateChannelsList_"] [class*="searchBar_"],
+#app-mount [class*="channelName_"][class*="input_"],
+#app-mount [class*="quickswitcher_"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.30) inset !important;
+  transition: border-color 200ms ease !important;
+}
+
+/* Items DM (conversations, Amis, Ton Nitro…) */
+#app-mount [class*="channel__972"],
+#app-mount [class*="channel_"][class*="privateChannels_"] * [class*="link_"] {
+  transition: margin-left 200ms ease !important;
+}
+#app-mount [class*="channel__972"]:hover {
+  margin-left: 12px !important;
+}
+
+/* Hover sur les items DM standard */
+#app-mount [class*="privateChannels_"] [class*="interactive_"] {
+  border-radius: var(--lg-rsm) !important;
+  transition: background 120ms, margin-left 200ms !important;
+}
+#app-mount [class*="privateChannels_"] [class*="interactive_"]:hover {
+  background: var(--lg-hover) !important;
+  margin-left: 8px !important;
+}
+#app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
+#app-mount [class*="privateChannels_"] [class*="selected_"] {
+  background: var(--lg-sel) !important;
+}
+
+/* Headers de groupes (FRIEND, Messages privés…) */
+#app-mount [class*="privateChannels_"] [class*="groupHeader_"],
+#app-mount [class*="privateChannels_"] [class*="header_"] {
+  color: rgba(255, 255, 255, 0.45) !important;
+  background: transparent !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVE NOW — items individuels
+   Midnight : .container__7d20c inner transparent
+   + styles des cards d'activité
+══════════════════════════════════════════════════ */
+
+/* Conteneur principal transparent */
+#app-mount [class*="nowPlayingColumn_"] [class*="container_"] {
+  background: transparent !important;
+}
+
+/* Cards activité individuelles */
+#app-mount [class*="nowPlayingColumn_"] [class*="activity_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="userActivity_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="memberContentCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="activityCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="card_"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+  transition: background 150ms, border-color 150ms !important;
+}
+#app-mount [class*="nowPlayingColumn_"] [class*="activity_"]:hover,
+#app-mount [class*="nowPlayingColumn_"] [class*="userActivity_"]:hover,
+#app-mount [class*="nowPlayingColumn_"] [class*="memberContentCard_"]:hover,
+#app-mount [class*="nowPlayingColumn_"] [class*="card_"]:hover {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Header "En ligne" dans la colonne Active Now */
+#app-mount [class*="nowPlayingColumn_"] [class*="header_"] {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* ══════════════════════════════════════════════════
+   PEOPLES LIST — items amis au centre
+   (friendRow_ dans peopleColumn_ / chatContent_)
+══════════════════════════════════════════════════ */
+
+/* Reset du conteneur outer de la page amis */
+#app-mount [class*="peopleColumn_"] > [class*="content_"],
+#app-mount [class*="tabBody_"] {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   POPOVERS & HOVER CARDS
+   (popout profil, channel hover card…)
+══════════════════════════════════════════════════ */
+#app-mount [class*="popout_"] {
+  background: rgba(8, 8, 12, 0.88) !important;
+  backdrop-filter: blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0 24px 64px 0  rgba(0, 0, 0, 0.60) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MESSAGE BUBBLE — médias & stickers
+══════════════════════════════════════════════════ */
+#app-mount [class*="stickerImage_"],
+#app-mount [class*="sticker_"] {
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Lien d'aperçu (channel mention, user mention) */
+#app-mount [class*="mention_"] {
+  background: rgba(130, 180, 255, 0.18) !important;
+  border-radius: 4px !important;
+  color: rgba(130, 210, 255, 1.00) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   VOICE CHANNEL — items participants
+══════════════════════════════════════════════════ */
+#app-mount [class*="voiceUser_"],
+#app-mount [class*="user_"][class*="voice"] {
+  border-radius: var(--lg-rsm) !important;
+  transition: background 120ms !important;
+}
+#app-mount [class*="voiceUser_"]:hover {
+  background: var(--lg-hover) !important;
+}
