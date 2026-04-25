@@ -60,6 +60,64 @@
   border-radius: var(--lg-r) !important;
 }
 
+/* ── Modale stream / partage d'écran ─────────────── */
+
+/* Fond principal moins opaque → plus glass */
+[class*="sourceSelect_"],
+[class*="screenPicker_"],
+[class*="streamModal_"] {
+  background: rgba(8, 8, 12, 0.82) !important;
+  backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset,
+    0 0 0 1px       rgba(255, 255, 255, 0.14),
+    0 32px 80px 0   rgba(0, 0, 0, 0.70) !important;
+  border-radius: var(--lg-r) !important;
+}
+
+/* Cartes d'aperçu d'écran — glass avec bordure */
+[class*="sourceSelect_"] [class*="source_"],
+[class*="screenPicker_"] [class*="source_"],
+[class*="sourcePreview_"],
+[class*="previewWrapper_"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-rsm) !important;
+  overflow: hidden !important;
+  transition: border-color 150ms ease, box-shadow 150ms ease !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.10) inset !important;
+}
+[class*="sourceSelect_"] [class*="source_"]:hover,
+[class*="screenPicker_"] [class*="source_"]:hover,
+[class*="sourcePreview_"]:hover {
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0     8px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Carte sélectionnée — bordure lumineuse */
+[class*="sourceSelect_"] [class*="selected_"],
+[class*="screenPicker_"] [class*="selected_"],
+[class*="source_"][class*="selected_"] {
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.20),
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.30) inset !important;
+}
+
+/* Footer (Gaming · 1440p · 60fps) — section verre */
+[class*="sourceSelect_"] [class*="footer_"],
+[class*="screenPicker_"] [class*="footer_"],
+[class*="streamModal_"] [class*="footer_"] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+}
+
 /* ── Embeds (liens prévisualisés) — Shine ────────── */
 #app-mount [class*="embedFull_"] {
   background: rgba(255, 255, 255, 0.05) !important;
