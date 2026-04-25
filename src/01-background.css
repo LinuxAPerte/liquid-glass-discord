@@ -19,15 +19,15 @@
 }
 
 html, body {
-  background-color: #050510 !important;
+  background-color: #030210 !important;
   background-image:
     radial-gradient(ellipse 90% 80% at 0% 0%,
-      rgba(180, 210, 255, 0.45) 0%,
-      rgba(120, 160, 255, 0.20) 35%,
+      rgba(90,  190, 255, 0.80) 0%,
+      rgba(50,  130, 255, 0.40) 35%,
       transparent 65%),
     radial-gradient(ellipse 80% 90% at 100% 100%,
-      rgba(100, 60, 255, 0.50) 0%,
-      rgba(60,  20, 200, 0.25) 40%,
+      rgba(150,  30, 255, 0.90) 0%,
+      rgba( 90,  10, 220, 0.50) 40%,
       transparent 70%) !important;
   background-attachment: fixed !important;
   background-size: 200% 200% !important;

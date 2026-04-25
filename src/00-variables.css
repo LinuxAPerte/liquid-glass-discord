@@ -13,18 +13,18 @@
   --lg-rxs: 6px;       /* arrondi petit (boutons, tags)   */
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.07);
-  --lg-border:  rgba(255, 255, 255, 0.14);
-  --lg-bord-h:  rgba(255, 255, 255, 0.24);  /* hover — signature Midnight */
+  --lg-glass:   rgba(255, 255, 255, 0.12);
+  --lg-border:  rgba(255, 255, 255, 0.36);
+  --lg-bord-h:  rgba(255, 255, 255, 0.58);  /* hover — signature Midnight */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(40px) saturate(180%) brightness(120%);
+  --lg-blur: blur(40px) saturate(200%) brightness(115%);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0 8px 32px  rgba(0, 0, 0, 0.45),
-    inset 0 1px 0   rgba(255, 255, 255, 0.32),
-    inset 0 0   0 1px rgba(255, 255, 255, 0.09);
+    0 8px 40px  rgba(0, 0, 0, 0.55),
+    inset 0 1px 0   rgba(255, 255, 255, 0.52),
+    inset 0 0   0 1px rgba(255, 255, 255, 0.14);
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.07);
