@@ -393,18 +393,22 @@
    Midnight : .channel__972a0, .interactive__972a0
 ══════════════════════════════════════════════════ */
 
-/* Bouton "Recherche ou lance une conversation" */
+/* Bouton "Recherche ou lance une conversation"
+   → plusieurs sélecteurs car la classe varie */
 #app-mount [class*="privateChannels_"] [class*="searchBar_"],
 #app-mount [class*="sidebarList_"] [class*="searchBar_"],
 #app-mount [class*="privateChannelsList_"] [class*="searchBar_"],
-#app-mount [class*="channelName_"][class*="input_"],
-#app-mount [class*="quickswitcher_"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+#app-mount [class*="privateChannelsList_"] [class*="search_"],
+#app-mount [class*="channelSearch_"],
+#app-mount [class*="sidebarList_"] > div > [class*="searchBar_"],
+#app-mount [class*="privateChannels_"] > [class*="searchBar_"],
+#app-mount [class*="privateChannels_"] > * > [class*="searchBar_"] {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 16px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.30) inset !important;
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
   transition: border-color 200ms ease !important;
 }
 
@@ -535,4 +539,103 @@
 }
 #app-mount [class*="voiceUser_"]:hover {
   background: var(--lg-hover) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   DM GROUP ITEMS — conversations de groupe dans sidebar
+   Ces items utilisent des classes différentes des DMs solo
+══════════════════════════════════════════════════ */
+
+/* Items DM (solo et groupe) dans le scroller */
+#app-mount [class*="privateChannels_"] [class*="channel_"],
+#app-mount [class*="scroller__99"] [class*="channel_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 4px !important;
+  transition: background 120ms, margin-left 200ms !important;
+}
+#app-mount [class*="privateChannels_"] [class*="channel_"]:hover,
+#app-mount [class*="scroller__99"] [class*="channel_"]:hover {
+  background: var(--lg-hover) !important;
+  margin-left: 6px !important;
+}
+
+/* Forcer les conteneurs de DM items à être transparents */
+#app-mount [class*="privateChannels_"] [class*="channel_"] > *,
+#app-mount [class*="scroller__99"] [class*="channel_"] [class*="content_"] {
+  background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════
+   BARRE NAV AMIS — renforcement glass visible
+   Le container__9293 est DANS chatContent_ (glass).
+   On augmente l'opacité + ajoute un contour plus visible.
+══════════════════════════════════════════════════ */
+#app-mount [class*="container__9293"],
+#app-mount [class*="subtitleContainer_"] {
+  background: rgba(255, 255, 255, 0.13) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: var(--lg-r) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow:
+    0 -1px   1px 0 rgba(255, 255, 255, 0.40) inset,
+    0  1px   1px 0 rgba(255, 255, 255, 0.60) inset,
+    0  2px   4px 0 rgba(255, 255, 255, 0.12) inset !important;
+  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
+  padding: 0 12px !important;
+  z-index: 10 !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="container__9293"]:hover,
+#app-mount [class*="subtitleContainer_"]:hover {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVE NOW — STREAM LIVE CARD (vidéo preview)
+   Visible en bas de la colonne "En ligne"
+══════════════════════════════════════════════════ */
+#app-mount [class*="nowPlayingColumn_"] [class*="stream_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="livePreview_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="watchTogetherCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="previewContainer_"],
+#app-mount [class*="nowPlayingColumn_"] video {
+  border-radius: var(--lg-rsm) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Wrapper de la card stream entière */
+#app-mount [class*="nowPlayingColumn_"] [class*="streamCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="liveCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="applicationStreamPreview_"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-r) !important;
+  overflow: hidden !important;
+}
+
+/* Texte sous la vidéo (Joue sur Xbox, EA SPORTS FC…) */
+#app-mount [class*="nowPlayingColumn_"] [class*="gameInfo_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="richPresenceText_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="activityText_"] {
+  background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SIDEBAR DM — fond de l'en-tête "Amis" / nav links
+   (les liens Amis, Ton Nitro, Boutique, Quêtes)
+   Ces éléments utilisent linkTop_ ou similaire dans Discord
+══════════════════════════════════════════════════ */
+#app-mount [class*="sidebarList_"] [class*="linkTop_"],
+#app-mount [class*="sidebarList_"] [class*="wrapperDefaultText_"],
+#app-mount [class*="privateChannels_"] [class*="linkTop_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 4px !important;
+  transition: background 120ms, margin-left 200ms !important;
+}
+#app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover,
+#app-mount [class*="privateChannels_"] [class*="linkTop_"]:hover {
+  background: var(--lg-hover) !important;
+  margin-left: 6px !important;
 }
