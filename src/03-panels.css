@@ -1,0 +1,66 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  03 — PANNEAUX VERRE — BLOC UNIFIÉ
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Inspiré de Midnight Discord :
+ *    → Un seul bloc CSS applique le style verre
+ *      à TOUS les panneaux principaux.
+ *    → Le hover border-color est la signature Midnight :
+ *      la bordure s'illumine légèrement au survol.
+ *
+ *  Panneaux ciblés :
+ *    guilds_        = liste des serveurs
+ *    sidebarList_   = sidebar channels
+ *    chatContent_   = zone de chat
+ *    peopleColumn_  = liste membres (amis)
+ *    nowPlayingColumn_ = colonne "en cours"
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── Style verre unifié ─────────────────────────── */
+#app-mount [class*="guilds_"],
+#app-mount [class*="sidebarList_"],
+#app-mount [class*="chatContent_"],
+#app-mount [class*="peopleColumn_"],
+#app-mount [class*="nowPlayingColumn_"] {
+  background: var(--lg-glass) !important;
+  backdrop-filter: var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border-radius: var(--lg-r) !important;
+  border: 1px solid var(--lg-border) !important;
+  box-shadow: var(--lg-shadow) !important;
+  transition: border-color 200ms ease !important;
+}
+
+/* ── Hover : bordure plus lumineuse (Midnight) ──── */
+#app-mount [class*="guilds_"]:hover,
+#app-mount [class*="sidebarList_"]:hover,
+#app-mount [class*="chatContent_"]:hover,
+#app-mount [class*="peopleColumn_"]:hover,
+#app-mount [class*="nowPlayingColumn_"]:hover {
+  border-color: var(--lg-bord-h) !important;
+}
+
+/* ── Marges & positionnement ────────────────────── */
+#app-mount [class*="guilds_"] {
+  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  overflow: visible !important;   /* pills ne doivent pas être clippées */
+}
+
+#app-mount [class*="sidebarList_"] {
+  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+#app-mount [class*="chatContent_"] {
+  margin: var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+#app-mount [class*="peopleColumn_"],
+#app-mount [class*="nowPlayingColumn_"] {
+  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow: hidden !important;
+}

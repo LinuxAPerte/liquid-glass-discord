@@ -1,0 +1,74 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  08 — ZONE DE CHAT
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Le style de base de chatContent_ est dans 03-panels.
+ *
+ *  Ce module gère :
+ *    - Toolbar header (pill Shine)
+ *    - Hover sur les messages
+ *    - Reply glass (Shine)
+ *    - Zone de saisie (channelTextArea Shine exacte)
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── Toolbar — pill (Shine) ─────────────────────── */
+#app-mount [class*="toolbar_"] {
+  border-radius: 99px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow:
+    0 -1.5px 0.4px  -1px rgba(255, 255, 255, 0.15) inset,
+    0  1.5px 0.75px -1px rgba(255, 255, 255, 0.30) inset,
+    0  2px   12px    0   rgba(0,   0,   0,   0.20) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all 0.3s !important;
+}
+
+/* ── Hover message ──────────────────────────────── */
+#app-mount li[class*="message_"]:hover,
+#app-mount li[id^="chat-messages-"]:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-radius: 8px !important;
+}
+
+/* ── Reply (message réponse) — glass Shine ───────── */
+#app-mount [class*="repliedMessage_"] {
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(2px) !important;
+  padding: 3px 8px !important;
+  box-shadow:
+    0 -0.5px 1px -1px rgba(255, 255, 255, 0.50) inset,
+    0  0.5px 1px -1px rgba(255, 255, 255, 1.00) inset !important;
+}
+
+/* ── Zone de saisie — form wrapper ─────────────── */
+#app-mount [class*="form_"] {
+  background: transparent !important;
+  padding: 0 12px 12px !important;
+}
+#app-mount [class*="form_"] [class*="inner_"],
+#app-mount [class*="form_"] [class*="textArea_"],
+#app-mount [class*="form_"] [class*="scrollableContainer_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── channelTextArea — Shine exacte ─────────────── */
+#app-mount [class*="channelTextArea_"] {
+  border-radius: 26px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  background-blend-mode: plus-lighter !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.30) inset,
+    0  1px   2px 0 rgba(255, 255, 255, 0.20) inset,
+    0  2px  12px 0 rgba(0,   0,   0,   0.20) !important;
+  backdrop-filter: blur(8px) brightness(115%) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(8px) brightness(115%) saturate(150%) !important;
+  border: none !important;
+}

@@ -1,0 +1,47 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  06 — SIDEBAR CHANNELS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Le style de base est dans 03-panels.css.
+ *
+ *  Ce module gère :
+ *    - En-têtes de catégorie (hover)
+ *    - Items de salon (hover, arrondi, marge)
+ *    - Salon sélectionné (barre gauche Midnight)
+ *    - Badges de notification
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── En-tête catégorie ──────────────────────────── */
+#app-mount [class*="sidebarList_"] [class*="header_"] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  transition: background 130ms !important;
+}
+#app-mount [class*="sidebarList_"] [class*="header_"]:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ── Item de salon ──────────────────────────────── */
+#app-mount [class*="sidebarList_"] li [class*="wrapper_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 2px 6px !important;
+  transition: background 120ms !important;
+}
+#app-mount [class*="sidebarList_"] li [class*="wrapper_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* ── Salon sélectionné — barre gauche (Midnight) ── */
+#app-mount [class*="sidebarList_"] [class*="modeSelected_"] {
+  background-color: var(--lg-sel) !important;
+  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+/* ── Badges notifications ───────────────────────── */
+#app-mount [class*="numberBadge_"] {
+  background-color: #ed4245 !important;
+  border-radius: 99px !important;
+}

@@ -1,0 +1,68 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 04 — LISTE DES SERVEURS (GUILDS)
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  La barre des serveurs (colonne gauche avec icônes).
+ *
+ *  Sélecteurs utilisés (multi-versions Discord) :
+ *    [class*="guilds_"]   → ancien format   guilds_f75fb0
+ *    [class*="guilds__"]  → nouveau format  guilds__5e434
+ *    Les deux font la même chose car guilds__ contient guilds_
+ *
+ *  ⚠ PAS de overflow:hidden → couperait les "pills"
+ *    (la barre blanche de sélection qui dépasse à gauche)
+ *
+ *  Carte flottante : margin crée un gap de --lg-gap
+ *  depuis le bord gauche et haut/bas de la fenêtre.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ── Conteneur principal ────────────────────────────── */
+#app-mount [class*="guilds_"] {
+  background-color: var(--lg-panel) !important;
+  backdrop-filter: var(--lg-blur-lg) !important;
+  -webkit-backdrop-filter: var(--lg-blur-lg) !important;
+
+  /* Carte flottante */
+  border-radius: var(--lg-r) !important;
+  box-shadow: var(--lg-shadow) !important;
+  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+
+  /*
+   * PAS de overflow:hidden ici.
+   * Les pills (indicateurs de sélection) sont positionnés
+   * à l'extérieur gauche du container — overflow:hidden
+   * les couperait et les rendrait invisibles.
+   */
+}
+
+/* ── Indicateurs de sélection (pills) ──────────────── */
+/* La petite barre blanche qui apparaît à gauche de l'icône sélectionnée */
+#app-mount [class*="guilds_"] [class*="pill_"] rect,
+#app-mount [class*="guilds_"] [class*="pill_"] path,
+#app-mount [class*="guilds_"] [class*="blobMask_"] {
+  fill: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* ── Icônes de serveur ──────────────────────────────── */
+/* Transition entre rond (non-sélectionné) et carré arrondi (survol/sélectionné) */
+#app-mount [class*="guilds_"] [class*="wrapper_"] {
+  transition: border-radius var(--lg-dur-slow) ease !important;
+}
+
+/* ── Séparateur entre DMs et serveurs ───────────────── */
+#app-mount [class*="guilds_"] [class*="listItem_"] [class*="separator_"],
+#app-mount [class*="guilds_"] hr {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-radius: 1px !important;
+  width: 32px !important;
+  margin: 0 auto !important;
+}
+
+/* ── Boutons du bas (Ajouter serveur, Explorer) ─────── */
+#app-mount [class*="guilds_"] [class*="listItem_"]:last-child [class*="wrapper_"],
+#app-mount [class*="guilds_"] [class*="createJoinButton_"] {
+  transition: border-radius var(--lg-dur-slow) ease, background var(--lg-dur) ease !important;
+}

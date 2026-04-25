@@ -1,0 +1,35 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  01 — FOND ANIMÉ
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Deux blobs lumineux sur fond très sombre :
+ *    - Blanc/bleu en haut à gauche
+ *    - Violet en bas à droite
+ *  Animation douce 18s en boucle.
+ * ═══════════════════════════════════════════════════
+ */
+
+@keyframes lg-bg {
+  0%   { background-position: 0%  0%,  100% 100%; }
+  33%  { background-position: 25% 15%, 75%  85%;  }
+  66%  { background-position: 10% 40%, 90%  60%;  }
+  100% { background-position: 0%  0%,  100% 100%; }
+}
+
+html, body {
+  background-color: #050510 !important;
+  background-image:
+    radial-gradient(ellipse 90% 80% at 0% 0%,
+      rgba(180, 210, 255, 0.45) 0%,
+      rgba(120, 160, 255, 0.20) 35%,
+      transparent 65%),
+    radial-gradient(ellipse 80% 90% at 100% 100%,
+      rgba(100, 60, 255, 0.50) 0%,
+      rgba(60,  20, 200, 0.25) 40%,
+      transparent 70%) !important;
+  background-attachment: fixed !important;
+  background-size: 200% 200% !important;
+  animation: lg-bg 18s ease-in-out infinite !important;
+}

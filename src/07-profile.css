@@ -1,0 +1,125 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  07 — PANNEAU PROFIL
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Technique inspirée de Shine :
+ *    → panels_ est TRANSPARENT (pas de card opaque)
+ *    → Un pseudo-élément ::after crée un "fog" verre
+ *      qui monte du bas via mask-image gradient
+ *    → Les boutons (mic/sourd/paramètres) sont groupés
+ *      dans une capsule pill (border-radius: 999px)
+ *      avec les boutons individuels à border-radius: 0
+ *
+ *  Positionnement :
+ *    → left/right/bottom + width: auto = flottant
+ *    → overflow: visible pour que le fog dépasse
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── Container principal — transparent ──────────── */
+#app-mount [class*="panels_"] {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  left: var(--lg-gap) !important;
+  right: var(--lg-gap) !important;
+  bottom: var(--lg-gap) !important;
+  width: auto !important;
+}
+
+/* ── Fog verre montant (technique Shine) ─────────── */
+#app-mount [class*="panels_"]::after {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 190% !important;
+  background: rgba(0, 0, 0, 0.025) !important;
+  backdrop-filter: blur(22px) saturate(170%) brightness(118%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(170%) brightness(118%) !important;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
+  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Contenu au-dessus du fog ───────────────────── */
+#app-mount [class*="panels_"] > * {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Fog remonte davantage si voix active */
+#app-mount [class*="panels_"]:has([class*="voiceContainer_"])::after {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 38%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 38%) !important;
+}
+
+/* ── Avatar ─────────────────────────────────────── */
+#app-mount [class*="panels_"] [class*="avatar_"],
+#app-mount [class*="panels_"] [class*="avatarWrapper_"] {
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ── Nom d'utilisateur ──────────────────────────── */
+#app-mount [class*="panels_"] [class*="nameTag_"] {
+  border-radius: var(--lg-rxs) !important;
+  padding: 3px 6px !important;
+  transition: background 120ms !important;
+}
+#app-mount [class*="panels_"] [class*="nameTag_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* ── Groupe boutons — pill Shine ─────────────────── */
+#app-mount [class*="panels_"] [class*="buttons_"] {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  gap: 0 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow:
+    0 -2px   0.75px -1px rgba(255, 255, 255, 0.15) inset,
+    0  1.5px 0.75px -1px rgba(255, 255, 255, 0.30) inset,
+    0  2px   12px    0   rgba(0,   0,   0,   0.20) !important;
+}
+
+/* ── Bouton individuel dans la pill ─────────────── */
+#app-mount [class*="panels_"] [class*="buttons_"] [class*="button_"] {
+  background: transparent !important;
+  box-shadow:
+    0 -2px   0.75px -1px rgba(255, 255, 255, 0.10) inset,
+    0  1.5px 0.75px -1px rgba(255, 255, 255, 0.22) inset !important;
+  border-radius: 0 !important;
+  padding: 2px !important;
+  box-sizing: content-box !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  transition: background 150ms ease !important;
+}
+#app-mount [class*="panels_"] [class*="buttons_"] [class*="button_"]:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ── Bouton disconnect — rouge ───────────────────── */
+#app-mount [class*="panels_"] [class*="buttons_"] [class*="redGlow_"],
+#app-mount [class*="panels_"] [class*="disconnect_"] {
+  background: rgba(240, 50, 50, 0.18) !important;
+}
+#app-mount [class*="panels_"] [class*="buttons_"] [class*="redGlow_"]:hover,
+#app-mount [class*="panels_"] [class*="disconnect_"]:hover {
+  background: rgba(240, 50, 50, 0.32) !important;
+}
+
+/* ── Voix connectée — texte vert ─────────────────── */
+#app-mount [class*="voiceContainer_"] [class*="voiceConnectedText_"] {
+  color: rgba(72, 230, 128, 1.0) !important;
+}

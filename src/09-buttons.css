@@ -1,0 +1,54 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  09 — BOUTONS (technique Shine)
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Technique Shine — 3 couches inset box-shadow :
+ *    couche 1 : reflet du haut (bord supérieur foncé)
+ *    couche 2 : reflet du bas (bord inférieur lumineux)
+ *    couche 3 : diffusion douce
+ *    couche 4 : ombre portée
+ *
+ *  Hover : filter: brightness() au lieu de changer
+ *          la couleur — plus élégant.
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── Boutons toolbar ────────────────────────────── */
+#app-mount [class*="toolbar_"] button {
+  background-color: transparent !important;
+  border-radius: var(--lg-rxs) !important;
+  transition: background 150ms, filter 150ms !important;
+}
+#app-mount [class*="toolbar_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  filter: brightness(1.20) !important;
+}
+
+/* ── Boutons voix ───────────────────────────────── */
+#app-mount [class*="voiceContainer_"] button {
+  background-color: var(--lg-btn) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow: var(--lg-btn-s) !important;
+  transition: filter 200ms ease !important;
+}
+#app-mount [class*="voiceContainer_"] button:hover {
+  filter: brightness(1.20) !important;
+}
+#app-mount [class*="voiceContainer_"] [class*="disconnect_"] {
+  background-color: rgba(240, 60, 60, 0.22) !important;
+}
+
+/* ── Boutons génériques Discord ─────────────────── */
+[class*="button_a22c"],
+[class*="button__201d"]:not([class*="button__676"]) {
+  box-shadow: var(--lg-btn-s) !important;
+  border-radius: 13px !important;
+  border: none !important;
+  transition: filter 0.3s ease !important;
+}
+[class*="button_a22c"]:hover,
+[class*="button__201d"]:not([class*="button__676"]):hover {
+  filter: brightness(1.20) !important;
+}

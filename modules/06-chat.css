@@ -1,0 +1,183 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 06 — ZONE DE CHAT
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  ⚠ SÉLECTEUR IMPORTANT :
+ *    On cible [class*="chatContent_"] UNIQUEMENT.
+ *    [class*="chat_"] est TROP LARGE — il matche le wrapper
+ *    "chat_f75fb0" qui contient tout (sidebar + membres),
+ *    ce qui déplace tout le layout si on lui ajoute margin.
+ *
+ *  Structure de la zone chat :
+ *    chatContent_  ← notre cible (just la zone centrale)
+ *      toolbar_    ← header avec le nom du canal
+ *      messages    ← liste des messages
+ *      form_       ← barre de saisie
+ *
+ *  margin: var(--lg-gap) = 8px sur tous les côtés
+ *  → La carte chat "flotte" avec un gap de 8px partout.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ══════════════════════════════════════════════════════
+   CARTE PRINCIPALE DU CHAT
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="chatContent_"] {
+  background-color: var(--lg-panel-2) !important;
+  backdrop-filter: var(--lg-blur-lg) !important;
+  -webkit-backdrop-filter: var(--lg-blur-lg) !important;
+
+  border-radius: var(--lg-r) !important;
+  box-shadow: var(--lg-shadow) !important;
+
+  /* Gap sur les 4 côtés (flottement de la carte) */
+  margin: var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   HEADER DU CANAL (nom + boutons)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="toolbar_"],
+#app-mount [class*="topNav_"] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: var(--lg-blur-sm) !important;
+  -webkit-backdrop-filter: var(--lg-blur-sm) !important;
+  border-bottom: 1px solid var(--lg-border-lo) !important;
+}
+
+/* Nom du canal */
+#app-mount [class*="channelName_"] {
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+}
+
+/* Boutons de la toolbar */
+#app-mount [class*="toolbar_"] button,
+#app-mount [class*="topNav_"] button {
+  border-radius: var(--lg-rsm) !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="toolbar_"] button:hover,
+#app-mount [class*="topNav_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* Barre de recherche dans le header */
+#app-mount [class*="toolbar_"] [class*="search_"],
+#app-mount [class*="search_"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+  transition: all var(--lg-dur) !important;
+}
+#app-mount [class*="search_"]:focus-within {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.30) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MESSAGES
+══════════════════════════════════════════════════════ */
+
+/* Hover sur un message */
+#app-mount li[class*="message_"]:hover,
+#app-mount li[id^="chat-messages-"]:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Séparateur de date */
+#app-mount [class*="divider_"] {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Timestamp */
+#app-mount [class*="timestamp_"] {
+  color: rgba(255, 255, 255, 0.28) !important;
+  font-size: 11px !important;
+}
+
+/* Embeds */
+#app-mount [class*="embed_"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Blocs de code */
+#app-mount pre {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+#app-mount code:not(pre > code) {
+  background-color: rgba(0, 0, 0, 0.48) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+  border-radius: 4px !important;
+  padding: 1px 5px !important;
+}
+
+/* Réactions */
+#app-mount [class*="reaction_"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="reaction_"]:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   BARRE DE SAISIE (chatbar)
+══════════════════════════════════════════════════════ */
+
+/* Wrapper du form — fond transparent */
+#app-mount [class*="form_"] {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 8px 8px !important;
+}
+
+/* Éléments internes — aussi transparents */
+#app-mount [class*="form_"] [class*="scrollableContainer_"],
+#app-mount [class*="form_"] [class*="inner_"],
+#app-mount [class*="form_"] [class*="textArea_"] {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* La zone de texte elle-même */
+#app-mount [class*="channelTextArea_"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
+  overflow: hidden !important;
+  transition: box-shadow var(--lg-dur) !important;
+}
+
+/* Focus : bordure plus brillante */
+#app-mount [class*="channelTextArea_"]:focus-within {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+    0 0 0 3px rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Boutons dans la chatbar */
+#app-mount [class*="channelTextArea_"] button {
+  border-radius: var(--lg-rxs) !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="channelTextArea_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}

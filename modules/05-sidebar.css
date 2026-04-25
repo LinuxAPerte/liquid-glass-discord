@@ -1,0 +1,243 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 05 — SIDEBAR + PANNEAU UTILISATEUR
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Deux éléments forment UNE SEULE CARTE visuellement :
+ *
+ *    ┌─────────────────┐  ← sidebarList_ (arrondi haut)
+ *    │  # général      │
+ *    │  # random       │
+ *    │  # annonces     │
+ *    │  🔊 Vocal       │
+ *    ├─────────────────┤
+ *    │  🐱 Pseudo ⚙️🎤 │  ← panels_ (arrondi bas)
+ *    └─────────────────┘
+ *
+ *  sidebarList_ : border-radius TOP seulement (haut arrondi)
+ *  panels_      : border-radius BOTTOM seulement (bas arrondi)
+ *  → Ensemble ils forment une carte complète.
+ *
+ *  Pour les DMs : privateChannels_ même traitement que sidebarList_
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ══════════════════════════════════════════════════════
+   SIDEBAR CHANNELS (serveurs)
+══════════════════════════════════════════════════════ */
+
+/* ── Conteneur principal ────────────────────────────── */
+#app-mount [class*="sidebarList_"] {
+  background-color: var(--lg-panel) !important;
+  backdrop-filter: var(--lg-blur-lg) !important;
+  -webkit-backdrop-filter: var(--lg-blur-lg) !important;
+
+  /* Arrondi HAUT seulement (bas = panels_ s'y connecte) */
+  border-radius: var(--lg-r) var(--lg-r) 0 0 !important;
+  box-shadow: var(--lg-shadow) !important;
+
+  /* Gap : haut + gauche seulement (bas = panels_ prend la suite) */
+  margin: var(--lg-gap) 0 0 var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+/* ── Header : nom du serveur ────────────────────────── */
+#app-mount [class*="sidebarList_"] [class*="header_"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid var(--lg-border-lo) !important;
+  font-weight: 700 !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="sidebarList_"] [class*="header_"]:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Catégories de salons ───────────────────────────── */
+#app-mount [class*="sidebarList_"] [class*="categoryName_"],
+#app-mount [class*="containerDefault_"] [class*="name_"] {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.38) !important;
+}
+
+/* ── Items de salon ─────────────────────────────────── */
+#app-mount [class*="sidebarList_"] [class*="wrapper_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 4px !important;
+  transition: background var(--lg-dur) !important;
+}
+
+/* Survol */
+#app-mount [class*="sidebarList_"] [class*="wrapper_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* Sélectionné */
+#app-mount [class*="sidebarList_"] [class*="modeSelected_"] {
+  background-color: var(--lg-sel) !important;
+  /* Trait blanc sur le bord gauche = soulignement de sélection */
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Non-lu : plus lumineux */
+#app-mount [class*="sidebarList_"] [class*="modeUnread_"] [class*="name_"] {
+  color: rgba(255, 255, 255, 0.96) !important;
+  font-weight: 600 !important;
+}
+
+/* Texte des salons */
+#app-mount [class*="sidebarList_"] [class*="name_"] {
+  color: rgba(255, 255, 255, 0.48) !important;
+  transition: color var(--lg-dur) !important;
+}
+#app-mount [class*="sidebarList_"] [class*="wrapper_"]:hover [class*="name_"],
+#app-mount [class*="sidebarList_"] [class*="modeSelected_"] [class*="name_"] {
+  color: rgba(255, 255, 255, 0.97) !important;
+}
+
+/* Badges (notifications) */
+#app-mount [class*="numberBadge_"] {
+  background-color: #e74c3c !important;
+  border-radius: 99px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   SIDEBAR DMs (messages privés)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="privateChannels_"] {
+  background-color: var(--lg-panel) !important;
+  backdrop-filter: var(--lg-blur-lg) !important;
+  -webkit-backdrop-filter: var(--lg-blur-lg) !important;
+  border-radius: var(--lg-r) var(--lg-r) 0 0 !important;
+  box-shadow: var(--lg-shadow) !important;
+  margin: var(--lg-gap) 0 0 var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+#app-mount [class*="privateChannels_"] [class*="channel_"],
+#app-mount [class*="privateChannels_"] [class*="link_"],
+#app-mount [class*="privateChannels_"] [class*="wrapper_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 4px !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="privateChannels_"] [class*="channel_"]:hover,
+#app-mount [class*="privateChannels_"] [class*="link_"]:hover,
+#app-mount [class*="privateChannels_"] [class*="wrapper_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+#app-mount [class*="privateChannels_"] [class*="selected_"] {
+  background-color: var(--lg-sel) !important;
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.85) !important;
+}
+#app-mount [class*="privateChannelsHeaderContainer_"] {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.38) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   PANNEAU UTILISATEUR (bas gauche)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="panels_"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: var(--lg-blur-md) !important;
+  -webkit-backdrop-filter: var(--lg-blur-md) !important;
+
+  /* Arrondi BAS seulement (haut = sidebarList_ s'y connecte) */
+  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+  box-shadow: var(--lg-shadow) !important;
+
+  /* Gap : gauche + bas seulement */
+  margin: 0 0 var(--lg-gap) var(--lg-gap) !important;
+  padding: 4px 6px !important;
+  overflow: hidden !important;
+}
+
+/* Zone cliquable nom + avatar */
+#app-mount [class*="panels_"] [class*="nameTag_"] {
+  border-radius: var(--lg-rxs) !important;
+  padding: 3px 5px !important;
+  transition: background var(--lg-dur) !important;
+  cursor: pointer !important;
+}
+#app-mount [class*="panels_"] [class*="nameTag_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* Avatar */
+#app-mount [class*="panels_"] [class*="avatar_"],
+#app-mount [class*="panels_"] [class*="avatarWrapper_"] {
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22) !important;
+  overflow: hidden !important;
+}
+
+/* Nom d'utilisateur */
+#app-mount [class*="panels_"] [class*="username_"],
+#app-mount [class*="panels_"] strong {
+  color: rgba(255, 255, 255, 0.96) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+/* Sous-texte (tag/statut) */
+#app-mount [class*="panels_"] [class*="discriminator_"],
+#app-mount [class*="panels_"] [class*="subtext_"] {
+  color: rgba(255, 255, 255, 0.42) !important;
+  font-size: 11px !important;
+}
+
+/* Boutons (muet, sourd, paramètres) */
+#app-mount [class*="panels_"] button {
+  border-radius: var(--lg-rxs) !important;
+  transition: background var(--lg-dur) !important;
+  padding: 5px !important;
+}
+#app-mount [class*="panels_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   VOIX CONNECTÉE (au-dessus du panneau utilisateur)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="voiceContainer_"],
+#app-mount [class*="connection_"] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-radius: var(--lg-rsm) var(--lg-rsm) 0 0 !important;
+  box-shadow: inset 0 0 0 1px var(--lg-border-lo) !important;
+  overflow: hidden !important;
+}
+
+/* "Voix connectée" en vert */
+#app-mount [class*="connection_"] [class*="text_"] {
+  color: rgba(70, 220, 120, 0.96) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* Nom du salon vocal */
+#app-mount [class*="connection_"] [class*="channelName_"] {
+  color: rgba(255, 255, 255, 0.56) !important;
+  font-size: 11px !important;
+}
+
+#app-mount [class*="voiceContainer_"] button:hover,
+#app-mount [class*="connection_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  border-radius: var(--lg-rxs) !important;
+}

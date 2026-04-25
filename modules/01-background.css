@@ -1,0 +1,65 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 01 — FOND ANIMÉ + RESET
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Ce module fait 2 choses UNIQUEMENT :
+ *    1. Pose le fond animé gradient sur html/body
+ *    2. Rend TOUT transparent dans l'app (les modules
+ *       suivants reposeront leurs propres backgrounds)
+ *
+ *  ⚠ Règle : ne JAMAIS toucher background-image ici
+ *    (les couleurs de rôles Discord utilisent background-image)
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ── Animation du fond ──────────────────────────────── */
+@keyframes lg-bg-move {
+  0%   { background-position: 0% 0%,   100% 100%; }
+  33%  { background-position: 30% 20%,  70%  80%; }
+  66%  { background-position: 10% 40%,  90%  60%; }
+  100% { background-position: 0% 0%,   100% 100%; }
+}
+
+/* ── Fond principal ─────────────────────────────────── */
+html, body {
+  /* Couleur de base très sombre */
+  background-color: #03030d !important;
+
+  /*
+   * Deux blobs lumineux :
+   *  - Blanc en haut à gauche  (ambiance lumière naturelle)
+   *  - Bleu/violet en bas à droite (ambiance néon froid)
+   */
+  background-image:
+    radial-gradient(
+      ellipse 85% 75% at 5% 5%,
+      rgba(220, 230, 255, 0.30) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 75% 85% at 95% 95%,
+      rgba(80, 100, 255, 0.35) 0%,
+      transparent 60%
+    ) !important;
+
+  background-attachment: fixed !important;
+  background-size: 200% 200% !important;
+
+  /* Animation douce, 22 secondes */
+  animation: lg-bg-move 22s ease-in-out infinite !important;
+}
+
+/* ── Reset transparent ──────────────────────────────── */
+/*
+ * On retire UNIQUEMENT background-color de tous les éléments.
+ * Cela expose notre fond animé à travers l'interface.
+ *
+ * ⚠ background-image est intentionnellement préservé
+ *   (couleurs de rôles, icônes CSS, etc.)
+ */
+#app-mount,
+#app-mount * {
+  background-color: transparent !important;
+}

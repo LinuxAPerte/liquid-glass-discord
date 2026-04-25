@@ -1,0 +1,67 @@
+/**
+ * Liquid Glass v9 — User Configuration
+ * Collez dans : Vencord → Settings → QuickCSS
+ *
+ * ─── Prérequis ───────────────────────────────────────────────
+ *  1. Vencord Settings → Vencord → ✅ Enable Window Transparency
+ *     puis redémarrer Discord COMPLÈTEMENT (pas Ctrl+R)
+ *  2. Vencord → Plugins → ThemeAttributes → ON
+ * ─────────────────────────────────────────────────────────────
+ */
+:root {
+
+  /* ─── Layout ──────────────────────────────────────────────
+     Espace entre le bord de l'écran et les panneaux           */
+  --lg-gap:   8px;   /* gap extérieur (fenêtre → panneau)      */
+
+  /* ─── Arrondis ────────────────────────────────────────────  */
+  --lg-r:     16px;  /* arrondi principal des panneaux          */
+  --lg-r-sm:  10px;  /* éléments medium (items, embeds…)        */
+  --lg-r-xs:   6px;  /* petits éléments (boutons, inputs…)      */
+
+  /* ─── Couleur accent oklch (L  C  H) ─────────────────────
+     Bleu glace   : 0.70 0.22 220   ← défaut
+     Violet       : 0.68 0.25 295
+     Vert menthe  : 0.76 0.20 160
+     Rose néon    : 0.70 0.28 340
+     Orange       : 0.74 0.24  52   */
+  --lg-accent: oklch(0.70 0.22 220);
+  --lg-glow:   oklch(0.70 0.22 220 / 0.35);  /* halo des boutons / focus */
+  --lg-tint:   oklch(0.70 0.22 220 / 0.14);  /* channel sélectionné      */
+
+  /* ─── Opacité des panneaux ────────────────────────────────
+     0.00 = invisible  /  1.00 = opaque
+     Recommandé avec Window Transparency ON  : 0.25 – 0.45
+     Recommandé sans  Window Transparency    : 0.55 – 0.72    */
+
+  --lg-panel-guilds:  rgba(8,9,20,0.38);   /* liste des serveurs         */
+  --lg-panel-sidebar: rgba(8,9,20,0.40);   /* channels + catégories      */
+  --lg-panel-chat:    rgba(6,7,18,0.35);   /* zone de messages           */
+  --lg-panel-members: rgba(8,9,20,0.38);   /* liste des membres          */
+  --lg-panel-float:   rgba(4,5,16,0.88);   /* menus / modales / tooltips */
+
+  /* ─── Preset — plus opaque (sans Window Transparency) ──────
+  --lg-panel-guilds:  rgba(8,9,20,0.62);
+  --lg-panel-sidebar: rgba(8,9,20,0.65);
+  --lg-panel-chat:    rgba(6,7,18,0.58);
+  --lg-panel-members: rgba(8,9,20,0.62);
+  --lg-panel-float:   rgba(4,5,16,0.92);
+  ──────────────────────────────────────────────────────────── */
+
+  /* ─── Intensité du flou ───────────────────────────────────
+     Format : blur(Xpx) saturate(Y%) brightness(Z%)
+     brightness > 100% = effet givré (frosted glass)           */
+  --lg-blur-sm: blur(18px) saturate(175%) brightness(115%);
+  --lg-blur-md: blur(35px) saturate(190%) brightness(122%);
+  --lg-blur-lg: blur(55px) saturate(210%) brightness(128%);
+
+  /* ─── Transitions ─────────────────────────────────────────  */
+  --lg-dur: 170ms;
+  /* --lg-dur: 0s;   ← désactive toutes les animations         */
+
+  /* ─── Bordures & surfaces (avancé) ───────────────────────  */
+  --lg-b0: rgba(255,255,255,0.08);  /* bordure panneaux         */
+  --lg-b1: rgba(255,255,255,0.15);  /* bordure menus / modales  */
+  --lg-s0: rgba(255,255,255,0.03);  /* hover léger              */
+  --lg-s1: rgba(255,255,255,0.07);  /* hover normal             */
+}

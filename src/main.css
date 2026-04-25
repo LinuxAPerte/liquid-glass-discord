@@ -1,0 +1,39 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  LIQUID GLASS — MAIN (import chain)
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Ce fichier est servi via GitHub Pages.
+ *  liquid-glass.theme.css l'importe via @import url().
+ *
+ *  Ordre des modules :
+ *    00 → variables (tokens)
+ *    01 → fond animé
+ *    02 → reset backgrounds
+ *    03 → panneaux unifié (Midnight)
+ *    04 → titlebar + macOS buttons
+ *    05 → serveurs (guilds)
+ *    06 → sidebar channels
+ *    07 → panneau profil (Shine fog)
+ *    08 → zone de chat
+ *    09 → boutons (Shine)
+ *    10 → menus / modales
+ *    11 → page amis
+ *    12 → scrollbars
+ * ═══════════════════════════════════════════════════
+ */
+
+@import url('./00-variables.css');
+@import url('./01-background.css');
+@import url('./02-reset.css');
+@import url('./03-panels.css');
+@import url('./04-titlebar.css');
+@import url('./05-guilds.css');
+@import url('./06-sidebar.css');
+@import url('./07-profile.css');
+@import url('./08-chat.css');
+@import url('./09-buttons.css');
+@import url('./10-menus.css');
+@import url('./11-friends.css');
+@import url('./12-scrollbars.css');

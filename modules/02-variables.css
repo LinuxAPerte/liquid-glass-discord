@@ -1,0 +1,80 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 02 — VARIABLES & DESIGN TOKENS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Tous les réglages du thème sont ici.
+ *  Modifier ces variables change l'apparence globale.
+ * ═══════════════════════════════════════════════════════
+ */
+
+:root {
+
+  /* ── Espacement & Arrondis ──────────────────────────
+     gap    = espace entre les panneaux et le bord fenêtre
+     r      = arrondi principal (panneaux)
+     r-sm   = arrondi moyen (items, boutons larges)
+     r-xs   = arrondi petit (boutons, inputs)          */
+  --lg-gap:  8px;
+  --lg-r:   14px;
+  --lg-rsm:  8px;
+  --lg-rxs:  5px;
+
+  /* ── Surfaces verre (panneaux principaux) ───────────
+     Couleur : blanc très transparent = verre dépoli
+     Sur fond sombre, ces surfaces seront clairement
+     visibles comme des cartes de verre.               */
+  --lg-panel:    rgba(255, 255, 255, 0.08);  /* sidebar, guilds, members     */
+  --lg-panel-2:  rgba(255, 255, 255, 0.06);  /* zone de chat (plus discret)  */
+  --lg-panel-lo: rgba(255, 255, 255, 0.04);  /* éléments secondaires         */
+
+  /* Panneaux flottants sombres (menus, modales) */
+  --lg-dark:  rgba(8, 8, 22, 0.94);
+
+  /* ── Etats interactifs ──────────────────────────────  */
+  --lg-hover: rgba(255, 255, 255, 0.08);
+  --lg-sel:   rgba(255, 255, 255, 0.14);
+  --lg-act:   rgba(255, 255, 255, 0.06);
+
+  /* ── Bordures ────────────────────────────────────────
+     Ligne blanche semi-transparente = effet verre réel  */
+  --lg-border:    rgba(255, 255, 255, 0.18);
+  --lg-border-lo: rgba(255, 255, 255, 0.08);
+
+  /* ── Ombres ─────────────────────────────────────────  */
+  --lg-shadow:
+    0 2px 8px  rgba(0, 0, 0, 0.40),
+    0 8px 32px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+
+  --lg-shadow-float:
+    0 8px 32px  rgba(0, 0, 0, 0.60),
+    0 24px 64px rgba(0, 0, 0, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  /* ── Backdrop filter (flou verre) ───────────────────
+     Rend le contenu derrière le panneau flou = effet verre
+     lg  = fort blur pour les grands panneaux
+     md  = blur moyen pour les éléments intermédiaires
+     sm  = blur léger pour les petits éléments          */
+  --lg-blur-lg: blur(48px) saturate(180%) brightness(115%);
+  --lg-blur-md: blur(28px) saturate(150%) brightness(112%);
+  --lg-blur-sm: blur(14px) saturate(130%) brightness(108%);
+
+  /* ── Durée des transitions ──────────────────────────  */
+  --lg-dur: 140ms;
+  --lg-dur-slow: 280ms;
+}
+
+/* ── Scrollbars ─────────────────────────────────────── */
+::-webkit-scrollbar              { width: 3px; height: 3px; }
+::-webkit-scrollbar-track        { background: transparent; }
+::-webkit-scrollbar-thumb        {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover  { background: rgba(255, 255, 255, 0.38); }
+::-webkit-scrollbar-corner       { background: transparent; }

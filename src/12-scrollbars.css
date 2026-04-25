@@ -1,0 +1,12 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  12 — SCROLLBARS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ */
+
+::-webkit-scrollbar              { width: 3px; height: 3px; }
+::-webkit-scrollbar-track        { background: transparent; }
+::-webkit-scrollbar-thumb        { background: rgba(255, 255, 255, 0.18); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover  { background: rgba(255, 255, 255, 0.35); }
+::-webkit-scrollbar-corner       { background: transparent; }

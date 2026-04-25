@@ -1,0 +1,49 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  11 — PAGE AMIS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ */
+
+/* ── Conteneur amis ─────────────────────────────── */
+#app-mount [class*="friendsContainer_"],
+#app-mount [class*="peopleList_"] {
+  background: var(--lg-glass) !important;
+  backdrop-filter: var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border-radius: var(--lg-r) !important;
+  border: 1px solid var(--lg-border) !important;
+  box-shadow: var(--lg-shadow) !important;
+  margin: var(--lg-gap) !important;
+  overflow: hidden !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="friendsContainer_"]:hover,
+#app-mount [class*="peopleList_"]:hover {
+  border-color: var(--lg-bord-h) !important;
+}
+
+/* ── Lignes amis ────────────────────────────────── */
+#app-mount [class*="friendRow_"],
+#app-mount [class*="peopleListItem_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 2px 8px !important;
+  transition: background 120ms !important;
+}
+#app-mount [class*="friendRow_"]:hover,
+#app-mount [class*="peopleListItem_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* ── Boutons d'action — Shine ────────────────────── */
+#app-mount [class*="friendRow_"] button,
+#app-mount [class*="peopleListItem_"] button {
+  background-color: var(--lg-btn) !important;
+  border-radius: 50% !important;
+  box-shadow: var(--lg-btn-s) !important;
+  transition: filter 200ms ease !important;
+}
+#app-mount [class*="friendRow_"] button:hover,
+#app-mount [class*="peopleListItem_"] button:hover {
+  filter: brightness(1.22) !important;
+}

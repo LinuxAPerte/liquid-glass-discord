@@ -1,0 +1,35 @@
+/*
+ * ═══════════════════════════════════════════════════
+ *  02 — RESET BACKGROUNDS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Retire les backgrounds opaques de Discord pour
+ *  exposer le fond animé derrière les panneaux verre.
+ *
+ *  Approche ciblée (inspiré Midnight) :
+ *    → PAS de * { transparent } global qui casse tout
+ *    → On cible uniquement les conteneurs wrappers
+ *
+ *  ⚠ background-image intentionnellement préservé
+ *    (couleurs de rôles, icônes CSS Discord)
+ * ═══════════════════════════════════════════════════
+ */
+
+#app-mount,
+#app-mount [class*="app_"],
+#app-mount [class*="bg_"],
+#app-mount [class*="baseLayer_"],
+#app-mount [class*="chat_"],
+#app-mount [class*="page_"],
+#app-mount [class*="sidebar_"],
+#app-mount [class*="privateChannels_"],
+#app-mount [class*="members_"],
+#app-mount [class*="member_"],
+#app-mount [class*="scroller__99"],
+#app-mount [class*="container__2637"],
+#app-mount [class*="homeWrapper_"],
+#app-mount [class*="wrapper_cdf"],
+#app-mount [class*="wrapper_fc8"] {
+  background-color: transparent !important;
+}

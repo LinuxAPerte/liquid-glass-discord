@@ -1,0 +1,201 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MODULE 08 — MENUS / MODALES / TOOLTIPS / PROFILS
+ *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Ces éléments "flottent" au-dessus du reste → fond sombre
+ *  (pas le verre blanc des panneaux principaux, mais un
+ *  verre sombre très opaque pour la lisibilité)
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ══════════════════════════════════════════════════════
+   MENUS CONTEXTUELS (clic droit)
+══════════════════════════════════════════════════════ */
+
+#app-mount [role="menu"] {
+  background-color: var(--lg-dark) !important;
+  backdrop-filter: blur(50px) saturate(160%) brightness(130%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(160%) brightness(130%) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow: var(--lg-shadow-float) !important;
+  padding: 6px !important;
+  overflow: hidden !important;
+}
+
+#app-mount [role="menuitem"] {
+  border-radius: var(--lg-rsm) !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [role="menuitem"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* Séparateurs */
+#app-mount [role="separator"] {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  margin: 4px 8px !important;
+}
+
+/* Sous-menus (labels de groupe) */
+#app-mount [class*="labelContainer_"] {
+  color: rgba(255, 255, 255, 0.38) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MODALES (boîtes de dialogue)
+══════════════════════════════════════════════════════ */
+
+#app-mount [role="dialog"] > div {
+  background-color: rgba(6, 6, 18, 0.95) !important;
+  backdrop-filter: blur(50px) saturate(160%) brightness(125%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(160%) brightness(125%) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow: var(--lg-shadow-float) !important;
+  overflow: hidden !important;
+}
+
+/* Header des modales */
+#app-mount [role="dialog"] [class*="header_"] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid var(--lg-border-lo) !important;
+}
+
+/* Footer des modales (boutons Annuler/Confirmer) */
+#app-mount [role="dialog"] [class*="footer_"] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-top: 1px solid var(--lg-border-lo) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   TOOLTIPS
+══════════════════════════════════════════════════════ */
+
+#app-mount [role="tooltip"] {
+  background-color: rgba(5, 5, 16, 0.97) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.60) !important;
+  font-size: 13px !important;
+  padding: 5px 10px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   POPOUTS (panneaux flottants génériques)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="popout_"] {
+  background-color: rgba(6, 6, 18, 0.95) !important;
+  backdrop-filter: blur(50px) saturate(160%) brightness(125%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(160%) brightness(125%) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow: var(--lg-shadow-float) !important;
+  overflow: hidden !important;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   PROFIL UTILISATEUR — MINI POPOUT
+   (apparaît quand on survole/clique sur un avatar)
+══════════════════════════════════════════════════════ */
+
+#app-mount [class*="userPopoutOuter_"],
+#app-mount [class*="userPopout_"]:not([class*="Outer"]):not([class*="wrapper"]) {
+  background-color: rgba(6, 6, 18, 0.96) !important;
+  backdrop-filter: blur(60px) saturate(180%) brightness(130%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(180%) brightness(130%) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  overflow: hidden !important;
+  max-width: 280px !important;
+  min-width: 240px !important;
+}
+
+/* Avatar dans le profil */
+#app-mount [class*="userPopout_"] [class*="avatarWrapper_"] {
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 4px rgba(6, 6, 18, 0.96) !important;
+  overflow: hidden !important;
+}
+
+/* Nom */
+#app-mount [class*="userPopout_"] h1 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: rgba(255, 255, 255, 0.97) !important;
+}
+
+/* Tag (#discriminator) */
+#app-mount [class*="userPopout_"] [class*="discriminator_"] {
+  color: rgba(255, 255, 255, 0.40) !important;
+  font-size: 11px !important;
+}
+
+/* Sections (À propos, Rôles, etc.) */
+#app-mount [class*="userPopout_"] [class*="section_"],
+#app-mount [class*="userPopout_"] [class*="body_"] > div {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 8px 12px !important;
+  margin: 0 !important;
+}
+
+/* Titres de section */
+#app-mount [class*="userPopout_"] h2 {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.38) !important;
+  margin-bottom: 5px !important;
+}
+
+/* Notes, activité */
+#app-mount [class*="userPopout_"] [class*="note_"],
+#app-mount [class*="userPopout_"] [class*="activity_"] {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09) !important;
+  border-radius: var(--lg-rsm) !important;
+  padding: 8px 10px !important;
+}
+
+/* Rôles */
+#app-mount [class*="userPopout_"] [class*="role_"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.13) !important;
+  border-radius: 8px !important;
+  padding: 3px 8px !important;
+  margin: 2px !important;
+  transition: background var(--lg-dur) !important;
+}
+#app-mount [class*="userPopout_"] [class*="role_"]:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Boutons (Ajouter ami, Envoyer message) */
+#app-mount [class*="userPopout_"] [class*="addFriendSection_"] button,
+#app-mount [class*="userPopout_"] [class*="buttons_"] button {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
+  border-radius: var(--lg-rsm) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-weight: 600 !important;
+  padding: 8px 12px !important;
+  transition: all var(--lg-dur) !important;
+}
+#app-mount [class*="userPopout_"] [class*="addFriendSection_"] button:hover,
+#app-mount [class*="userPopout_"] [class*="buttons_"] button:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-1px) !important;
+}
