@@ -19,12 +19,13 @@
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Style verre unifié ─────────────────────────── */
+/* ── Style verre unifié (approche Midnight) ─────── */
 #app-mount [class*="guilds_"],
 #app-mount [class*="sidebarList_"],
 #app-mount [class*="chatContent_"],
 #app-mount [class*="peopleColumn_"],
-#app-mount [class*="nowPlayingColumn_"] {
+#app-mount [class*="nowPlayingColumn_"],
+#app-mount [class*="container_c8ff"] {      /* liste membres serveur */
   background: var(--lg-glass) !important;
   backdrop-filter: var(--lg-blur) !important;
   -webkit-backdrop-filter: var(--lg-blur) !important;
@@ -39,8 +40,17 @@
 #app-mount [class*="sidebarList_"]:hover,
 #app-mount [class*="chatContent_"]:hover,
 #app-mount [class*="peopleColumn_"]:hover,
-#app-mount [class*="nowPlayingColumn_"]:hover {
+#app-mount [class*="nowPlayingColumn_"]:hover,
+#app-mount [class*="container_c8ff"]:hover {
   border-color: var(--lg-bord-h) !important;
+}
+
+/* ── Liste membres — marge gauche séparatrice ───── */
+#app-mount [class*="container_c8ff"] {
+  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow: hidden !important;
+  height: auto !important;
+  min-width: 200px !important;
 }
 
 /* ── Marges & positionnement ────────────────────── */

@@ -1,29 +1,30 @@
 /*
  * ═══════════════════════════════════════════════════
- *  11 — PAGE AMIS
+ *  11 — PAGE AMIS & LISTE MEMBRES
  *  Liquid Glass Discord Theme
+ *
+ *  Approche Midnight :
+ *    → Le panneau verre EXTERNE (peopleColumn_, etc.)
+ *      est géré dans 03-panels.css
+ *    → Ici : uniquement les éléments INTERNES
+ *      → transparents (pas de double-verre)
+ *      → hover subtil sur les lignes
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Conteneur amis ─────────────────────────────── */
+/* ── Conteneurs internes — transparent ──────────── */
 #app-mount [class*="friendsContainer_"],
-#app-mount [class*="peopleList_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="friendsContainer_"]:hover,
-#app-mount [class*="peopleList_"]:hover {
-  border-color: var(--lg-bord-h) !important;
+#app-mount [class*="peopleList_"],
+#app-mount [class*="tabBody_"],
+#app-mount [class*="peopleListSectionTitle_"] {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* ── Lignes amis ────────────────────────────────── */
+/* ── Lignes amis — hover Midnight ───────────────── */
 #app-mount [class*="friendRow_"],
 #app-mount [class*="peopleListItem_"] {
   border-radius: var(--lg-rsm) !important;
@@ -46,4 +47,28 @@
 #app-mount [class*="friendRow_"] button:hover,
 #app-mount [class*="peopleListItem_"] button:hover {
   filter: brightness(1.22) !important;
+}
+
+/* ── Liste membres serveur — bordure gauche Shine ── */
+#app-mount [class*="members_"] {
+  background: transparent !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+#app-mount [class*="member_"] {
+  background: transparent !important;
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 8px !important;
+  transition: background 120ms !important;
+}
+#app-mount [class*="member_"]:hover {
+  background-color: var(--lg-hover) !important;
+}
+
+/* ── Séparateurs de rôle dans la liste membres ───── */
+#app-mount [class*="membersGroup_"] {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 8px 12px 4px !important;
 }
