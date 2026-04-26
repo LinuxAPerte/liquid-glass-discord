@@ -838,15 +838,15 @@
 ══════════════════════════════════════════════════ */
 #app-mount [class*="container__9293"],
 #app-mount [class*="subtitleContainer_"] {
-  background: rgba(255, 255, 255, 0.13) !important;
+  background: rgba(255, 255, 255, 0.19) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.40) !important;
   box-shadow:
-    0 -1px   1.5px 0 rgba(255, 255, 255, 0.22) inset,
-    0  1px   1.5px 0 rgba(255, 255, 255, 0.38) inset,
-    0  2px   5px   0 rgba(255, 255, 255, 0.10) inset !important;
+    0 -1px   1.5px 0 rgba(255, 255, 255, 0.30) inset,
+    0  1px   1.5px 0 rgba(255, 255, 255, 0.50) inset,
+    0  2px   5px   0 rgba(255, 255, 255, 0.18) inset !important;
   margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
   padding: 0 12px !important;
   z-index: 10 !important;
@@ -854,5 +854,5 @@
 }
 #app-mount [class*="container__9293"]:hover,
 #app-mount [class*="subtitleContainer_"]:hover {
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.62) !important;
 }
