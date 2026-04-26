@@ -639,3 +639,77 @@
   background: var(--lg-hover) !important;
   margin-left: 6px !important;
 }
+
+/* ══════════════════════════════════════════════════
+   ACTIVE NOW — CARTES INDIVIDUELLES
+   Midnight: scroller__7d20c = scroller interne
+   On cible les enfants directs du scroller pour
+   leur donner un style glass sans connaître leur classe
+══════════════════════════════════════════════════ */
+#app-mount [class*="container__7d20"] { background: transparent !important; }
+#app-mount [class*="scroller__7d20"] { border: none !important; }
+
+#app-mount [class*="scroller__7d20"] > * {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.11) !important;
+  border-radius: var(--lg-rsm) !important;
+  margin: 3px 6px !important;
+  overflow: hidden !important;
+  transition: background 150ms, border-color 150ms !important;
+}
+#app-mount [class*="scroller__7d20"] > *:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}
+#app-mount [class*="scroller__7d20"] > * > * { background: transparent !important; }
+
+/* ══════════════════════════════════════════════════
+   DM SIDEBAR — BOUTON "Recherche ou lance une conversation"
+   Midnight: container__2637a = channel list inner
+   Le bouton search est dans ce container
+══════════════════════════════════════════════════ */
+#app-mount [class*="container__2637"] {
+  background: transparent !important;
+  padding-bottom: 0 !important;
+}
+
+#app-mount [class*="container__2637"] [class*="search"],
+#app-mount [class*="container__2637"] [class*="Search"],
+#app-mount [class*="container__2637"] input,
+#app-mount [class*="container__2637"] [role="searchbox"],
+#app-mount [class*="privateChannels_"] [class*="search"],
+#app-mount [class*="privateChannels_"] [class*="Search"],
+#app-mount [class*="sidebarList_"] [class*="dmSearch_"],
+#app-mount [class*="sidebarList_"] [class*="findFriend_"],
+#app-mount [class*="sidebarList_"] [class*="filterInput_"],
+#app-mount [class*="sidebarList_"] [class*="openDM_"] {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.40) inset !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="container__2637"] [class*="search"]:focus-within,
+#app-mount [class*="privateChannels_"] [class*="search"]:focus-within {
+  border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MIDNIGHT HASH SELECTORS — fiabilité maximale
+   Classes hash exactes connues depuis le source Midnight
+══════════════════════════════════════════════════ */
+/* DM list inner scroller (Midnight: scroller__99e7c) */
+#app-mount [class*="scroller__99e"] { background: transparent !important; margin-bottom: 0 !important; }
+/* Friends page tab body (Midnight: tabBody__133bf) */
+#app-mount [class*="tabBody__133b"] { background: transparent !important; border: none !important; }
+/* Channel list header (Midnight: clickable_f37, header_f37) */
+#app-mount [class*="clickable_f37"],
+#app-mount [class*="header_f37"] { background: none !important; }
+/* Chat gradient masque (Midnight: chatGradient__36d07) → supprimé */
+#app-mount [class*="chatGradient__36d"] { display: none !important; }
+/* Children gradient shadow (Midnight: children__9293f:after) */
+#app-mount [class*="children__9293"]:after { display: none !important; }
+/* Channel list inner scroller (Midnight: scroller__629e4) */
+#app-mount [class*="scroller__629"] { margin-bottom: 0 !important; }
