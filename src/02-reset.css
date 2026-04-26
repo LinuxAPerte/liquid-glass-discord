@@ -19,6 +19,7 @@
 #app-mount,
 #app-mount [class*="app_"],
 #app-mount [class*="bg_"],
+#app-mount [class*="base_"],           /* wrapper principal contenu Discord — CRITIQUE */
 #app-mount [class*="baseLayer_"],
 #app-mount [class*="layers_"],
 #app-mount [class*="layer_"],

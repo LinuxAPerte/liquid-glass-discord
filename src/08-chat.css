@@ -124,7 +124,7 @@
     0  0.5px 1px 0 rgba(255, 255, 255, 0.38) inset,
     0  1px   2px 0 rgba(255, 255, 255, 0.22) inset,
     0  2px  16px 0 rgba(0,   0,   0,   0.28) !important;
-  backdrop-filter: blur(12px) brightness(118%) saturate(130%) !important;
-  -webkit-backdrop-filter: blur(12px) brightness(118%) saturate(130%) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
   border: 1px solid rgba(255,255,255,0.18) !important;
 }

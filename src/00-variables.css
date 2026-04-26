@@ -13,19 +13,27 @@
   --lg-rxs: 6px;
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.09);   /* réduit : fond coloré donne la teinte */
-  --lg-border:  rgba(255, 255, 255, 0.40);   /* bordure visible */
-  --lg-bord-h:  rgba(255, 255, 255, 0.65);   /* hover lumineuse */
+  /*
+   * DARK GLASS : panneau sombre semi-transparent.
+   * Un overlay blanc (rgba blanc) sur fond coloré = panneau
+   * clair (lavande, blanc) — mauvais.
+   * Un overlay sombre (rgba sombre) sur fond coloré = panneau
+   * sombre, la couleur de fond tinte légèrement à travers.
+   * C'est le vrai "verre sombre givré" iOS/visionOS.
+   */
+  --lg-glass:   rgba(6, 6, 24, 0.55);         /* sombre semi-transparent = dark glass */
+  --lg-border:  rgba(255, 255, 255, 0.38);    /* bordure blanche visible sur fond sombre */
+  --lg-bord-h:  rgba(255, 255, 255, 0.62);    /* hover plus lumineuse */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(52px) saturate(140%);       /* brightness retiré : évite le blanchissement */
+  --lg-blur: blur(48px) saturate(140%);        /* pas de brightness → pas de blanchissement */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0  2px  8px rgba(0, 0, 0, 0.70),          /* ombre proche = profondeur */
-    0 12px 40px rgba(0, 0, 0, 0.50),          /* ombre douce = séparation */
-    inset 0 1.5px 0   rgba(255, 255, 255, 0.52),
-    inset 0 0     0 1px rgba(255, 255, 255, 0.14);
+    0  2px  8px rgba(0, 0, 0, 0.75),          /* ombre proche = profondeur */
+    0 12px 40px rgba(0, 0, 0, 0.55),          /* ombre douce = séparation */
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.40),  /* shimmer top — visible sur fond sombre */
+    inset 0 0     0 1px rgba(255, 255, 255, 0.12);
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.07);
@@ -48,18 +56,28 @@
 ════════════════════════════════════════════════ */
 :root,
 .theme-dark {
-  /* ── Fonds principaux → transparent ─────────── */
+  /* ── Fonds principaux → transparent (anciens tokens) ── */
   --background-primary:              transparent !important;
   --background-secondary:            transparent !important;
   --background-secondary-alt:        transparent !important;
   --background-tertiary:             transparent !important;
   --background-accent:               rgba(255,255,255,0.06) !important;
-  --background-floating:             rgba(6, 6, 6, 0.92)   !important;
-  --background-nested-floating:      rgba(6, 6, 6, 0.92)   !important;
+  --background-floating:             rgba(4, 4, 16, 0.94)  !important;
+  --background-nested-floating:      rgba(4, 4, 16, 0.94)  !important;
   --background-mobile-primary:       transparent !important;
   --background-mobile-secondary:     transparent !important;
   --deprecated-card-bg:              rgba(255,255,255,0.04) !important;
   --deprecated-store-bg:             transparent !important;
+
+  /* ── Fonds principaux → transparent (nouveaux tokens Discord 2024) ── */
+  --bg-base-primary:                 transparent !important;
+  --bg-base-secondary:               transparent !important;
+  --bg-base-tertiary:                transparent !important;
+  --bg-surface-overlay:              transparent !important;
+  --bg-surface-raised:               transparent !important;
+  --bg-surface-overlay-selected:     transparent !important;
+  --surface-overlay:                 transparent !important;
+  --surface-raised:                  transparent !important;
 
   /* ── États hover / sélection ─────────────────── */
   --background-message-hover:        rgba(255,255,255,0.04) !important;
