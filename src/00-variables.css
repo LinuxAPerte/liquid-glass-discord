@@ -13,12 +13,12 @@
   --lg-rxs: 6px;
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.15);   /* plus opaque = contraste sur fond sombre */
-  --lg-border:  rgba(255, 255, 255, 0.44);   /* bordure plus visible */
-  --lg-bord-h:  rgba(255, 255, 255, 0.70);   /* hover encore plus lumineuse */
+  --lg-glass:   rgba(255, 255, 255, 0.09);   /* réduit : fond coloré donne la teinte */
+  --lg-border:  rgba(255, 255, 255, 0.40);   /* bordure visible */
+  --lg-bord-h:  rgba(255, 255, 255, 0.65);   /* hover lumineuse */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(48px) saturate(160%) brightness(118%); /* plus fort = givré coloré */
+  --lg-blur: blur(52px) saturate(140%);       /* brightness retiré : évite le blanchissement */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
