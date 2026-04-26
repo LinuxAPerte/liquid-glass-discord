@@ -33,59 +33,66 @@
 }
 
 /* ── Popout profil utilisateur — liquid glass ────── */
-[class*="userProfileOuter_"],
-[class*="profileModal_"] {
-  background: rgba(6, 6, 10, 0.55) !important;
-  backdrop-filter: blur(60px) saturate(200%) brightness(128%) !important;
-  -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(128%) !important;
+/*
+ * NOTE SPÉCIFICITÉ : popout_ dans 12-extra-modules a un sélecteur
+ * #app-mount [class*="popout_"] (spéc. 1,1,0) qui peut écraser ce
+ * sélecteur sans #app-mount (spéc. 0,1,0).
+ * Solution : on ajoute #app-mount ici ET on exclut userProfileOuter_
+ * du sélecteur popout_ générique.
+ */
+#app-mount [class*="userProfileOuter_"],
+#app-mount [class*="profileModal_"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(48px) saturate(180%) brightness(115%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(115%) !important;
   box-shadow:
-    0 -1px   1px 0 rgba(255, 255, 255, 0.30) inset,
-    0  1px   1px 0 rgba(255, 255, 255, 0.14) inset,
-    0 0 0 1px      rgba(255, 255, 255, 0.22),
-    0 32px 80px 0  rgba(0, 0, 0, 0.80) !important;
+    0 -1px   2px 0 rgba(255, 255, 255, 0.42) inset,
+    0  1px   2px 0 rgba(255, 255, 255, 0.24) inset,
+    0 0 0 1px      rgba(255, 255, 255, 0.30),
+    0 32px 80px 0  rgba(0, 0, 0, 0.72) !important;
   border-radius: var(--lg-r) !important;
   overflow: hidden !important;
 }
-[class*="userProfileInner_"] { background: transparent !important; }
+#app-mount [class*="userProfileInner_"] { background: transparent !important; }
 
 /* Section activité / Écoute */
-[class*="userProfileOuter_"] [class*="activity_"],
-[class*="userProfileOuter_"] [class*="activitySection_"],
-[class*="profileModal_"] [class*="activity_"] {
-  background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+#app-mount [class*="userProfileOuter_"] [class*="activity_"],
+#app-mount [class*="userProfileOuter_"] [class*="activitySection_"],
+#app-mount [class*="profileModal_"] [class*="activity_"] {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: var(--lg-rsm) !important;
 }
 
 /* Rôles */
-[class*="userProfileOuter_"] [class*="role_"]:not([class*="roles_"]),
-[class*="profileModal_"] [class*="role_"]:not([class*="roles_"]) {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+#app-mount [class*="userProfileOuter_"] [class*="role_"]:not([class*="roles_"]),
+#app-mount [class*="profileModal_"] [class*="role_"]:not([class*="roles_"]) {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: var(--lg-rxs) !important;
 }
 
 /* Boutons */
-[class*="userProfileOuter_"] [class*="button_"],
-[class*="profileModal_"] button[class*="button_"] {
-  background: rgba(255, 255, 255, 0.11) !important;
-  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+#app-mount [class*="userProfileOuter_"] [class*="button_"],
+#app-mount [class*="profileModal_"] button[class*="button_"] {
+  background: rgba(255, 255, 255, 0.13) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
   border-radius: var(--lg-rsm) !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.40) inset !important;
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.44) inset !important;
   transition: filter 200ms ease !important;
 }
-[class*="userProfileOuter_"] [class*="button_"]:hover,
-[class*="profileModal_"] button[class*="button_"]:hover {
-  filter: brightness(1.25) !important;
+#app-mount [class*="userProfileOuter_"] [class*="button_"]:hover,
+#app-mount [class*="profileModal_"] button[class*="button_"]:hover {
+  filter: brightness(1.20) !important;
 }
 
 /* Zone de message */
-[class*="userProfileOuter_"] [class*="channelTextArea_"],
-[class*="profileModal_"] [class*="channelTextArea_"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+#app-mount [class*="userProfileOuter_"] [class*="channelTextArea_"],
+#app-mount [class*="profileModal_"] [class*="channelTextArea_"] {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
   border-radius: 16px !important;
 }
 

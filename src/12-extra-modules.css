@@ -524,9 +524,12 @@
 
 /* ══════════════════════════════════════════════════
    POPOVERS & HOVER CARDS
-   (popout profil, channel hover card…)
+   (hover cards canaux, emojis, etc.)
+   NB : userProfileOuter_ et profileModal_ sont EXCLUS
+   → ils ont leur propre glass dans 10-menus.css avec
+     #app-mount (spéc. 1,1,0) qui prend le dessus ici.
 ══════════════════════════════════════════════════ */
-#app-mount [class*="popout_"] {
+#app-mount [class*="popout_"]:not([class*="userProfileOuter_"]):not([class*="profileModal_"]) {
   background: rgba(8, 8, 12, 0.88) !important;
   backdrop-filter: blur(32px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
@@ -590,30 +593,9 @@
 }
 
 /* ══════════════════════════════════════════════════
-   BARRE NAV AMIS — renforcement glass visible
-   Le container__9293 est DANS chatContent_ (glass).
-   On augmente l'opacité + ajoute un contour plus visible.
+   BARRE NAV AMIS — glass visible (voir bloc ci-dessous)
+   Défini en bas du fichier pour éviter doublon.
 ══════════════════════════════════════════════════ */
-#app-mount [class*="container__9293"],
-#app-mount [class*="subtitleContainer_"] {
-  background: rgba(255, 255, 255, 0.13) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
-  box-shadow:
-    0 -1px   1px 0 rgba(255, 255, 255, 0.40) inset,
-    0  1px   1px 0 rgba(255, 255, 255, 0.60) inset,
-    0  2px   4px 0 rgba(255, 255, 255, 0.12) inset !important;
-  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
-  padding: 0 12px !important;
-  z-index: 10 !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="container__9293"]:hover,
-#app-mount [class*="subtitleContainer_"]:hover {
-  border-color: rgba(255, 255, 255, 0.45) !important;
-}
 
 /* ══════════════════════════════════════════════════
    ACTIVE NOW — STREAM LIVE CARD (vidéo preview)
@@ -789,21 +771,21 @@
 }
 
 /* ══════════════════════════════════════════════════
-   HEADER CANAL / DM — subtitleContainer_ renforcé
-   La barre avec le nom du canal + toolbar est trop sombre.
-   On augmente l'opacité du glass pour qu'elle soit visible.
+   HEADER CANAL / DM — subtitleContainer_ glass
+   Barre avec le nom du canal + toolbar.
+   Insets calibrés : shimmer visible mais pas blanc.
 ══════════════════════════════════════════════════ */
 #app-mount [class*="container__9293"],
 #app-mount [class*="subtitleContainer_"] {
-  background: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.13) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.34) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
   box-shadow:
-    0 -1px   1.5px 0 rgba(255, 255, 255, 0.50) inset,
-    0  1px   1.5px 0 rgba(255, 255, 255, 0.70) inset,
-    0  2px   5px   0 rgba(255, 255, 255, 0.16) inset !important;
+    0 -1px   1.5px 0 rgba(255, 255, 255, 0.22) inset,
+    0  1px   1.5px 0 rgba(255, 255, 255, 0.38) inset,
+    0  2px   5px   0 rgba(255, 255, 255, 0.10) inset !important;
   margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
   padding: 0 12px !important;
   z-index: 10 !important;
@@ -811,5 +793,5 @@
 }
 #app-mount [class*="container__9293"]:hover,
 #app-mount [class*="subtitleContainer_"]:hover {
-  border-color: rgba(255, 255, 255, 0.52) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
 }
