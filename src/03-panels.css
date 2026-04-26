@@ -22,6 +22,7 @@
 /* ── Style verre unifié (approche Midnight) ─────── */
 #app-mount [class*="guilds_"],
 #app-mount [class*="sidebarList_"],
+#app-mount [class*="privateChannels_"],   /* panneau DM list */
 #app-mount [class*="chatContent_"],
 #app-mount [class*="peopleColumn_"],
 #app-mount [class*="nowPlayingColumn_"],
@@ -38,6 +39,7 @@
 /* ── Hover : bordure plus lumineuse (Midnight) ──── */
 #app-mount [class*="guilds_"]:hover,
 #app-mount [class*="sidebarList_"]:hover,
+#app-mount [class*="privateChannels_"]:hover,
 #app-mount [class*="chatContent_"]:hover,
 #app-mount [class*="peopleColumn_"]:hover,
 #app-mount [class*="nowPlayingColumn_"]:hover,
@@ -60,6 +62,12 @@
 }
 
 #app-mount [class*="sidebarList_"] {
+  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+/* Panneau liste DM — même marge que la sidebar serveur */
+#app-mount [class*="privateChannels_"] {
   margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
   overflow: hidden !important;
 }
