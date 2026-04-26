@@ -32,19 +32,69 @@
   border-radius: var(--lg-rsm) !important;
 }
 
-/* ── Popout profil utilisateur ───────────────────── */
+/* ── Popout profil utilisateur — liquid glass ────── */
 [class*="userProfileOuter_"],
-[class*="profileModal_"],
-[class*="userProfileInner_"] {
-  background: rgba(8, 8, 10, 0.94) !important;
-  backdrop-filter: blur(40px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+[class*="profileModal_"] {
+  background: rgba(6, 6, 10, 0.55) !important;
+  backdrop-filter: blur(60px) saturate(200%) brightness(128%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(128%) !important;
   box-shadow:
-    0 1.5px 1px 0 rgba(255, 255, 255, 0.10) inset,
-    0 8px  40px 0 rgba(255, 255, 255, 0.04) inset,
-    0 0 0 1px      rgba(255, 255, 255, 0.14),
-    0 24px 64px 0  rgba(0,   0,   0,   0.55) !important;
+    0 -1px   1px 0 rgba(255, 255, 255, 0.30) inset,
+    0  1px   1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 0 0 1px      rgba(255, 255, 255, 0.22),
+    0 32px 80px 0  rgba(0, 0, 0, 0.80) !important;
   border-radius: var(--lg-r) !important;
+  overflow: hidden !important;
+}
+[class*="userProfileInner_"] { background: transparent !important; }
+
+/* Section activité / Écoute */
+[class*="userProfileOuter_"] [class*="activity_"],
+[class*="userProfileOuter_"] [class*="activitySection_"],
+[class*="profileModal_"] [class*="activity_"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Rôles */
+[class*="userProfileOuter_"] [class*="role_"]:not([class*="roles_"]),
+[class*="profileModal_"] [class*="role_"]:not([class*="roles_"]) {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-rxs) !important;
+}
+
+/* Boutons */
+[class*="userProfileOuter_"] [class*="button_"],
+[class*="profileModal_"] button[class*="button_"] {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.40) inset !important;
+  transition: filter 200ms ease !important;
+}
+[class*="userProfileOuter_"] [class*="button_"]:hover,
+[class*="profileModal_"] button[class*="button_"]:hover {
+  filter: brightness(1.25) !important;
+}
+
+/* Zone de message */
+[class*="userProfileOuter_"] [class*="channelTextArea_"],
+[class*="profileModal_"] [class*="channelTextArea_"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 16px !important;
+}
+
+/* Séparateurs */
+[class*="userProfileOuter_"] [class*="divider_"],
+[class*="profileModal_"] [class*="divider_"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: none !important;
+  height: 1px !important;
 }
 
 /* ── Modales (paramètres, etc.) ──────────────────── */
@@ -135,13 +185,16 @@
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.30) inset !important;
 }
 
-/* Footer (Gaming · 1440p · 60fps) — section verre */
+/* Footer (Gaming · 1440p · 60fps) — glass Shine */
+[class*="container__8a031"] [class*="footer_"],
 [class*="sourceSelect_"] [class*="footer_"],
 [class*="screenPicker_"] [class*="footer_"],
-[class*="streamModal_"] [class*="footer_"] {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+[class*="streamModal_"] [class*="footer_"],
+[class*="footer_a55f"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+  box-shadow: 0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset !important;
 }
 
 /* ── Embeds (liens prévisualisés) — Shine ────────── */

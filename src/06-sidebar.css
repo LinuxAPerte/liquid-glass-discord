@@ -14,27 +14,29 @@
  * ═══════════════════════════════════════════════════
  */
 
-/* ── En-tête catégorie — pill glass ────────────── */
+/* ── En-tête catégorie — texte épuré ─────────── */
+/* PAS de pill/border : résultat moche sur les catégories */
 #app-mount [class*="sidebarList_"] [class*="header_"],
-#app-mount [class*="sidebarList_"] [class*="containerDefault_"],
+#app-mount [class*="sidebarList_"] [class*="categoryBar_"],
 #app-mount [class*="sidebarList_"] [class*="categoryHeader_"] {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
-  border-radius: var(--lg-rsm) !important;
-  margin: 5px 6px 2px 6px !important;
-  padding: 3px 8px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 6px 0 2px 0 !important;
+  padding: 4px 8px 2px 16px !important;
   font-size: 10px !important;
   font-weight: 700 !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
-  color: rgba(255, 255, 255, 0.48) !important;
-  transition: background 150ms, border-color 150ms !important;
+  color: rgba(255, 255, 255, 0.38) !important;
+  transition: color 150ms !important;
 }
 #app-mount [class*="sidebarList_"] [class*="header_"]:hover,
-#app-mount [class*="sidebarList_"] [class*="containerDefault_"]:hover {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border-color: rgba(255, 255, 255, 0.18) !important;
+#app-mount [class*="sidebarList_"] [class*="categoryHeader_"]:hover {
+  color: rgba(255, 255, 255, 0.70) !important;
+  background: transparent !important;
 }
+/* Note: containerDefault_ = items de salon, pas catégories */
 
 /* ── Item de salon ──────────────────────────────── */
 #app-mount [class*="sidebarList_"] li [class*="wrapper_"] {
