@@ -7,24 +7,25 @@
 
 :root {
   /* ── Layout ──────────────────────────────────── */
-  --lg-gap: 8px;
+  --lg-gap: 10px;          /* augmenté : gaps plus visibles entre panneaux */
   --lg-r:   16px;
   --lg-rsm: 10px;
   --lg-rxs: 6px;
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.12);   /* +2% → plus visible sur fond sombre */
-  --lg-border:  rgba(255, 255, 255, 0.36);
-  --lg-bord-h:  rgba(255, 255, 255, 0.62);
+  --lg-glass:   rgba(255, 255, 255, 0.15);   /* plus opaque = contraste sur fond sombre */
+  --lg-border:  rgba(255, 255, 255, 0.44);   /* bordure plus visible */
+  --lg-bord-h:  rgba(255, 255, 255, 0.70);   /* hover encore plus lumineuse */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(36px) saturate(130%) brightness(116%);
+  --lg-blur: blur(48px) saturate(160%) brightness(118%); /* plus fort = givré coloré */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0 8px 40px  rgba(0, 0, 0, 0.60),
-    inset 0 1px 0   rgba(255, 255, 255, 0.48),
-    inset 0 0   0 1px rgba(255, 255, 255, 0.12);
+    0  2px  8px rgba(0, 0, 0, 0.70),          /* ombre proche = profondeur */
+    0 12px 40px rgba(0, 0, 0, 0.50),          /* ombre douce = séparation */
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.52),
+    inset 0 0     0 1px rgba(255, 255, 255, 0.14);
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.07);

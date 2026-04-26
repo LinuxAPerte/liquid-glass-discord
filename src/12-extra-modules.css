@@ -522,6 +522,76 @@
   border: none !important;
 }
 
+/* Conteneur de liste amis → transparent pour voir le panneau glass parent */
+#app-mount [class*="peopleList_"],
+#app-mount [class*="scroller__133b"],
+#app-mount [class*="list__133b"] {
+  background: transparent !important;
+}
+
+/* Titre de section "En ligne — 26" */
+#app-mount [class*="friendsRowHeader_"],
+#app-mount [class*="rowHeader_"],
+#app-mount [class*="groupHeader__133b"] {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* Items individuels de la liste amis */
+#app-mount [class*="listItem__133b"],
+#app-mount [class*="peopleListItem_"],
+#app-mount [class*="member__133b"],
+#app-mount [class*="friendRow_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin: 1px 6px !important;
+  transition: background 120ms ease !important;
+}
+#app-mount [class*="listItem__133b"]:hover,
+#app-mount [class*="peopleListItem_"]:hover,
+#app-mount [class*="member__133b"]:hover,
+#app-mount [class*="friendRow_"]:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Boutons d'action (message, appel, etc.) dans les items amis */
+#app-mount [class*="listItem__133b"] [class*="actions_"],
+#app-mount [class*="peopleListItem_"] [class*="actions_"],
+#app-mount [class*="friendRow_"] [class*="actions_"] {
+  gap: 4px !important;
+}
+#app-mount [class*="listItem__133b"] [class*="actions_"] button,
+#app-mount [class*="peopleListItem_"] [class*="actions_"] button,
+#app-mount [class*="friendRow_"] [class*="actions_"] button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 50% !important;
+  transition: background 120ms, border-color 120ms !important;
+}
+#app-mount [class*="listItem__133b"] [class*="actions_"] button:hover,
+#app-mount [class*="peopleListItem_"] [class*="actions_"] button:hover,
+#app-mount [class*="friendRow_"] [class*="actions_"] button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+/* Barre de recherche dans la page amis */
+#app-mount [class*="peopleList_"] [class*="searchBar_"],
+#app-mount [class*="tabBody_"] [class*="searchBar_"],
+#app-mount [class*="searchBar__133b"],
+#app-mount [class*="filterBar_"] {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
+  transition: border-color 200ms ease !important;
+}
+
 /* ══════════════════════════════════════════════════
    POPOVERS & HOVER CARDS
    (hover cards canaux, emojis, etc.)

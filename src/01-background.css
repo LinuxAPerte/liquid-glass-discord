@@ -1,47 +1,51 @@
 /*
  * ═══════════════════════════════════════════════════
- *  01 — FOND ANIMÉ — LIQUID GLASS NOIR & BLANC
+ *  01 — FOND ANIMÉ — LIQUID GLASS ATMOSPHÉRIQUE
  *  Liquid Glass Discord Theme
  * ═══════════════════════════════════════════════════
  *
- *  3 couches :
- *    → Layer 1 : spéculaire blanc concentré (drift)
- *                = reflet de lumière sur verre poli
- *    → Layer 2 : lueur atmosphérique bleue subtile
- *    → Layer 3 : gradient de profondeur fixe
+ *  4 couches :
+ *    → Layer 1 : spéculaire blanc top-left (drift)
+ *    → Layer 2 : atmosphère bleue droite (drift inverse)
+ *    → Layer 3 : lueur mauve bas-gauche (drift lent)
+ *    → Layer 4 : base sombre fixe
  *
- *  Base #050510 (noir profond teinté bleu)
- *  → panneaux glass rgba(255,255,255,0.12) visibles
- *    contre ce fond légèrement teinté (pas pure black)
+ *  Les gradients colorés donnent au backdrop-filter
+ *  quelque chose à "flouter" → effet verre givré visible.
  * ═══════════════════════════════════════════════════
  */
 
 @keyframes lg-bg {
-  0%   { background-position: 0%   0%,    0%    0%,  0% 0%; }
-  25%  { background-position: 16%  9%,   -8%  -4%,   0% 0%; }
-  50%  { background-position: 8%   20%,   4%   8%,   0% 0%; }
-  75%  { background-position: -5%  11%,   12%  -2%,  0% 0%; }
-  100% { background-position: 0%   0%,    0%    0%,  0% 0%; }
+  0%   { background-position: 0%   0%,   0%   0%,   0%   0%,  0% 0%; }
+  25%  { background-position: 14%  8%,  -7%  -3%,   5%  -4%,  0% 0%; }
+  50%  { background-position: 7%  19%,   5%   7%,  -3%   6%,  0% 0%; }
+  75%  { background-position: -4% 10%,  11%  -2%,   8%   2%,  0% 0%; }
+  100% { background-position: 0%   0%,   0%   0%,   0%   0%,  0% 0%; }
 }
 
 html, body {
-  background-color: #050510 !important;
+  background-color: #06061c !important;
   background-image:
-    /* Layer 1 — Spéculaire verre principal (drift lent) */
-    radial-gradient(ellipse 32% 22% at 20% 8%,
-      rgba(255, 255, 255, 0.38) 0%,
-      rgba(255, 255, 255, 0.16) 40%,
+    /* Layer 1 — Spéculaire blanc (top-left, drift lent) */
+    radial-gradient(ellipse 44% 36% at 10% 8%,
+      rgba(200, 220, 255, 0.24) 0%,
+      rgba(140, 170, 255, 0.10) 42%,
       transparent 70%),
-    /* Layer 2 — Lueur atmosphérique bleue subtile */
-    radial-gradient(ellipse 55% 38% at 72% 92%,
-      rgba(100, 120, 220, 0.07) 0%,
-      transparent 65%),
-    /* Layer 3 — Fond noir riche (fixe) */
-    radial-gradient(ellipse 140% 100% at 30% -10%,
-      rgba(18, 18, 30, 1) 0%,
-      rgba(6,   6,  16, 1) 45%,
-      rgba(1,   1,   8, 1) 100%) !important;
+    /* Layer 2 — Atmosphère bleue (droite, drift inverse) */
+    radial-gradient(ellipse 68% 54% at 84% 32%,
+      rgba(70, 100, 230, 0.20) 0%,
+      rgba(50,  80, 200, 0.08) 52%,
+      transparent 78%),
+    /* Layer 3 — Lueur mauve (bas-gauche, drift lent) */
+    radial-gradient(ellipse 56% 44% at 18% 86%,
+      rgba(130, 70, 240, 0.14) 0%,
+      transparent 58%),
+    /* Layer 4 — Base sombre fixe */
+    radial-gradient(ellipse 150% 130% at 40% 20%,
+      rgba(10, 10, 32, 1) 0%,
+      rgba( 4,  4, 18, 1) 50%,
+      rgba( 1,  1, 10, 1) 100%) !important;
   background-attachment: fixed !important;
-  background-size: 120% 120%, 100% 100%, 100% 100% !important;
-  animation: lg-bg 55s ease-in-out infinite !important;
+  background-size: 120% 120%, 110% 110%, 100% 100%, 100% 100% !important;
+  animation: lg-bg 60s ease-in-out infinite !important;
 }
