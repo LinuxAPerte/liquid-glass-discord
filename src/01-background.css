@@ -4,47 +4,44 @@
  *  Liquid Glass Discord Theme
  * ═══════════════════════════════════════════════════
  *
- *  Quatre blobs blanc/argenté qui dérivent sur fond
- *  quasi-noir — style Apple Vision Pro / iOS 26.
- *  Aucune teinte colorée : pur noir & blanc.
+ *  3 couches :
+ *    → Layer 1 : spéculaire blanc concentré (drift)
+ *                = reflet de lumière sur verre poli
+ *    → Layer 2 : lueur atmosphérique bleue subtile
+ *    → Layer 3 : gradient de profondeur fixe
+ *
+ *  Base #050510 (noir profond teinté bleu)
+ *  → panneaux glass rgba(255,255,255,0.12) visibles
+ *    contre ce fond légèrement teinté (pas pure black)
  * ═══════════════════════════════════════════════════
  */
 
-/*
- * FOND — Noir profond + spéculaire verre
- *
- * Concept :
- *  → background-color: #000000 (noir pur)
- *  → Layer 1 : radial blanc concentré (26% largeur)
- *              = le "reflet" d'une lumière sur verre noir poli
- *              = dérive lentement (55s, 4 keyframes doux)
- *  → Layer 2 : radial sombre fixe en haut
- *              = crée la profondeur / le relief du fond
- *  → background-size: 115% pour layer 1
- *              = légèrement plus grand que la fenêtre
- *              → l'animation de position crée le drift
- */
 @keyframes lg-bg {
-  0%   { background-position: 0% 0%,   0% 0%; }
-  25%  { background-position: 15% 8%,  0% 0%; }
-  50%  { background-position: 8%  18%, 0% 0%; }
-  75%  { background-position: -5% 10%, 0% 0%; }
-  100% { background-position: 0% 0%,   0% 0%; }
+  0%   { background-position: 0%   0%,    0%    0%,  0% 0%; }
+  25%  { background-position: 16%  9%,   -8%  -4%,   0% 0%; }
+  50%  { background-position: 8%   20%,   4%   8%,   0% 0%; }
+  75%  { background-position: -5%  11%,   12%  -2%,  0% 0%; }
+  100% { background-position: 0%   0%,    0%    0%,  0% 0%; }
 }
 
 html, body {
-  background-color: #000000 !important;
+  background-color: #050510 !important;
   background-image:
-    /* Layer 1 — Spéculaire verre (drift lent) */
-    radial-gradient(ellipse 26% 18% at 22% 12%,
-      rgba(255, 255, 255, 0.26) 0%,
-      rgba(255, 255, 255, 0.10) 38%,
-      transparent 72%),
-    /* Layer 2 — Gradient de profondeur (fixe) */
-    radial-gradient(ellipse 100% 80% at 40% 0%,
-      rgba(14, 14, 18, 1) 0%,
-      rgba(0,  0,  0,  1) 60%) !important;
+    /* Layer 1 — Spéculaire verre principal (drift lent) */
+    radial-gradient(ellipse 32% 22% at 20% 8%,
+      rgba(255, 255, 255, 0.38) 0%,
+      rgba(255, 255, 255, 0.16) 40%,
+      transparent 70%),
+    /* Layer 2 — Lueur atmosphérique bleue subtile */
+    radial-gradient(ellipse 55% 38% at 72% 92%,
+      rgba(100, 120, 220, 0.07) 0%,
+      transparent 65%),
+    /* Layer 3 — Fond noir riche (fixe) */
+    radial-gradient(ellipse 140% 100% at 30% -10%,
+      rgba(18, 18, 30, 1) 0%,
+      rgba(6,   6,  16, 1) 45%,
+      rgba(1,   1,   8, 1) 100%) !important;
   background-attachment: fixed !important;
-  background-size: 115% 115%, 100% 100% !important;
+  background-size: 120% 120%, 100% 100%, 100% 100% !important;
   animation: lg-bg 55s ease-in-out infinite !important;
 }

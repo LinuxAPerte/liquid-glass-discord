@@ -737,3 +737,79 @@
 #app-mount [class*="children__9293"]:after { display: none !important; }
 /* Channel list inner scroller (Midnight: scroller__629e4) */
 #app-mount [class*="scroller__629"] { margin-bottom: 0 !important; }
+
+/* ══════════════════════════════════════════════════
+   ÉCRAN APPEL / VC CALL GRID
+   Conteneurs du grid d'appel vidéo — reset transparent
+   + arrondis sur les tiles participant
+══════════════════════════════════════════════════ */
+
+/* Containers principaux de l'appel → transparents */
+#app-mount [class*="callBody_"],
+#app-mount [class*="gridContainer_"],
+#app-mount [class*="participants_"],
+#app-mount [class*="callView_"],
+#app-mount [class*="videoWrapper_"] {
+  background: transparent !important;
+}
+
+/* Tiles vidéo / avatar dans la grille d'appel */
+#app-mount [class*="chatContent_"] [class*="grid_"],
+#app-mount [class*="tile_"],
+#app-mount [class*="voiceTile_"] {
+  border-radius: var(--lg-rsm) !important;
+  overflow: hidden !important;
+}
+
+/* Conteneur de l'appel vidéo centré */
+#app-mount [class*="focusRing_"],
+#app-mount [class*="tileGrid_"] {
+  background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════
+   POPUP ACTIVITÉ DANS LES APPELS
+   "Tu cherches quelque chose à faire ?"
+   → activityShelf_ / launchActivities_
+══════════════════════════════════════════════════ */
+#app-mount [class*="activityShelf_"],
+#app-mount [class*="callActivities_"],
+#app-mount [class*="launchActivities_"],
+#app-mount [class*="activityPanel_"],
+#app-mount [class*="inCallActivities_"] {
+  background: rgba(8, 8, 16, 0.82) !important;
+  backdrop-filter: blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 24px 64px 0  rgba(0, 0, 0, 0.65) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   HEADER CANAL / DM — subtitleContainer_ renforcé
+   La barre avec le nom du canal + toolbar est trop sombre.
+   On augmente l'opacité du glass pour qu'elle soit visible.
+══════════════════════════════════════════════════ */
+#app-mount [class*="container__9293"],
+#app-mount [class*="subtitleContainer_"] {
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: var(--lg-r) !important;
+  border: 1px solid rgba(255, 255, 255, 0.34) !important;
+  box-shadow:
+    0 -1px   1.5px 0 rgba(255, 255, 255, 0.50) inset,
+    0  1px   1.5px 0 rgba(255, 255, 255, 0.70) inset,
+    0  2px   5px   0 rgba(255, 255, 255, 0.16) inset !important;
+  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
+  padding: 0 12px !important;
+  z-index: 10 !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="container__9293"]:hover,
+#app-mount [class*="subtitleContainer_"]:hover {
+  border-color: rgba(255, 255, 255, 0.52) !important;
+}

@@ -13,9 +13,9 @@
   --lg-rxs: 6px;
 
   /* ── Surfaces verre ──────────────────────────── */
-  --lg-glass:   rgba(255, 255, 255, 0.10);
-  --lg-border:  rgba(255, 255, 255, 0.32);
-  --lg-bord-h:  rgba(255, 255, 255, 0.55);
+  --lg-glass:   rgba(255, 255, 255, 0.12);   /* +2% → plus visible sur fond sombre */
+  --lg-border:  rgba(255, 255, 255, 0.36);
+  --lg-bord-h:  rgba(255, 255, 255, 0.62);
 
   /* ── Backdrop filter ─────────────────────────── */
   --lg-blur: blur(36px) saturate(130%) brightness(116%);
