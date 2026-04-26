@@ -48,7 +48,6 @@
 }
 
 /* ── Modales (paramètres, etc.) ──────────────────── */
-[class*="container__8a031"],
 [class*="modal_"] {
   background: rgba(8, 8, 10, 0.96) !important;
   backdrop-filter: blur(40px) saturate(160%) !important;
@@ -60,20 +59,47 @@
   border-radius: var(--lg-r) !important;
 }
 
-/* ── Modale stream / partage d'écran ─────────────── */
+/* ── Modal screen picker (container__8a031) — liquid glass pur ── */
+[class*="container__8a031"] {
+  background: rgba(8, 8, 14, 0.58) !important;
+  backdrop-filter: blur(64px) saturate(200%) brightness(130%) !important;
+  -webkit-backdrop-filter: blur(64px) saturate(200%) brightness(130%) !important;
+  box-shadow:
+    0 -1px   1px 0 rgba(255, 255, 255, 0.28) inset,
+    0  1px   1px 0 rgba(255, 255, 255, 0.16) inset,
+    0 0 0 1px      rgba(255, 255, 255, 0.20),
+    0 40px 100px 0 rgba(0, 0, 0, 0.85) !important;
+  border-radius: var(--lg-r) !important;
+}
+/* Tab bar "Applications / Écran entier / Appareils" */
+[class*="container__8a031"] [class*="tabBar_"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  margin: 12px 16px 0 16px !important;
+  padding: 3px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset !important;
+}
+[class*="container__8a031"] [class*="tabBar_"] [class*="item_"][aria-selected="true"],
+[class*="container__8a031"] [class*="tabBar_"] [class*="selected_"] {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-radius: 9px !important;
+}
 
-/* Fond principal moins opaque → plus glass */
+/* ── Modale stream / partage d'écran ─────────────── */
 [class*="sourceSelect_"],
 [class*="screenPicker_"],
 [class*="streamModal_"] {
-  background: rgba(8, 8, 12, 0.82) !important;
-  backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
+  background: rgba(8, 8, 14, 0.58) !important;
+  backdrop-filter: blur(64px) saturate(200%) brightness(130%) !important;
+  -webkit-backdrop-filter: blur(64px) saturate(200%) brightness(130%) !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset,
-    0 0 0 1px       rgba(255, 255, 255, 0.14),
-    0 32px 80px 0   rgba(0, 0, 0, 0.70) !important;
+    0 -1px   1px 0 rgba(255, 255, 255, 0.28) inset,
+    0  1px   1px 0 rgba(255, 255, 255, 0.16) inset,
+    0 0 0 1px      rgba(255, 255, 255, 0.20),
+    0 40px 100px 0 rgba(0, 0, 0, 0.85) !important;
   border-radius: var(--lg-r) !important;
 }
 

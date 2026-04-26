@@ -10,37 +10,32 @@
  * ═══════════════════════════════════════════════════
  */
 
+/* ── Animation : 2 touches blanches en drift doux sur fond noir profond ── */
 @keyframes lg-bg {
-  0%   { background-position: 0%  0%,   100% 100%, 50% 20%,  20% 80%; }
-  25%  { background-position: 35% 25%,  65%  75%, 15% 65%,  75% 25%; }
-  50%  { background-position: 65% 55%,  35%  45%, 80% 35%,  40% 55%; }
-  75%  { background-position: 20% 80%,  80%  20%, 55% 80%,  10% 35%; }
-  100% { background-position: 0%  0%,   100% 100%, 50% 20%,  20% 80%; }
+  0%   { background-position: 0%   0%,  100% 100%, 0% 0%; }
+  33%  { background-position: 28%  18%,  72%  82%, 0% 0%; }
+  66%  { background-position: 12%  38%,  88%  62%, 0% 0%; }
+  100% { background-position: 0%   0%,  100% 100%, 0% 0%; }
 }
 
 html, body {
-  background-color: #060606 !important;
+  background-color: #020202 !important;
   background-image:
-    /* Blob principal — haut gauche */
-    radial-gradient(ellipse 72% 58% at 20% 22%,
-      rgba(255, 255, 255, 0.42) 0%,
-      rgba(220, 215, 235, 0.15) 44%,
-      transparent 70%),
-    /* Blob principal — bas droite */
-    radial-gradient(ellipse 65% 78% at 80% 78%,
-      rgba(240, 235, 255, 0.36) 0%,
-      rgba(200, 195, 225, 0.12) 48%,
-      transparent 74%),
-    /* Accent milieu-haut */
-    radial-gradient(ellipse 50% 40% at 55% 8%,
-      rgba(255, 255, 255, 0.24) 0%,
-      rgba(210, 210, 230, 0.08) 40%,
-      transparent 64%),
-    /* Micro accent bas-gauche */
-    radial-gradient(ellipse 40% 35% at 12% 88%,
-      rgba(230, 225, 255, 0.22) 0%,
-      transparent 58%) !important;
+    /* Touche de lumière principale — haut gauche, subtile */
+    radial-gradient(ellipse 52% 42% at 18% 14%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.08) 40%,
+      transparent 65%),
+    /* Accent bas droite — très discret */
+    radial-gradient(ellipse 40% 48% at 85% 90%,
+      rgba(245, 245, 255, 0.14) 0%,
+      transparent 58%),
+    /* Gradient de profondeur — fond noir riche et profond */
+    linear-gradient(160deg,
+      rgba(20, 20, 24, 1) 0%,
+      rgba(4,  4,  6,  1) 45%,
+      rgba(12, 10, 16, 1) 100%) !important;
   background-attachment: fixed !important;
-  background-size: 200% 200%, 200% 200%, 190% 190%, 160% 160% !important;
-  animation: lg-bg 26s ease-in-out infinite !important;
+  background-size: 230% 230%, 210% 210%, 100% 100% !important;
+  animation: lg-bg 40s ease-in-out infinite !important;
 }

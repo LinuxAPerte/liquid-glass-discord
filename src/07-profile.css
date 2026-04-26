@@ -123,3 +123,30 @@
 #app-mount [class*="voiceContainer_"] [class*="voiceConnectedText_"] {
   color: rgba(72, 230, 128, 1.0) !important;
 }
+
+/* ── Conteneur voix actif — glass pill ──────────── */
+#app-mount [class*="voiceContainer_"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset !important;
+  backdrop-filter: none !important;
+  margin-bottom: 4px !important;
+  padding: 6px 8px !important;
+}
+
+/* ── Game activity panel (ex: Bodycam) — glass card ── */
+#app-mount [class*="panel__5dec"],
+#app-mount [class*="activityPanel_"],
+#app-mount [class*="gameActivity_"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow: 0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset !important;
+  margin-bottom: 4px !important;
+  padding: 6px 8px !important;
+  transition: background 150ms, border-color 150ms !important;
+}
+#app-mount [class*="panel__5dec"]:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
