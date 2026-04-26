@@ -187,9 +187,9 @@
    PAGE PARAMÈTRES
 ══════════════════════════════════════════════════ */
 
-/* Sidebar paramètres — fond glass léger */
+/* Sidebar paramètres — fond glass très léger (inner element sur dark glass) */
 #app-mount [class*="sidebarRegionScroller_"] {
-  background: rgba(255, 255, 255, 0.04) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
 }
 
 /* Items de la sidebar paramètres */
@@ -215,24 +215,9 @@
 /* ══════════════════════════════════════════════════
    TITLEBARS SUPPLÉMENTAIRES
    (DM, message requests, nitro, quêtes…)
-   Midnight : .container__9293f
+   → Style unifié avec subtitleContainer_ en bas de fichier.
+   → Ce bloc est intentionnellement vide (doublon supprimé).
 ══════════════════════════════════════════════════ */
-#app-mount [class*="container__9293"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.30) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.52) inset,
-    0  1px   2px 0 rgba(255, 255, 255, 0.18) inset !important;
-  margin-bottom: var(--lg-gap) !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="container__9293"]:hover {
-  border-color: rgba(255, 255, 255, 0.42) !important;
-}
 
 /* ══════════════════════════════════════════════════
    ANIMATION SLIDE — signature Midnight
@@ -332,13 +317,19 @@
 
 /* ══════════════════════════════════════════════════
    NOTICE BANNER (ex: "Tu es dans un appel vocal")
+   PAS de backdrop-filter : notice_ est à l'intérieur d'un
+   panneau verre (chatContent_/sidebarList_) déjà flouté.
+   Double backdrop-filter → fond opaque noir.
 ══════════════════════════════════════════════════ */
 #app-mount [class*="notice_"] {
   background: rgba(255, 255, 255, 0.10) !important;
   border: 1px solid rgba(255, 255, 255, 0.20) !important;
   border-radius: var(--lg-rsm) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset !important;
   box-sizing: border-box !important;
 }
 

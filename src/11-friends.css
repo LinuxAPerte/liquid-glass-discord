@@ -53,8 +53,14 @@
 }
 
 /* ── Barre de recherche amis — Shine inset ──────── */
-#app-mount [class*="searchBar_"],
-#app-mount [class*="searchField_"] {
+/*  Sélecteurs scoped à la page amis uniquement.
+ *  La version générique [class*="searchBar_"] est trop large :
+ *  elle s'applique à toutes les barres Discord.
+ *  12-extra-modules.css couvre les autres contextes (DM, etc.). */
+#app-mount [class*="tabBody_"] [class*="searchBar_"],
+#app-mount [class*="peopleList_"] [class*="searchBar_"],
+#app-mount [class*="searchBar__133b"],
+#app-mount [class*="filterBar__133b"] {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -65,8 +71,9 @@
     0  0.5px 1px 0 rgba(255, 255, 255, 0.35) inset !important;
   transition: border-color 200ms ease !important;
 }
-#app-mount [class*="searchBar_"]:focus-within,
-#app-mount [class*="searchField_"]:focus-within {
+#app-mount [class*="tabBody_"] [class*="searchBar_"]:focus-within,
+#app-mount [class*="peopleList_"] [class*="searchBar_"]:focus-within,
+#app-mount [class*="searchBar__133b"]:focus-within {
   border-color: rgba(255, 255, 255, 0.40) !important;
 }
 

@@ -20,7 +20,8 @@
  *    09 → boutons (Shine)
  *    10 → menus / modales
  *    11 → page amis
- *    12 → scrollbars
+ *    12-extra → modules complets (paramètres, forum, DM…)
+ *    12-scrollbars → scrollbars
  * ═══════════════════════════════════════════════════
  */
 
@@ -36,4 +37,5 @@
 @import url('./09-buttons.css');
 @import url('./10-menus.css');
 @import url('./11-friends.css');
+@import url('./12-extra-modules.css');
 @import url('./12-scrollbars.css');

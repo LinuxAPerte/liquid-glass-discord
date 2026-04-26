@@ -42,8 +42,8 @@
   width: 100% !important;
   height: 190% !important;
   background: rgba(0, 0, 0, 0.025) !important;
-  backdrop-filter: blur(22px) saturate(170%) brightness(118%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(170%) brightness(118%) !important;
+  backdrop-filter: blur(22px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
   mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
   border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
