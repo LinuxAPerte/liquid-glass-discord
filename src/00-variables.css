@@ -5,6 +5,21 @@
  * ═══════════════════════════════════════════════════
  */
 
+/* ════════════════════════════════════════════════
+   ANIMATIONS GLOBALES — Liquid Glass
+════════════════════════════════════════════════ */
+
+/* Shimmer : trait de lumière via transform (compatible !important)
+   La technique background-position ne peut pas être animée quand
+   background est déclaré !important. On utilise un ::before + transform. */
+@keyframes lg-shimmer-slide {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  8%   { opacity: 1; }
+  42%  { transform: translateX(320%);  opacity: 1; }
+  50%  { transform: translateX(320%);  opacity: 0; }
+  100% { transform: translateX(320%);  opacity: 0; }
+}
+
 :root {
   /* ── Layout ──────────────────────────────────── */
   --lg-gap: 10px;          /* augmenté : gaps plus visibles entre panneaux */
