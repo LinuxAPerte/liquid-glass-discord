@@ -832,6 +832,86 @@
 }
 
 /* ══════════════════════════════════════════════════
+   VUE STREAM / APPEL VOCAL — arrondis + glass
+   Corrige :
+     - Barre "Salon de X" coins carrés (liveVoiceChannelNotice_)
+     - Bande thumbnails participants coins carrés
+     - Bouton "Regarder" sans style
+══════════════════════════════════════════════════ */
+
+/* Barre "Salon de TriggerMan" (bas de la vue appel/stream)
+   Multiples noms possibles selon version Discord */
+#app-mount [class*="liveVoiceChannelNotice_"],
+#app-mount [class*="callNotice_"],
+#app-mount [class*="voiceBanner_"],
+#app-mount [class*="callBanner_"],
+#app-mount [class*="attachedBar_"],
+#app-mount [class*="channelCallArea_"],
+#app-mount [class*="callHeader_"],
+#app-mount [class*="viewerBanner_"] {
+  background: rgba(8, 12, 38, 0.90) !important;
+  backdrop-filter: blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.26) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.38) inset,
+    0 12px 40px 0  rgba(0, 0, 0, 0.65) !important;
+  margin: 0 var(--lg-gap) var(--lg-gap) !important;
+  padding: 0 16px !important;
+  overflow: hidden !important;
+}
+
+/* Bande miniatures participants (bas-d'écran fullscreen) */
+#app-mount [class*="overflowRow_"],
+#app-mount [class*="thinBar_"],
+#app-mount [class*="viewerList_"],
+#app-mount [class*="memberGridRow_"],
+#app-mount [class*="horizontalParticipants_"],
+#app-mount [class*="membersBar_"] {
+  background: rgba(6, 8, 28, 0.84) !important;
+  backdrop-filter: blur(24px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 12px 36px 0   rgba(0, 0, 0, 0.55) !important;
+  margin: 0 var(--lg-gap) var(--lg-gap) !important;
+  overflow: hidden !important;
+}
+
+/* Bouton "Regarder" / "Watch" — Shine pill */
+#app-mount [class*="watchButton_"],
+#app-mount [class*="followButton_"],
+#app-mount [class*="liveButton_"],
+#app-mount [class*="joinCallButton_"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 999px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.26) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.44) inset,
+    0  2px  12px 0 rgba(0, 0, 0, 0.24) !important;
+  transition: filter 200ms ease !important;
+}
+#app-mount [class*="watchButton_"]:hover,
+#app-mount [class*="followButton_"]:hover,
+#app-mount [class*="liveButton_"]:hover {
+  filter: brightness(1.28) !important;
+}
+
+/* Conteneur global de la vue appel — arrondis + fond sombre */
+#app-mount [class*="fullscreenOnNow_"],
+#app-mount [class*="streamView_"],
+#app-mount [class*="videoGridContainer_"] {
+  border-radius: var(--lg-r) !important;
+  overflow: hidden !important;
+  background: rgba(4, 4, 16, 0.95) !important;
+}
+
+/* ══════════════════════════════════════════════════
    HEADER CANAL / DM — subtitleContainer_ glass
    Barre avec le nom du canal + toolbar.
    Insets calibrés : shimmer visible mais pas blanc.
