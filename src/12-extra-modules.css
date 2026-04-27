@@ -960,8 +960,9 @@
    HEADER CANAL / DM — subtitleContainer_ glass
    Gradient 180° + shimmer ::before transform animé.
    Pas de backdrop-filter : dans chatContent_ déjà flouté.
+   NOTE: container__9293 SUPPRIMÉ — hash instable qui peut
+   matcher n'importe quel container Discord.
 ══════════════════════════════════════════════════ */
-#app-mount [class*="container__9293"],
 #app-mount [class*="subtitleContainer_"] {
   background: linear-gradient(
     180deg,
@@ -983,11 +984,9 @@
   z-index: 10 !important;
   transition: border-color 200ms ease !important;
 }
-#app-mount [class*="container__9293"]:hover,
 #app-mount [class*="subtitleContainer_"]:hover {
   border-color: rgba(255, 255, 255, 0.76) !important;
 }
-#app-mount [class*="container__9293"]::before,
 #app-mount [class*="subtitleContainer_"]::before {
   content: "" !important;
   position: absolute !important;
