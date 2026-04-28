@@ -36,19 +36,19 @@
    * sombre, la couleur de fond tinte légèrement à travers.
    * C'est le vrai "verre sombre givré" iOS/visionOS.
    */
-  --lg-glass:   rgba(6, 6, 24, 0.55);         /* sombre semi-transparent = dark glass */
-  --lg-border:  rgba(255, 255, 255, 0.38);    /* bordure blanche visible sur fond sombre */
-  --lg-bord-h:  rgba(255, 255, 255, 0.62);    /* hover plus lumineuse */
+  --lg-glass:   rgba(12, 16, 40, 0.38);        /* sombre semi-transparent — réduit pour laisser passer le gradient */
+  --lg-border:  rgba(255, 255, 255, 0.52);    /* bordure plus lumineuse sur fond coloré */
+  --lg-bord-h:  rgba(255, 255, 255, 0.78);    /* hover très lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(48px) saturate(140%);        /* pas de brightness → pas de blanchissement */
+  --lg-blur: blur(54px) saturate(185%);        /* saturation haute = gradient visible à travers le verre */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0  2px  8px rgba(0, 0, 0, 0.75),          /* ombre proche = profondeur */
-    0 12px 40px rgba(0, 0, 0, 0.55),          /* ombre douce = séparation */
-    inset 0 1.5px 0   rgba(255, 255, 255, 0.40),  /* shimmer top — visible sur fond sombre */
-    inset 0 0     0 1px rgba(255, 255, 255, 0.12);
+    0  2px  8px rgba(0, 0, 0, 0.60),          /* ombre proche = profondeur */
+    0 12px 40px rgba(0, 0, 0, 0.40),          /* ombre douce = séparation */
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.55),  /* shimmer top — plus lumineux */
+    inset 0 0     0 1px rgba(255, 255, 255, 0.18);
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.07);

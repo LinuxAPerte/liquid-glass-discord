@@ -24,28 +24,33 @@
 }
 
 html, body {
-  background-color: #06061c !important;
+  background-color: #04041a !important;
   background-image:
-    /* Layer 1 — Spéculaire blanc (top-left, drift lent) */
-    radial-gradient(ellipse 44% 36% at 10% 8%,
-      rgba(200, 220, 255, 0.24) 0%,
-      rgba(140, 170, 255, 0.10) 42%,
-      transparent 70%),
-    /* Layer 2 — Atmosphère bleue (droite, drift inverse) */
-    radial-gradient(ellipse 68% 54% at 84% 32%,
-      rgba(70, 100, 230, 0.20) 0%,
-      rgba(50,  80, 200, 0.08) 52%,
-      transparent 78%),
-    /* Layer 3 — Lueur mauve (bas-gauche, drift lent) */
-    radial-gradient(ellipse 56% 44% at 18% 86%,
-      rgba(130, 70, 240, 0.14) 0%,
-      transparent 58%),
-    /* Layer 4 — Base sombre fixe */
+    /* Layer 1 — Spéculaire blanc vif (top-left) */
+    radial-gradient(ellipse 52% 42% at 8% 6%,
+      rgba(190, 215, 255, 0.45) 0%,
+      rgba(130, 165, 255, 0.20) 40%,
+      transparent 68%),
+    /* Layer 2 — Atmosphère bleue intense (droite) */
+    radial-gradient(ellipse 74% 60% at 88% 28%,
+      rgba(55,  95, 240, 0.42) 0%,
+      rgba(35,  65, 210, 0.18) 50%,
+      transparent 76%),
+    /* Layer 3 — Lueur indigo (centre bas) */
+    radial-gradient(ellipse 64% 50% at 50% 80%,
+      rgba(100, 55, 255, 0.28) 0%,
+      rgba(75,  35, 220, 0.10) 48%,
+      transparent 72%),
+    /* Layer 4 — Lueur mauve (bas-gauche) */
+    radial-gradient(ellipse 60% 50% at 14% 90%,
+      rgba(140, 60, 255, 0.22) 0%,
+      transparent 55%),
+    /* Layer 5 — Base sombre fixe */
     radial-gradient(ellipse 150% 130% at 40% 20%,
-      rgba(10, 10, 32, 1) 0%,
-      rgba( 4,  4, 18, 1) 50%,
-      rgba( 1,  1, 10, 1) 100%) !important;
+      rgba(8, 8, 28, 1) 0%,
+      rgba(3, 3, 16, 1) 50%,
+      rgba(1, 1,  8, 1) 100%) !important;
   background-attachment: fixed !important;
-  background-size: 120% 120%, 110% 110%, 100% 100%, 100% 100% !important;
+  background-size: 130% 130%, 120% 120%, 110% 110%, 100% 100%, 100% 100% !important;
   animation: lg-bg 60s ease-in-out infinite !important;
 }
