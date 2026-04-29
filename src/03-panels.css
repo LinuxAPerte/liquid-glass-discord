@@ -3,30 +3,16 @@
  *  03 — PANNEAUX VERRE — BLOC UNIFIÉ
  *  Liquid Glass Discord Theme
  * ═══════════════════════════════════════════════════
- *
- *  Inspiré de Midnight Discord :
- *    → Un seul bloc CSS applique le style verre
- *      à TOUS les panneaux principaux.
- *    → Le hover border-color est la signature Midnight :
- *      la bordure s'illumine légèrement au survol.
- *
- *  Panneaux ciblés :
- *    guilds_        = liste des serveurs
- *    sidebarList_   = sidebar channels
- *    chatContent_   = zone de chat
- *    peopleColumn_  = liste membres (amis)
- *    nowPlayingColumn_ = colonne "en cours"
- * ═══════════════════════════════════════════════════
  */
 
-/* ── Style verre unifié (approche Midnight) ─────── */
+/* ── Style verre unifié ─────────────────────────── */
 #app-mount [class*="guilds_"],
 #app-mount [class*="sidebarList_"],
-#app-mount [class*="privateChannels_"],   /* panneau DM list */
+#app-mount [class*="privateChannels_"],
 #app-mount [class*="chatContent_"],
 #app-mount [class*="peopleColumn_"],
 #app-mount [class*="nowPlayingColumn_"],
-#app-mount [class*="container_c8ff"] {      /* liste membres serveur */
+#app-mount [class*="container_c8ff"] {
   background: var(--lg-glass) !important;
   backdrop-filter: var(--lg-blur) !important;
   -webkit-backdrop-filter: var(--lg-blur) !important;
@@ -36,7 +22,7 @@
   transition: border-color 200ms ease !important;
 }
 
-/* ── Hover : bordure plus lumineuse (Midnight) ──── */
+/* ── Hover bordure ──────────────────────────────── */
 #app-mount [class*="guilds_"]:hover,
 #app-mount [class*="sidebarList_"]:hover,
 #app-mount [class*="privateChannels_"]:hover,
@@ -47,38 +33,55 @@
   border-color: var(--lg-bord-h) !important;
 }
 
-/* ── Liste membres — marge gauche séparatrice ───── */
-#app-mount [class*="container_c8ff"] {
-  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
-  overflow: hidden !important;
-  height: auto !important;
-  min-width: 200px !important;
-}
+/* ── Marges — une règle par panneau ────────────────
+ *  IMPORTANT : pas de height: auto, pas de min-width
+ *  Discord gère lui-même les hauteurs en flex.
+ *  On ne surcharge que les marges externes.
+ * ─────────────────────────────────────────────── */
 
-/* ── Marges & positionnement ────────────────────── */
+/* Liste des serveurs (colonne icônes gauche) */
 #app-mount [class*="guilds_"] {
   margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  overflow: visible !important;   /* pills ne doivent pas être clippées */
+  overflow: visible !important;   /* pills hors-limites non clippées */
+  flex-shrink: 0 !important;
 }
 
-#app-mount [class*="sidebarList_"] {
-  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  overflow: hidden !important;
-}
-
-/* Panneau liste DM — même marge que la sidebar serveur */
+/* Sidebar canaux / DMs */
+#app-mount [class*="sidebarList_"],
 #app-mount [class*="privateChannels_"] {
   margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
   overflow: hidden !important;
+  flex-shrink: 0 !important;
 }
 
+/* Zone de chat principale — s'étire pour remplir l'espace */
 #app-mount [class*="chatContent_"] {
   margin: var(--lg-gap) !important;
   overflow: hidden !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;        /* évite l'overflow flex */
 }
 
-#app-mount [class*="peopleColumn_"],
+/* peopleColumn_ = liste amis (centre) ou vue serveur DM
+   Marge uniforme sur tous les côtés */
+#app-mount [class*="peopleColumn_"] {
+  margin: var(--lg-gap) !important;
+  overflow: hidden !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Colonne "Active Now" / "En ligne" — droite fixe */
 #app-mount [class*="nowPlayingColumn_"] {
   margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
   overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+/* Liste membres serveur — droite fixe, pas de height: auto */
+#app-mount [class*="container_c8ff"] {
+  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  /* PAS de height: auto ni min-width — Discord gère la hauteur */
 }

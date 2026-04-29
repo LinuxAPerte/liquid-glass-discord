@@ -224,21 +224,14 @@
    Les éléments des listes glissent à gauche au hover.
 ══════════════════════════════════════════════════ */
 
-/* Channels dans la sidebar */
+/* Channels dans la sidebar — hover sans déplacement (évite les décalages) */
 #app-mount [class*="sidebarList_"] [class*="wrapper_"] [class*="link_"] {
-  transition: margin-left 200ms ease !important;
-  will-change: margin-left;
-}
-#app-mount [class*="sidebarList_"] [class*="wrapper_"]:hover [class*="link_"] {
-  margin-left: 8px !important;
+  transition: background 120ms ease !important;
 }
 
-/* Members dans la liste */
+/* Members dans la liste — PAS de margin-left (cause décalage layout) */
 #app-mount [class*="container__91a9"] {
-  transition: margin-left 200ms ease !important;
-}
-#app-mount [class*="container__91a9"]:hover {
-  margin-left: 10px !important;
+  transition: background 120ms ease !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -427,23 +420,19 @@
   transition: border-color 200ms ease !important;
 }
 
-/* Items DM (conversations, Amis, Ton Nitro…) */
+/* Items DM — hover sans déplacement */
 #app-mount [class*="channel__972"],
 #app-mount [class*="channel_"][class*="privateChannels_"] * [class*="link_"] {
-  transition: margin-left 200ms ease !important;
-}
-#app-mount [class*="channel__972"]:hover {
-  margin-left: 12px !important;
+  transition: background 120ms ease !important;
 }
 
 /* Hover sur les items DM standard */
 #app-mount [class*="privateChannels_"] [class*="interactive_"] {
   border-radius: var(--lg-rsm) !important;
-  transition: background 120ms, margin-left 200ms !important;
+  transition: background 120ms ease !important;
 }
 #app-mount [class*="privateChannels_"] [class*="interactive_"]:hover {
   background: var(--lg-hover) !important;
-  margin-left: 8px !important;
 }
 #app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
 #app-mount [class*="privateChannels_"] [class*="selected_"] {
@@ -538,7 +527,7 @@
 #app-mount [class*="member__133b"],
 #app-mount [class*="friendRow_"] {
   border-radius: var(--lg-rsm) !important;
-  margin: 1px 6px !important;
+  margin: 1px 4px !important;
   transition: background 120ms ease !important;
 }
 #app-mount [class*="listItem__133b"]:hover,
@@ -639,12 +628,11 @@
 #app-mount [class*="scroller__99"] [class*="channel_"] {
   border-radius: var(--lg-rsm) !important;
   margin: 1px 4px !important;
-  transition: background 120ms, margin-left 200ms !important;
+  transition: background 120ms ease !important;
 }
 #app-mount [class*="privateChannels_"] [class*="channel_"]:hover,
 #app-mount [class*="scroller__99"] [class*="channel_"]:hover {
   background: var(--lg-hover) !important;
-  margin-left: 6px !important;
 }
 
 /* Forcer les conteneurs de DM items à être transparents */
@@ -699,12 +687,11 @@
 #app-mount [class*="privateChannels_"] [class*="linkTop_"] {
   border-radius: var(--lg-rsm) !important;
   margin: 1px 4px !important;
-  transition: background 120ms, margin-left 200ms !important;
+  transition: background 120ms ease !important;
 }
 #app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover,
 #app-mount [class*="privateChannels_"] [class*="linkTop_"]:hover {
   background: var(--lg-hover) !important;
-  margin-left: 6px !important;
 }
 
 /* ══════════════════════════════════════════════════

@@ -36,12 +36,12 @@
    * sombre, la couleur de fond tinte légèrement à travers.
    * C'est le vrai "verre sombre givré" iOS/visionOS.
    */
-  --lg-glass:   rgba(14, 18, 44, 0.46);        /* navy semi-transparent — cohérent sur fond uniforme */
-  --lg-border:  rgba(255, 255, 255, 0.52);    /* bordure plus lumineuse sur fond coloré */
-  --lg-bord-h:  rgba(255, 255, 255, 0.78);    /* hover très lumineux */
+  --lg-glass:   rgba(15, 19, 48, 0.80);        /* navy opaque — même couleur sur tous les panneaux */
+  --lg-border:  rgba(255, 255, 255, 0.48);    /* bordure blanche visible */
+  --lg-bord-h:  rgba(255, 255, 255, 0.72);    /* hover lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(54px) saturate(130%);        /* saturation neutre = couleurs naturelles sans amplification */
+  --lg-blur: blur(40px) saturate(115%);        /* blur léger — l'effet vient des shadows, pas du fond */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
