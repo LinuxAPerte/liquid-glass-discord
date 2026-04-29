@@ -1,11 +1,43 @@
 /*
  * ═══════════════════════════════════════════════════
- *  01 — FOND — NOIR PUR FIXE
+ *  01 — FOND ANIMÉ — LIQUID GLASS
  *  Liquid Glass Discord Theme
+ * ═══════════════════════════════════════════════════
+ *
+ *  Fond sombre animé avec blobs bleus/cyan.
+ *  Les panels semi-transparents laissent passer
+ *  le mouvement → vrai effet liquid glass.
  * ═══════════════════════════════════════════════════
  */
 
+@keyframes lg-bg {
+  0%   { background-position: 0%   0%,  100% 100%,  0%  100%, 0% 0%; }
+  25%  { background-position: 30%  20%, 70%  60%,   20% 70%,  0% 0%; }
+  50%  { background-position: 60%  10%, 30%  90%,   50% 40%,  0% 0%; }
+  75%  { background-position: 20%  50%, 80%  20%,   10% 80%,  0% 0%; }
+  100% { background-position: 0%   0%,  100% 100%,  0%  100%, 0% 0%; }
+}
+
 html, body {
-  background: #000000 !important;
+  background-color: #020208 !important;
+  background-image:
+    /* Blob bleu électrique — haut gauche */
+    radial-gradient(ellipse 55% 45% at 15% 20%,
+      rgba(30, 100, 255, 0.60) 0%,
+      rgba(10,  60, 200, 0.25) 45%,
+      transparent 70%),
+    /* Blob cyan — bas droite */
+    radial-gradient(ellipse 50% 40% at 85% 80%,
+      rgba(0, 160, 255, 0.50) 0%,
+      rgba(0, 100, 220, 0.20) 45%,
+      transparent 70%),
+    /* Blob bleu profond — centre */
+    radial-gradient(ellipse 40% 35% at 50% 50%,
+      rgba(20, 60, 180, 0.30) 0%,
+      transparent 65%),
+    /* Base très sombre */
+    linear-gradient(135deg, #030310 0%, #020208 50%, #010106 100%) !important;
   background-attachment: fixed !important;
+  background-size: 180% 180%, 160% 160%, 140% 140%, 100% 100% !important;
+  animation: lg-bg 20s ease-in-out infinite !important;
 }

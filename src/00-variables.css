@@ -27,12 +27,12 @@
    * Le backdrop-filter floute légèrement pour
    * l'effet givré sur les éléments qui se superposent.
    */
-  --lg-glass:   rgba(26, 26, 26, 0.92);        /* gris sombre — visible sur fond noir */
-  --lg-border:  rgba(255, 255, 255, 0.50);    /* bordure blanche lumineuse */
-  --lg-bord-h:  rgba(255, 255, 255, 0.82);    /* hover très lumineux */
+  --lg-glass:   rgba(0, 0, 0, 0.52);          /* semi-transparent — laisse passer le fond animé */
+  --lg-border:  rgba(255, 255, 255, 0.55);    /* bordure blanche lumineuse */
+  --lg-bord-h:  rgba(255, 255, 255, 0.85);    /* hover très lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(20px);
+  --lg-blur: blur(40px) saturate(150%);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
