@@ -29,7 +29,7 @@ html, body {
    * derrière eux → aspect cohérent quelle que soit leur position.
    * Le spéculaire top-left donne la profondeur sans trop varier.
    */
-  background-color: #0c0e1c !important;
+  background-color: #000000 !important;
   background-image:
     /* Spéculaire léger top-left — profondeur sans colorer tout l'écran */
     radial-gradient(ellipse 45% 35% at 6% 5%,
