@@ -24,24 +24,24 @@
 }
 
 html, body {
-  background-color: #07070e !important;
+  /*
+   * Base navy uniforme : tous les panneaux voient la même couleur
+   * derrière eux → aspect cohérent quelle que soit leur position.
+   * Le spéculaire top-left donne la profondeur sans trop varier.
+   */
+  background-color: #0c0e1c !important;
   background-image:
-    /* Layer 1 — Spéculaire blanc (top-left) */
-    radial-gradient(ellipse 50% 40% at 8% 6%,
-      rgba(200, 220, 255, 0.28) 0%,
-      rgba(160, 190, 255, 0.10) 42%,
-      transparent 68%),
-    /* Layer 2 — Atmosphère bleue modérée (droite) */
-    radial-gradient(ellipse 70% 55% at 88% 28%,
-      rgba(40, 80, 210, 0.20) 0%,
-      rgba(25, 55, 180, 0.07) 52%,
-      transparent 76%),
-    /* Layer 3 — Base sombre quasi neutre */
-    radial-gradient(ellipse 150% 130% at 50% 30%,
-      rgba(10, 10, 18, 1) 0%,
-      rgba(5,  5, 12, 1) 50%,
-      rgba(2,  2,  8, 1) 100%) !important;
+    /* Spéculaire léger top-left — profondeur sans colorer tout l'écran */
+    radial-gradient(ellipse 45% 35% at 6% 5%,
+      rgba(180, 210, 255, 0.18) 0%,
+      transparent 60%),
+    /* Base navy uniforme couvrant tout l'écran */
+    linear-gradient(
+      160deg,
+      rgba(14, 17, 38, 1) 0%,
+      rgba(10, 12, 28, 1) 50%,
+      rgba(8,  10, 22, 1) 100%) !important;
   background-attachment: fixed !important;
-  background-size: 120% 120%, 110% 110%, 100% 100% !important;
+  background-size: 120% 120%, 100% 100% !important;
   animation: lg-bg 60s ease-in-out infinite !important;
 }

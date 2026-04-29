@@ -36,7 +36,7 @@
    * sombre, la couleur de fond tinte légèrement à travers.
    * C'est le vrai "verre sombre givré" iOS/visionOS.
    */
-  --lg-glass:   rgba(12, 16, 40, 0.38);        /* sombre semi-transparent — réduit pour laisser passer le gradient */
+  --lg-glass:   rgba(14, 18, 44, 0.46);        /* navy semi-transparent — cohérent sur fond uniforme */
   --lg-border:  rgba(255, 255, 255, 0.52);    /* bordure plus lumineuse sur fond coloré */
   --lg-bord-h:  rgba(255, 255, 255, 0.78);    /* hover très lumineux */
 
