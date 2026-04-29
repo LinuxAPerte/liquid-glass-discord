@@ -64,11 +64,11 @@
   border: none !important;
 }
 
-/* ── Toolbar — pill (Shine) ─────────────────────── */
-/*  PAS de backdrop-filter : toolbar_ est à l'intérieur de
- *  chatContent_ (déjà flouté). Un double backdrop-filter
- *  crée un résultat opaque. On utilise inset shadows Shine. */
-#app-mount [class*="toolbar_"] {
+/* ── Toolbar — pill (Shine) — UNIQUEMENT dans chatContent_ ──
+ *  Sélecteur restreint à chatContent_ pour éviter de styler
+ *  les toolbar_ dans la sidebar DM (bouton "nouveau groupe")
+ *  ou d'autres contextes non voulus. */
+#app-mount [class*="chatContent_"] [class*="toolbar_"] {
   border-radius: 99px !important;
   background: rgba(255, 255, 255, 0.22) !important;
   border: 1px solid rgba(255, 255, 255, 0.40) !important;
