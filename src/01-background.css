@@ -36,14 +36,14 @@ html, body {
       rgba(55,  95, 240, 0.42) 0%,
       rgba(35,  65, 210, 0.18) 50%,
       transparent 76%),
-    /* Layer 3 — Lueur indigo (centre bas) */
+    /* Layer 3 — Lueur indigo subtile (centre bas) */
     radial-gradient(ellipse 64% 50% at 50% 80%,
-      rgba(100, 55, 255, 0.28) 0%,
-      rgba(75,  35, 220, 0.10) 48%,
+      rgba(70, 35, 200, 0.11) 0%,
+      rgba(50, 20, 170, 0.04) 48%,
       transparent 72%),
-    /* Layer 4 — Lueur mauve (bas-gauche) */
+    /* Layer 4 — Lueur mauve très subtile (bas-gauche) */
     radial-gradient(ellipse 60% 50% at 14% 90%,
-      rgba(140, 60, 255, 0.22) 0%,
+      rgba(100, 45, 200, 0.09) 0%,
       transparent 55%),
     /* Layer 5 — Base sombre fixe */
     radial-gradient(ellipse 150% 130% at 40% 20%,

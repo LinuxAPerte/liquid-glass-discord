@@ -41,7 +41,7 @@
   --lg-bord-h:  rgba(255, 255, 255, 0.78);    /* hover très lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(54px) saturate(185%);        /* saturation haute = gradient visible à travers le verre */
+  --lg-blur: blur(54px) saturate(155%);        /* saturation modérée = bleu visible sans violet agressif */
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
