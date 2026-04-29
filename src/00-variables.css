@@ -1,17 +1,10 @@
 /*
  * ═══════════════════════════════════════════════════
  *  00 — VARIABLES & DESIGN TOKENS
- *  Liquid Glass Discord Theme
+ *  Liquid Glass Discord Theme — NOIR PUR
  * ═══════════════════════════════════════════════════
  */
 
-/* ════════════════════════════════════════════════
-   ANIMATIONS GLOBALES — Liquid Glass
-════════════════════════════════════════════════ */
-
-/* Shimmer : trait de lumière via transform (compatible !important)
-   La technique background-position ne peut pas être animée quand
-   background est déclaré !important. On utilise un ::before + transform. */
 @keyframes lg-shimmer-slide {
   0%   { transform: translateX(-120%); opacity: 0; }
   8%   { opacity: 1; }
@@ -22,69 +15,61 @@
 
 :root {
   /* ── Layout ──────────────────────────────────── */
-  --lg-gap: 10px;          /* augmenté : gaps plus visibles entre panneaux */
+  --lg-gap: 8px;
   --lg-r:   16px;
   --lg-rsm: 10px;
   --lg-rxs: 6px;
 
-  /* ── Surfaces verre ──────────────────────────── */
+  /* ── Surfaces verre — NOIR PUR ───────────────── */
   /*
-   * DARK GLASS : panneau sombre semi-transparent.
-   * Un overlay blanc (rgba blanc) sur fond coloré = panneau
-   * clair (lavande, blanc) — mauvais.
-   * Un overlay sombre (rgba sombre) sur fond coloré = panneau
-   * sombre, la couleur de fond tinte légèrement à travers.
-   * C'est le vrai "verre sombre givré" iOS/visionOS.
+   * Sur fond noir, l'effet glass vient des bordures
+   * lumineuses et du shimmer inset top.
+   * Le backdrop-filter floute légèrement pour
+   * l'effet givré sur les éléments qui se superposent.
    */
-  --lg-glass:   rgba(0, 0, 0, 0.82);           /* noir pur semi-transparent */
-  --lg-border:  rgba(255, 255, 255, 0.48);    /* bordure blanche visible */
-  --lg-bord-h:  rgba(255, 255, 255, 0.72);    /* hover lumineux */
+  --lg-glass:   rgba(4, 4, 4, 0.90);          /* quasi noir, très légèrement transparent */
+  --lg-border:  rgba(255, 255, 255, 0.55);    /* bordure blanche lumineuse */
+  --lg-bord-h:  rgba(255, 255, 255, 0.85);    /* hover ultra lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(40px) saturate(115%);        /* blur léger — l'effet vient des shadows, pas du fond */
+  --lg-blur: blur(20px) saturate(110%);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0  2px  8px rgba(0, 0, 0, 0.60),          /* ombre proche = profondeur */
-    0 12px 40px rgba(0, 0, 0, 0.40),          /* ombre douce = séparation */
-    inset 0 1.5px 0   rgba(255, 255, 255, 0.55),  /* shimmer top — plus lumineux */
-    inset 0 0     0 1px rgba(255, 255, 255, 0.18);
+    0  4px 16px rgba(0, 0, 0, 0.90),
+    0 20px 60px rgba(0, 0, 0, 0.70),
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.68),  /* shimmer top lumineux */
+    inset 0 0     0 1px rgba(255, 255, 255, 0.18); /* double border intérieur */
 
   /* ── États interactifs ───────────────────────── */
-  --lg-hover: rgba(255, 255, 255, 0.07);
-  --lg-sel:   rgba(255, 255, 255, 0.13);
+  --lg-hover: rgba(255, 255, 255, 0.06);
+  --lg-sel:   rgba(255, 255, 255, 0.11);
 
-  /* ── Boutons Shine — 3 couches inset ─────────── */
+  /* ── Boutons ─────────────────────────────────── */
   --lg-btn: rgba(255, 255, 255, 0.07);
   --lg-btn-s:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset,
     0  1px   2px 0 rgba(255, 255, 255, 0.20) inset,
-    0  2px  12px 0 rgba(0,   0,   0,   0.22);
+    0  2px  12px 0 rgba(0,   0,   0,   0.40);
 }
 
-/* ════════════════════════════════════════════════
-   OVERRIDE VARIABLES DISCORD — approche Midnight
-   Force les fonds natifs à transparent pour que
-   notre gradient animé traverse partout.
-   Les textes → blanc pour lisibilité sur fond sombre.
-════════════════════════════════════════════════ */
 :root,
 .theme-dark {
-  /* ── Fonds principaux → transparent (anciens tokens) ── */
+  /* ── Fonds → transparent (anciens tokens) ─────── */
   --background-primary:              transparent !important;
   --background-secondary:            transparent !important;
   --background-secondary-alt:        transparent !important;
   --background-tertiary:             transparent !important;
-  --background-accent:               rgba(255,255,255,0.06) !important;
-  --background-floating:             rgba(4, 4, 16, 0.94)  !important;
-  --background-nested-floating:      rgba(4, 4, 16, 0.94)  !important;
+  --background-accent:               rgba(255,255,255,0.05) !important;
+  --background-floating:             rgba(0, 0, 0, 0.97)   !important;
+  --background-nested-floating:      rgba(0, 0, 0, 0.97)   !important;
   --background-mobile-primary:       transparent !important;
   --background-mobile-secondary:     transparent !important;
-  --deprecated-card-bg:              rgba(255,255,255,0.04) !important;
+  --deprecated-card-bg:              rgba(255,255,255,0.03) !important;
   --deprecated-store-bg:             transparent !important;
 
-  /* ── Fonds principaux → transparent (nouveaux tokens Discord 2024) ── */
+  /* ── Fonds → transparent (tokens Discord 2024) ── */
   --bg-base-primary:                 transparent !important;
   --bg-base-secondary:               transparent !important;
   --bg-base-tertiary:                transparent !important;
@@ -94,43 +79,43 @@
   --surface-overlay:                 transparent !important;
   --surface-raised:                  transparent !important;
 
-  /* ── États hover / sélection ─────────────────── */
-  --background-message-hover:        rgba(255,255,255,0.04) !important;
-  --background-modifier-hover:       rgba(255,255,255,0.06) !important;
-  --background-modifier-active:      rgba(255,255,255,0.10) !important;
-  --background-modifier-selected:    rgba(255,255,255,0.13) !important;
-  --background-modifier-accent:      rgba(255,255,255,0.06) !important;
+  /* ── Hover / sélection ───────────────────────── */
+  --background-message-hover:        rgba(255,255,255,0.03) !important;
+  --background-modifier-hover:       rgba(255,255,255,0.05) !important;
+  --background-modifier-active:      rgba(255,255,255,0.08) !important;
+  --background-modifier-selected:    rgba(255,255,255,0.10) !important;
+  --background-modifier-accent:      rgba(255,255,255,0.05) !important;
 
-  /* ── Zone de saisie & inputs ────────────────── */
-  --channeltextarea-background:      rgba(255,255,255,0.09) !important;
-  --deprecated-text-input-bg:        rgba(255,255,255,0.09) !important;
-  --input-background:                rgba(255,255,255,0.09) !important;
-  --modal-background:                rgba(8,8,12,0.92)      !important;
+  /* ── Inputs ──────────────────────────────────── */
+  --channeltextarea-background:      rgba(255,255,255,0.07) !important;
+  --deprecated-text-input-bg:        rgba(255,255,255,0.07) !important;
+  --input-background:                rgba(255,255,255,0.07) !important;
+  --modal-background:                rgba(0, 0, 0, 0.97)   !important;
   --background-base-lower:           transparent             !important;
   --background-base-low:             transparent             !important;
 
-  /* ── Texte → blanc lisible sur fond sombre ───── */
+  /* ── Texte blanc ─────────────────────────────── */
   --text-normal:            rgba(255, 255, 255, 0.90) !important;
-  --text-muted:             rgba(255, 255, 255, 0.45) !important;
-  --text-faint:             rgba(255, 255, 255, 0.25) !important;
+  --text-muted:             rgba(255, 255, 255, 0.42) !important;
+  --text-faint:             rgba(255, 255, 255, 0.22) !important;
   --text-link:              rgba(130, 210, 255, 1.00) !important;
   --text-positive:          rgba( 80, 220, 120, 1.00) !important;
   --text-warning:           rgba(255, 200,  80, 1.00) !important;
   --text-danger:            rgba(255,  90,  90, 1.00) !important;
   --header-primary:         rgba(255, 255, 255, 0.95) !important;
-  --header-secondary:       rgba(255, 255, 255, 0.55) !important;
+  --header-secondary:       rgba(255, 255, 255, 0.52) !important;
 
   /* ── Channels & icônes ───────────────────────── */
-  --channels-default:                rgba(255,255,255,0.62) !important;
-  --channel-icon:                    rgba(255,255,255,0.45) !important;
-  --channel-text-area-placeholder:   rgba(255,255,255,0.30) !important;
+  --channels-default:                rgba(255,255,255,0.60) !important;
+  --channel-icon:                    rgba(255,255,255,0.42) !important;
+  --channel-text-area-placeholder:   rgba(255,255,255,0.28) !important;
 
-  /* ── États interactifs ───────────────────────── */
+  /* ── Interactifs ─────────────────────────────── */
   --interactive-normal:   rgba(255,255,255,0.75) !important;
   --interactive-hover:    rgba(255,255,255,0.92) !important;
   --interactive-active:   rgba(255,255,255,1.00) !important;
-  --interactive-muted:    rgba(255,255,255,0.35) !important;
+  --interactive-muted:    rgba(255,255,255,0.32) !important;
 
   /* ── Séparateurs ─────────────────────────────── */
-  --background-modifier-border: rgba(255,255,255,0.08) !important;
+  --background-modifier-border: rgba(255,255,255,0.07) !important;
 }
