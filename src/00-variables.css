@@ -27,19 +27,19 @@
    * Le backdrop-filter floute légèrement pour
    * l'effet givré sur les éléments qui se superposent.
    */
-  --lg-glass:   rgba(4, 4, 4, 0.90);          /* quasi noir, très légèrement transparent */
-  --lg-border:  rgba(255, 255, 255, 0.55);    /* bordure blanche lumineuse */
-  --lg-bord-h:  rgba(255, 255, 255, 0.85);    /* hover ultra lumineux */
+  --lg-glass:   rgba(26, 26, 26, 0.92);        /* gris sombre — visible sur fond noir */
+  --lg-border:  rgba(255, 255, 255, 0.50);    /* bordure blanche lumineuse */
+  --lg-bord-h:  rgba(255, 255, 255, 0.82);    /* hover très lumineux */
 
   /* ── Backdrop filter ─────────────────────────── */
-  --lg-blur: blur(20px) saturate(110%);
+  --lg-blur: blur(20px);
 
   /* ── Ombre principale ────────────────────────── */
   --lg-shadow:
-    0  4px 16px rgba(0, 0, 0, 0.90),
-    0 20px 60px rgba(0, 0, 0, 0.70),
-    inset 0 1.5px 0   rgba(255, 255, 255, 0.68),  /* shimmer top lumineux */
-    inset 0 0     0 1px rgba(255, 255, 255, 0.18); /* double border intérieur */
+    0  4px 20px rgba(0, 0, 0, 0.95),
+    0 20px 60px rgba(0, 0, 0, 0.80),
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.65),  /* shimmer top lumineux */
+    inset 0 0     0 1px rgba(255, 255, 255, 0.16); /* double border intérieur */
 
   /* ── États interactifs ───────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.06);
