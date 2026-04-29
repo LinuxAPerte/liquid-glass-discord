@@ -32,74 +32,110 @@
   border-radius: var(--lg-rsm) !important;
 }
 
-/* ── Popout profil utilisateur — liquid glass ────── */
-/*
- * NOTE SPÉCIFICITÉ : popout_ dans 12-extra-modules a un sélecteur
- * #app-mount [class*="popout_"] (spéc. 1,1,0) qui peut écraser ce
- * sélecteur sans #app-mount (spéc. 0,1,0).
- * Solution : on ajoute #app-mount ici ET on exclut userProfileOuter_
- * du sélecteur popout_ générique.
- *
- * Le popup flotte indépendamment (PAS dans un panel flouté) →
- * backdrop-filter propre autorisé sans double-filter.
- */
+/* ══════════════════════════════════════════════════════
+ *  PROFIL UTILISATEUR — LIQUID GLASS REDESIGN COMPLET
+ *  Le popup flotte indépendamment → backdrop-filter OK
+ *  Fond semi-transparent → fond animé visible derrière
+ * ══════════════════════════════════════════════════════ */
+
+/* ── Conteneur principal — verre liquide ────────────── */
 #app-mount [class*="userProfileOuter_"],
 #app-mount [class*="profileModal_"] {
-  background: rgba(4, 4, 4, 0.94) !important;
-  backdrop-filter: blur(30px) !important;
-  -webkit-backdrop-filter: blur(30px) !important;
+  position: relative !important;
+  background: rgba(0, 5, 20, 0.58) !important;
+  backdrop-filter: blur(44px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(44px) saturate(165%) !important;
   box-shadow:
-    0 -1.5px 3px 0   rgba(255, 255, 255, 0.52) inset,   /* shimmer top */
-    0  1px   2px 0   rgba(255, 255, 255, 0.20) inset,
-    2px 0    5px -1px rgba(255, 255, 255, 0.16) inset,   /* shimmer gauche = profondeur */
-    0 0 0 1px         rgba(255, 255, 255, 0.38),
-    0 40px 100px 0    rgba(0, 0, 0, 0.85) !important;
-  border-radius: var(--lg-r) !important;
+    inset 0  1.5px 0 0   rgba(255, 255, 255, 0.68),   /* shimmer haut brillant */
+    inset 0  0     0 1px rgba(255, 255, 255, 0.16),   /* bordure intérieure fine */
+    0 0 0 1px             rgba(255, 255, 255, 0.42),   /* bordure extérieure lumineuse */
+    0 40px 120px 0        rgba(0,   0,   0,   0.92) !important;
+  border-radius: 20px !important;
   overflow: hidden !important;
 }
 
-/* Conteneurs internes — transparents (pas de fond opaque parasite) */
+/* Shimmer qui traverse le bord supérieur */
+#app-mount [class*="userProfileOuter_"]::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -60% !important;
+  width: 50% !important;
+  height: 2px !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.90) 50%,
+    transparent 100%
+  ) !important;
+  animation: lg-shimmer-slide 5.5s ease-in-out infinite !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+/* ── Conteneurs internes — transparents, 0 filter ───── */
 #app-mount [class*="userProfileInner_"],
 #app-mount [class*="userProfileOuter_"] [class*="body_"],
 #app-mount [class*="userProfileOuter_"] [class*="scrollerBase_"],
 #app-mount [class*="userProfileOuter_"] [class*="scroller_"],
-#app-mount [class*="userProfileOuter_"] [class*="userProfileInfo_"] {
+#app-mount [class*="userProfileOuter_"] [class*="userProfileInfo_"],
+#app-mount [class*="userProfileOuter_"] [class*="nameTag_"],
+#app-mount [class*="profileModal_"] [class*="body_"],
+#app-mount [class*="profileModal_"] [class*="scrollerBase_"],
+#app-mount [class*="profileModal_"] [class*="scroller_"] {
   background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* ── Sections internes — glass cards ──────────────
- *  section_ = blocs génériques (Collection de jeux, etc.)
- * ─────────────────────────────────────────────── */
+/* ── Tabs (À propos / Serveurs / Amis en commun) ──────── */
+#app-mount [class*="userProfileOuter_"] [class*="tabBar_"],
+#app-mount [class*="profileModal_"] [class*="tabBar_"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: none !important;
+}
+#app-mount [class*="userProfileOuter_"] [class*="tabBar_"] [class*="item_"][aria-selected="true"],
+#app-mount [class*="profileModal_"] [class*="tabBar_"] [class*="item_"][aria-selected="true"] {
+  border-bottom: 2px solid rgba(190, 220, 255, 0.90) !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+}
+
+/* ── Sections internes — glass cards ─────────────────── */
 #app-mount [class*="userProfileOuter_"] [class*="section_"],
 #app-mount [class*="profileModal_"] [class*="section_"] {
   background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.13) !important;
-  border-radius: var(--lg-rsm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.16) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.26) inset !important;
-  transition: border-color 150ms ease !important;
+    inset 0  1px   0 0 rgba(255, 255, 255, 0.26),
+    inset 0 -0.5px 0 0 rgba(0,   0,   0,   0.12),
+    0 4px 18px 0        rgba(0,   0,   0,   0.26) !important;
+  backdrop-filter: none !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease !important;
 }
 #app-mount [class*="userProfileOuter_"] [class*="section_"]:hover {
-  border-color: rgba(255, 255, 255, 0.24) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.34),
+    0 4px 18px 0    rgba(0, 0, 0, 0.32) !important;
 }
 
-/* ── Card activité / musique en cours ───────────── */
+/* ── Card activité / jeu en cours — teinté bleu ──────── */
 #app-mount [class*="userProfileOuter_"] [class*="activity_"],
 #app-mount [class*="userProfileOuter_"] [class*="activitySection_"],
 #app-mount [class*="profileModal_"] [class*="activity_"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: var(--lg-rsm) !important;
+  background: rgba(18, 55, 195, 0.16) !important;
+  border: 1px solid rgba(80, 145, 255, 0.32) !important;
+  border-radius: 12px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.16) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.26) inset !important;
+    inset 0 1px  0 0  rgba(140, 195, 255, 0.38),
+    inset 0 0   26px 0 rgba(30,  80, 255, 0.09),
+    0 4px 18px 0      rgba(0,    0,   0,  0.30) !important;
+  backdrop-filter: none !important;
 }
 
-/* ── Items activité récente (jeux joués) ─────────
- *  Discord peut utiliser des noms de classes variés.
- *  On couvre un maximum de possibilités.
- * ─────────────────────────────────────────────── */
+/* ── Items jeux / activité récente ───────────────────── */
 #app-mount [class*="userProfileOuter_"] [class*="activityItem_"],
 #app-mount [class*="userProfileOuter_"] [class*="recentGame_"],
 #app-mount [class*="userProfileOuter_"] [class*="gameCard_"],
@@ -111,59 +147,61 @@
 #app-mount [class*="profileModal_"] [class*="activityItem_"],
 #app-mount [class*="profileModal_"] [class*="recentGame_"],
 #app-mount [class*="profileModal_"] [class*="applicationActivity_"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.11) !important;
-  border-radius: var(--lg-rsm) !important;
-  transition: background 150ms ease, border-color 150ms ease !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.10) inset !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: none !important;
+  transition: background 180ms ease, border-color 180ms ease !important;
 }
 #app-mount [class*="userProfileOuter_"] [class*="activityItem_"]:hover,
 #app-mount [class*="userProfileOuter_"] [class*="recentGame_"]:hover,
 #app-mount [class*="userProfileOuter_"] [class*="gameCard_"]:hover,
 #app-mount [class*="userProfileOuter_"] [class*="applicationActivity_"]:hover,
 #app-mount [class*="userProfileOuter_"] [class*="activityRow_"]:hover {
-  background: rgba(255, 255, 255, 0.11) !important;
-  border-color: rgba(255, 255, 255, 0.24) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
 }
 
-/* ── Bouton "···" sur les items de jeu ───────────── */
+/* ── Bouton "···" sur les items de jeu ───────────────── */
 #app-mount [class*="userProfileOuter_"] [class*="activityItem_"] [class*="overflowButton_"],
 #app-mount [class*="userProfileOuter_"] [class*="recentGame_"] [class*="moreButton_"],
 #app-mount [class*="userProfileOuter_"] [class*="applicationActivity_"] [class*="overflowButton_"],
 #app-mount [class*="userProfileOuter_"] [class*="gameAction_"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: var(--lg-rxs) !important;
 }
 
-/* ── Card "Dans un salon vocal" — teinté bleu ────── */
+/* ── Card "Dans un salon vocal" — bleu vif ───────────── */
 #app-mount [class*="userProfileOuter_"] [class*="voiceActivity_"],
 #app-mount [class*="userProfileOuter_"] [class*="userProfileVoice_"],
 #app-mount [class*="userProfileOuter_"] [class*="voiceSection_"],
 #app-mount [class*="userProfileOuter_"] [class*="inVoice_"],
 #app-mount [class*="userProfileOuter_"] [class*="activeVoiceChannel_"] {
-  background: rgba(60, 100, 255, 0.13) !important;
-  border: 1px solid rgba(100, 160, 255, 0.26) !important;
-  border-radius: var(--lg-rsm) !important;
+  background: rgba(30, 80, 255, 0.20) !important;
+  border: 1px solid rgba(100, 165, 255, 0.42) !important;
+  border-radius: 12px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(130, 190, 255, 0.22) inset,
-    0  0.5px 1px 0 rgba(130, 190, 255, 0.34) inset !important;
+    inset 0 1px  0 0  rgba(165, 215, 255, 0.48),
+    inset 0 0   30px 0 rgba(30,  80, 255, 0.12),
+    0 4px 22px 0      rgba(0,  20, 120, 0.32) !important;
+  backdrop-filter: none !important;
 }
 
-/* ── Bouton "Ouvrir le salon vocal" — Shine pill ─── */
+/* ── Bouton "Ouvrir le salon vocal" — pill bleu Shine ─── */
 #app-mount [class*="userProfileOuter_"] [class*="viewVoiceChannelButton_"],
 #app-mount [class*="userProfileOuter_"] [class*="openVoiceChannelButton_"],
 #app-mount [class*="userProfileOuter_"] [class*="voiceChannelButton_"],
 #app-mount [class*="profileModal_"] [class*="viewVoiceChannelButton_"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  background: rgba(60, 120, 255, 0.26) !important;
+  border: 1px solid rgba(120, 185, 255, 0.50) !important;
   border-radius: 999px !important;
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: rgba(255, 255, 255, 0.96) !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.26) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.42) inset,
-    0  2px  14px 0 rgba(0, 0, 0, 0.24) !important;
+    inset 0 1px  0 0  rgba(185, 225, 255, 0.46),
+    inset 0 0   14px 0 rgba(60, 120, 255, 0.18),
+    0 2px 16px 0      rgba(0,  20, 120, 0.30) !important;
   transition: filter 200ms ease !important;
 }
 #app-mount [class*="userProfileOuter_"] [class*="viewVoiceChannelButton_"]:hover,
@@ -172,42 +210,84 @@
   filter: brightness(1.28) !important;
 }
 
-/* ── Rôles ───────────────────────────────────────── */
+/* ── Rôles ───────────────────────────────────────────── */
 #app-mount [class*="userProfileOuter_"] [class*="role_"]:not([class*="roles_"]),
 #app-mount [class*="profileModal_"] [class*="role_"]:not([class*="roles_"]) {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: var(--lg-rxs) !important;
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.26) !important;
+  transition: border-color 150ms ease !important;
+}
+#app-mount [class*="userProfileOuter_"] [class*="role_"]:not([class*="roles_"]):hover,
+#app-mount [class*="profileModal_"] [class*="role_"]:not([class*="roles_"]):hover {
+  border-color: rgba(255, 255, 255, 0.40) !important;
 }
 
-/* ── Boutons glass (Shine) ───────────────────────── */
+/* ── Boutons d'action (Message, Appel, Suivi…) ───────── */
 #app-mount [class*="userProfileOuter_"] [class*="button_"][class*="lookOutlined_"],
 #app-mount [class*="userProfileOuter_"] [class*="button_"][class*="colorPrimary_"],
-#app-mount [class*="profileModal_"] button[class*="lookOutlined_"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+#app-mount [class*="userProfileOuter_"] [class*="button_"][class*="lookFilled_"],
+#app-mount [class*="profileModal_"] button[class*="lookOutlined_"],
+#app-mount [class*="profileModal_"] button[class*="lookFilled_"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.34) !important;
   border-radius: 999px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.26) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.44) inset !important;
+    inset 0  1px   0 0 rgba(255, 255, 255, 0.38),
+    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.10),
+    0 2px 12px 0       rgba(0,   0,   0,   0.28) !important;
   transition: filter 200ms ease !important;
 }
-#app-mount [class*="userProfileOuter_"] [class*="button_"][class*="lookOutlined_"]:hover {
+#app-mount [class*="userProfileOuter_"] [class*="button_"][class*="lookOutlined_"]:hover,
+#app-mount [class*="userProfileOuter_"] [class*="button_"][class*="colorPrimary_"]:hover,
+#app-mount [class*="userProfileOuter_"] [class*="button_"][class*="lookFilled_"]:hover,
+#app-mount [class*="profileModal_"] button[class*="lookOutlined_"]:hover,
+#app-mount [class*="profileModal_"] button[class*="lookFilled_"]:hover {
   filter: brightness(1.22) !important;
 }
 
-/* ── Zone de message (DMs via profil) ────────────── */
-#app-mount [class*="userProfileOuter_"] [class*="channelTextArea_"],
-#app-mount [class*="profileModal_"] [class*="channelTextArea_"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: 16px !important;
+/* ── Connexions (comptes liés : Twitch, Steam…) ──────── */
+#app-mount [class*="userProfileOuter_"] [class*="connectedAccount_"],
+#app-mount [class*="profileModal_"] [class*="connectedAccount_"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.20) !important;
+  transition: border-color 150ms ease !important;
+}
+#app-mount [class*="userProfileOuter_"] [class*="connectedAccount_"]:hover,
+#app-mount [class*="profileModal_"] [class*="connectedAccount_"]:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
-/* ── Séparateurs ─────────────────────────────────── */
-[class*="userProfileOuter_"] [class*="divider_"],
-[class*="profileModal_"] [class*="divider_"] {
-  background: rgba(255, 255, 255, 0.10) !important;
+/* ── Serveurs / Amis en commun ────────────────────────── */
+#app-mount [class*="userProfileOuter_"] [class*="mutualGuild_"],
+#app-mount [class*="profileModal_"] [class*="mutualGuild_"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-radius: 10px !important;
+  transition: background 150ms ease, border-color 150ms ease !important;
+}
+#app-mount [class*="userProfileOuter_"] [class*="mutualGuild_"]:hover,
+#app-mount [class*="profileModal_"] [class*="mutualGuild_"]:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+
+/* ── Zone DM (via profil) ────────────────────────────── */
+#app-mount [class*="userProfileOuter_"] [class*="channelTextArea_"],
+#app-mount [class*="profileModal_"] [class*="channelTextArea_"] {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+/* ── Séparateurs ─────────────────────────────────────── */
+#app-mount [class*="userProfileOuter_"] [class*="divider_"],
+#app-mount [class*="profileModal_"] [class*="divider_"] {
+  background: rgba(255, 255, 255, 0.12) !important;
   border: none !important;
   height: 1px !important;
 }
