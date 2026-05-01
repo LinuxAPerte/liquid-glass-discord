@@ -93,19 +93,5 @@
   box-shadow:       0 2px 6px rgba(237, 66, 69, 0.55) !important;
 }
 
-/* ── Barre utilisateur (bottom) ───────────────────── */
-#app-mount [class*="panels_"] {
-  background: rgba(0, 0, 0, 0.22) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
-  backdrop-filter: none !important;
-}
-
-/* Boutons micro/casque/paramètres */
-#app-mount [class*="panels_"] [class*="button_"] {
-  border-radius:    var(--lg-rxs) !important;
-  transition:       background 120ms, filter 150ms !important;
-}
-#app-mount [class*="panels_"] [class*="button_"]:hover {
-  background: rgba(255, 255, 255, 0.10) !important;
-  filter:     brightness(1.18) !important;
-}
+/* Note : panels_ (barre utilisateur bas) est géré dans 07-profile.css
+   avec le fog effect. Ne pas dupliquer ici. */
