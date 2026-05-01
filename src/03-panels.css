@@ -53,11 +53,13 @@
 }
 
 /* ── Sidebar canaux / DMs ────────────────────────── */
+/* PAS de overflow:hidden ici — Discord gère le scroll
+   interne via ses propres scrollers. overflow:hidden sur
+   ce panel clippe les listes et cache canaux/catégories. */
 #app-mount [class*="sidebarList_"],
 #app-mount [class*="privateChannels_"] {
-  margin:   var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  overflow: hidden !important;
-  flex:     0 0 auto !important;
+  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  flex:   0 0 auto !important;
 }
 
 /* ── Zone de chat — extensible ──────────────────── */
