@@ -12,9 +12,13 @@
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Menus contextuels (clic droit) ─────────────── */
-[class*="menu_"],
-[class*="contentWrapper_"] {
+/* ── Menus contextuels (clic droit) ─────────────────
+ *  [role="menu"] = sélecteur fiable : seuls les vrais
+ *  menus contextuels ont cet attribut ARIA.
+ *  contentWrapper_ supprimé — trop large (matchait la
+ *  sidebar DM et le bouton "Recherche ou lance…").
+ * ─────────────────────────────────────────────────── */
+[class*="menu_"][role="menu"] {
   background: rgba(4, 4, 4, 0.96) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -25,9 +29,9 @@
   border-radius: var(--lg-r) !important;
 }
 
-/* ── Items de menu hover ────────────────────────── */
-#app-mount [class*="item__133bf"]:hover,
-#app-mount [class*="menuItem_"]:hover {
+/* ── Items de menu hover ─────────────────────────── */
+#app-mount [class*="menuItem_"]:hover,
+[class*="menu_"][role="menu"] [class*="item_"]:hover {
   background: rgba(255, 255, 255, 0.08) !important;
   border-radius: var(--lg-rsm) !important;
 }
