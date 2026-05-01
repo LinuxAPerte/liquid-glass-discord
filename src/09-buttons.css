@@ -2,36 +2,48 @@
  * ═══════════════════════════════════════════════════
  *  09 — BOUTONS (technique Shine)
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
- *  Technique Shine — 3 couches inset box-shadow :
- *    couche 1 : reflet du haut (bord supérieur foncé)
- *    couche 2 : reflet du bas (bord inférieur lumineux)
+ *  Technique Shine — 4 couches inset box-shadow :
+ *    couche 1 : reflet haut  (bord supérieur foncé)
+ *    couche 2 : reflet bas   (bord inférieur lumineux)
  *    couche 3 : diffusion douce
- *    couche 4 : ombre portée
+ *    couche 4 : ombre portée externe
  *
- *  Hover : filter: brightness() au lieu de changer
- *          la couleur — plus élégant.
+ *  Hover : filter: brightness() uniquement — élégant.
+ *
+ *  IMPORTANT : sélecteurs sémantiques UNIQUEMENT.
+ *  Aucun sélecteur hash (button_a22c, etc.) — trop fragile.
+ *  Discord expose ces classes pour les variants de bouton :
+ *    lookFilled_   = bouton plein  (Rejoindre, Envoyer…)
+ *    lookOutlined_ = bouton contour (Annuler…)
+ *    lookLink_     = bouton texte  (Ignorer…)
+ *    colorBrand_   = Discord blurple
+ *    colorPrimary_ = blanc / primaire
+ *    colorDanger_  = rouge  (Quitter, Supprimer)
+ *    colorGreen_   = vert   (Accepter)
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Boutons toolbar — UNIQUEMENT dans chatContent_ ── */
+/* ── Boutons toolbar — UNIQUEMENT dans chatContent_ ──
+ *  Scope obligatoire : toolbar_ sans parent = trop large
+ *  (DM sidebar, barre vocale…).
+ * ─────────────────────────────────────────────────── */
 #app-mount [class*="chatContent_"] [class*="toolbar_"] button {
   background-color: transparent !important;
-  border-radius: var(--lg-rxs) !important;
-  transition: background 150ms, filter 150ms !important;
+  border-radius:    var(--lg-rxs) !important;
+  transition:       background 150ms ease, filter 150ms ease !important;
 }
 #app-mount [class*="chatContent_"] [class*="toolbar_"] button:hover {
   background-color: rgba(255, 255, 255, 0.10) !important;
-  filter: brightness(1.20) !important;
+  filter:           brightness(1.20) !important;
 }
 
-/* ── Boutons voix ───────────────────────────────── */
+/* ── Boutons voix (micro, casque, déconnecter) ─────── */
 #app-mount [class*="voiceContainer_"] button {
   background-color: var(--lg-btn) !important;
-  border-radius: var(--lg-rsm) !important;
-  box-shadow: var(--lg-btn-s) !important;
-  transition: filter 200ms ease !important;
+  border-radius:    var(--lg-rsm) !important;
+  box-shadow:       var(--lg-btn-s) !important;
+  transition:       filter 200ms ease !important;
 }
 #app-mount [class*="voiceContainer_"] button:hover {
   filter: brightness(1.20) !important;
@@ -40,15 +52,31 @@
   background-color: rgba(240, 60, 60, 0.22) !important;
 }
 
-/* ── Boutons génériques Discord ─────────────────── */
-[class*="button_a22c"],
-[class*="button__201d"]:not([class*="button__676"]) {
-  box-shadow: var(--lg-btn-s) !important;
+/* ── Boutons Discord génériques — Shine sémantique ───
+ *  lookFilled_   = fond coloré (ex: blurple, rouge)
+ *  lookOutlined_ = contour    (ex: bouton annuler)
+ * ─────────────────────────────────────────────────── */
+#app-mount [class*="button_"][class*="lookFilled_"],
+#app-mount [class*="button_"][class*="lookOutlined_"] {
+  box-shadow:    var(--lg-btn-s) !important;
   border-radius: 13px !important;
-  border: none !important;
-  transition: filter 0.3s ease !important;
+  transition:    filter 0.25s ease !important;
 }
-[class*="button_a22c"]:hover,
-[class*="button__201d"]:not([class*="button__676"]):hover {
+#app-mount [class*="button_"][class*="lookFilled_"]:hover,
+#app-mount [class*="button_"][class*="lookOutlined_"]:hover {
   filter: brightness(1.20) !important;
+}
+
+/* Bouton danger (rouge) — lueur subtile */
+#app-mount [class*="button_"][class*="colorDanger_"] {
+  box-shadow:
+    var(--lg-btn-s),
+    0 0 12px 0 rgba(240, 60, 60, 0.28) !important;
+}
+
+/* Bouton green (accepter) — lueur verte subtile */
+#app-mount [class*="button_"][class*="colorGreen_"] {
+  box-shadow:
+    var(--lg-btn-s),
+    0 0 12px 0 rgba(60, 210, 100, 0.28) !important;
 }

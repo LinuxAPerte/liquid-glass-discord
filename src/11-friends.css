@@ -3,137 +3,135 @@
  *  11 — PAGE AMIS & LISTE MEMBRES
  *  Liquid Glass Discord Theme
  *
- *  Approche Midnight :
- *    → Le panneau verre EXTERNE (peopleColumn_, etc.)
- *      est géré dans 03-panels.css
- *    → Ici : uniquement les éléments INTERNES
- *      → transparents (pas de double-verre)
- *      → hover subtil sur les lignes
+ *  Règles importantes :
+ *    → tabBar_ scopé à peopleColumn_ UNIQUEMENT
+ *      (évite le conflit avec les tabs du profil
+ *       utilisateur dans 10-menus.css)
+ *    → Pas de backdrop-filter sur les éléments internes
+ *      (déjà dans un panel flouté → double-filter)
+ *    → Pas de margin-left animé (cause décalage layout)
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Barre de navigation Amis — glass inset (Shine) ─
- *  tabBar_ est DANS chatContent_ (backdrop-filter).
- *  Pas de double backdrop-filter → fond opaque noir.
- *  On utilise un fond blanc léger + inset shimmer.
- *  La teinte verre vient des inset shadows.
+/* ── Barre navigation Amis (Tous / En ligne / En attente)
+ *  Scopée à peopleColumn_ pour ne pas toucher les tabs
+ *  du profil utilisateur (10-menus.css gère celles-là).
  * ─────────────────────────────────────────────────── */
-#app-mount [class*="tabBar_"] {
-  background: rgba(255, 255, 255, 0.10) !important;  /* léger sur fond glass sombre */
-  backdrop-filter: none !important;
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] {
+  background:       rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter:  none !important;
   -webkit-backdrop-filter: none !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius:    var(--lg-r) !important;
+  border:           1px solid rgba(255, 255, 255, 0.22) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.44) inset,
-    0  2px  12px 0 rgba(0, 0, 0, 0.20) !important;
-  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
-  padding: 4px !important;
+    0  2px  12px 0 rgba(0, 0, 0, 0.22) !important;
+  margin:     var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
+  padding:    4px !important;
   transition: border-color 200ms ease !important;
 }
-#app-mount [class*="tabBar_"]:hover {
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"]:hover {
   border-color: rgba(255, 255, 255, 0.38) !important;
 }
 
 /* Onglets individuels */
-#app-mount [class*="tabBar_"] [class*="item_"] {
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"] {
   border-radius: var(--lg-rsm) !important;
-  color: rgba(255, 255, 255, 0.70) !important;
-  transition: background 120ms, color 120ms !important;
+  color:         rgba(255, 255, 255, 0.68) !important;
+  transition:    background 120ms ease, color 120ms ease !important;
 }
-#app-mount [class*="tabBar_"] [class*="item_"]:hover {
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"]:hover {
   background: rgba(255, 255, 255, 0.08) !important;
-  color: rgba(255, 255, 255, 0.92) !important;
+  color:      rgba(255, 255, 255, 0.92) !important;
 }
-#app-mount [class*="tabBar_"] [class*="item_"][class*="selected_"],
-#app-mount [class*="tabBar_"] [class*="item_"][aria-selected="true"] {
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][class*="selected_"],
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][aria-selected="true"] {
   background: rgba(255, 255, 255, 0.14) !important;
-  color: rgba(255, 255, 255, 1.00) !important;
+  color:      rgba(255, 255, 255, 1.00) !important;
 }
 
-/* ── Barre de recherche amis — Shine inset ──────── */
-/*  Sélecteurs scoped à la page amis uniquement.
- *  La version générique [class*="searchBar_"] est trop large :
- *  elle s'applique à toutes les barres Discord.
- *  12-extra-modules.css couvre les autres contextes (DM, etc.). */
+/* ── Barre de recherche / filtre amis ─────────────── */
 #app-mount [class*="tabBody_"] [class*="searchBar_"],
 #app-mount [class*="peopleList_"] [class*="searchBar_"],
 #app-mount [class*="searchBar__133b"],
-#app-mount [class*="filterBar__133b"] {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: none !important;
+#app-mount [class*="filterBar__133b"],
+#app-mount [class*="filterBar_"] {
+  background:       rgba(255, 255, 255, 0.09) !important;
+  backdrop-filter:  none !important;
   -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: 20px !important;
+  border:           1px solid rgba(255, 255, 255, 0.20) !important;
+  border-radius:    20px !important;
   box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.35) inset !important;
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
   transition: border-color 200ms ease !important;
 }
 #app-mount [class*="tabBody_"] [class*="searchBar_"]:focus-within,
 #app-mount [class*="peopleList_"] [class*="searchBar_"]:focus-within,
 #app-mount [class*="searchBar__133b"]:focus-within {
-  border-color: rgba(255, 255, 255, 0.40) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
 }
 
-/* ── Conteneurs internes — transparent ──────────── */
+/* ── Conteneurs internes — transparents ──────────── */
 #app-mount [class*="friendsContainer_"],
 #app-mount [class*="peopleList_"],
 #app-mount [class*="tabBody_"],
 #app-mount [class*="peopleListSectionTitle_"] {
-  background: transparent !important;
-  backdrop-filter: none !important;
+  background:       transparent !important;
+  backdrop-filter:  none !important;
   -webkit-backdrop-filter: none !important;
-  border: none !important;
-  box-shadow: none !important;
+  border:           none !important;
+  box-shadow:       none !important;
 }
 
-/* ── Lignes amis — hover Midnight ───────────────── */
+/* ── Lignes amis — hover Midnight ─────────────────── */
 #app-mount [class*="friendRow_"],
 #app-mount [class*="peopleListItem_"] {
   border-radius: var(--lg-rsm) !important;
-  margin: 2px 8px !important;
-  transition: background 120ms !important;
+  margin:        2px 8px !important;
+  transition:    background 120ms ease !important;
 }
 #app-mount [class*="friendRow_"]:hover,
 #app-mount [class*="peopleListItem_"]:hover {
   background-color: var(--lg-hover) !important;
 }
 
-/* ── Boutons d'action — Shine ────────────────────── */
+/* ── Boutons d'action (message, appel, options) ───── */
 #app-mount [class*="friendRow_"] button,
 #app-mount [class*="peopleListItem_"] button {
   background-color: var(--lg-btn) !important;
-  border-radius: 50% !important;
-  box-shadow: var(--lg-btn-s) !important;
-  transition: filter 200ms ease !important;
+  border-radius:    50% !important;
+  box-shadow:       var(--lg-btn-s) !important;
+  transition:       filter 200ms ease !important;
 }
 #app-mount [class*="friendRow_"] button:hover,
 #app-mount [class*="peopleListItem_"] button:hover {
   filter: brightness(1.22) !important;
 }
 
-/* ── Liste membres serveur — bordure gauche Shine ── */
+/* ── Liste membres serveur — interne transparent ──── */
 #app-mount [class*="members_"] {
-  background: transparent !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.10) !important;
+  background:  transparent !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 #app-mount [class*="member_"] {
-  background: transparent !important;
+  background:    transparent !important;
   border-radius: var(--lg-rsm) !important;
-  margin: 1px 8px !important;
-  transition: background 120ms !important;
+  margin:        1px 8px !important;
+  transition:    background 120ms ease !important;
 }
 #app-mount [class*="member_"]:hover {
   background-color: var(--lg-hover) !important;
 }
 
-/* ── Séparateurs de rôle dans la liste membres ───── */
+/* Séparateurs de rôle dans la liste membres */
 #app-mount [class*="membersGroup_"] {
-  background: transparent !important;
-  color: rgba(255, 255, 255, 0.45) !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  padding: 8px 12px 4px !important;
+  background:     transparent !important;
+  color:          rgba(255, 255, 255, 0.42) !important;
+  font-size:      11px !important;
+  font-weight:    700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding:        10px 12px 4px !important;
 }

@@ -195,12 +195,11 @@
 /* Items de la sidebar paramètres */
 #app-mount [class*="side_"] [class*="item_"] {
   border-radius: var(--lg-rsm) !important;
-  transition: background 120ms ease, margin-left 200ms ease !important;
+  transition: background 120ms ease !important;   /* PAS de margin-left : décale le layout */
   color: rgba(255, 255, 255, 0.70) !important;
 }
 #app-mount [class*="side_"] [class*="item_"]:hover {
   background: var(--lg-hover) !important;
-  margin-left: 4px !important;
 }
 #app-mount [class*="side_"] [class*="selected_"] {
   background: var(--lg-sel) !important;

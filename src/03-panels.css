@@ -1,87 +1,109 @@
 /*
  * ═══════════════════════════════════════════════════
- *  03 — PANNEAUX VERRE — BLOC UNIFIÉ
+ *  03 — LAYOUT & GLASS PANELS — RESPONSIVE
  *  Liquid Glass Discord Theme
+ *
+ *  Architecture flex :
+ *    guilds_          → flex: 0 0 auto  (largeur Discord)
+ *    sidebarList_     → flex: 0 0 auto  (largeur Discord)
+ *    chatContent_     → flex: 1 1 auto  (extensible)
+ *    peopleColumn_    → flex: 1 1 auto  (extensible)
+ *    nowPlayingColumn_→ flex: 0 0 auto  (largeur fixe)
+ *    membres          → flex: 0 0 auto  (largeur fixe)
+ *
+ *  Règles responsive :
+ *    → min-width: 0 sur les panels extensibles (évite flex overflow)
+ *    → overflow: hidden sur tous sauf guilds_ (pills non clippées)
+ *    → overflow: visible sur guilds_ (indicateurs de sélection)
+ *    → PAS de height: auto ni width fixe — Discord gère ça
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Style verre unifié ─────────────────────────── */
+/* ── Verre unifié : tous les panels principaux ────── */
 #app-mount [class*="guilds_"],
 #app-mount [class*="sidebarList_"],
 #app-mount [class*="privateChannels_"],
 #app-mount [class*="chatContent_"],
 #app-mount [class*="peopleColumn_"],
-#app-mount [class*="nowPlayingColumn_"],
-#app-mount [class*="container_c8ff"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
+#app-mount [class*="nowPlayingColumn_"] {
+  background:        var(--lg-glass)  !important;
+  backdrop-filter:   var(--lg-blur)   !important;
   -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  transition: border-color 200ms ease !important;
+  border-radius:     var(--lg-r)      !important;
+  border:            1px solid var(--lg-border) !important;
+  box-shadow:        var(--lg-shadow) !important;
+  transition:        border-color 250ms ease !important;
 }
 
-/* ── Hover bordure ──────────────────────────────── */
+/* Hover : éclat de la bordure */
 #app-mount [class*="guilds_"]:hover,
 #app-mount [class*="sidebarList_"]:hover,
 #app-mount [class*="privateChannels_"]:hover,
 #app-mount [class*="chatContent_"]:hover,
 #app-mount [class*="peopleColumn_"]:hover,
-#app-mount [class*="nowPlayingColumn_"]:hover,
-#app-mount [class*="container_c8ff"]:hover {
+#app-mount [class*="nowPlayingColumn_"]:hover {
   border-color: var(--lg-bord-h) !important;
 }
 
-/* ── Marges — une règle par panneau ────────────────
- *  IMPORTANT : pas de height: auto, pas de min-width
- *  Discord gère lui-même les hauteurs en flex.
- *  On ne surcharge que les marges externes.
- * ─────────────────────────────────────────────── */
-
-/* Liste des serveurs (colonne icônes gauche) */
+/* ── Colonne icônes serveurs ──────────────────────── */
 #app-mount [class*="guilds_"] {
-  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  overflow: visible !important;   /* pills hors-limites non clippées */
-  flex-shrink: 0 !important;
+  margin:   var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  overflow: visible !important;   /* pills de sélection non clippées */
+  flex:     0 0 auto !important;
 }
 
-/* Sidebar canaux / DMs */
+/* ── Sidebar canaux / DMs ────────────────────────── */
 #app-mount [class*="sidebarList_"],
 #app-mount [class*="privateChannels_"] {
-  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  margin:   var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
   overflow: hidden !important;
-  flex-shrink: 0 !important;
+  flex:     0 0 auto !important;
 }
 
-/* Zone de chat principale — s'étire pour remplir l'espace */
+/* ── Zone de chat — extensible ──────────────────── */
 #app-mount [class*="chatContent_"] {
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  flex: 1 1 auto !important;
-  min-width: 0 !important;        /* évite l'overflow flex */
+  margin:    var(--lg-gap) !important;
+  overflow:  hidden !important;
+  flex:      1 1 auto !important;
+  min-width: 0 !important;   /* évite l'overflow sur petites fenêtres */
 }
 
-/* peopleColumn_ = liste amis (centre) ou vue serveur DM
-   Marge uniforme sur tous les côtés */
+/* ── Colonne amis / Discovery (centre) ──────────── */
 #app-mount [class*="peopleColumn_"] {
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  flex: 1 1 auto !important;
+  margin:    var(--lg-gap) !important;
+  overflow:  hidden !important;
+  flex:      1 1 auto !important;
   min-width: 0 !important;
 }
 
-/* Colonne "Active Now" / "En ligne" — droite fixe */
+/* ── Colonne "Active Now" ────────────────────────── */
 #app-mount [class*="nowPlayingColumn_"] {
-  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  margin:   var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
   overflow: hidden !important;
-  flex-shrink: 0 !important;
+  flex:     0 0 auto !important;
 }
 
-/* Liste membres serveur — droite fixe, pas de height: auto */
+/* ── Liste membres serveur (panel droit) ──────────
+ *  Sélecteurs sémantiques prioritaires.
+ *  container_c8ff gardé en fallback (hash Discord connu).
+ *  PAS de height: auto ni min-width — Discord gère.
+ * ─────────────────────────────────────────────── */
+#app-mount [class*="membersWrap_"],
+#app-mount [class*="memberSidebar_"],
 #app-mount [class*="container_c8ff"] {
-  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
-  overflow: hidden !important;
-  flex-shrink: 0 !important;
-  /* PAS de height: auto ni min-width — Discord gère la hauteur */
+  background:        var(--lg-glass)  !important;
+  backdrop-filter:   var(--lg-blur)   !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border-radius:     var(--lg-r)      !important;
+  border:            1px solid var(--lg-border) !important;
+  box-shadow:        var(--lg-shadow) !important;
+  margin:            var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow:          hidden !important;
+  flex:              0 0 auto !important;
+  transition:        border-color 250ms ease !important;
+}
+#app-mount [class*="membersWrap_"]:hover,
+#app-mount [class*="memberSidebar_"]:hover,
+#app-mount [class*="container_c8ff"]:hover {
+  border-color: var(--lg-bord-h) !important;
 }

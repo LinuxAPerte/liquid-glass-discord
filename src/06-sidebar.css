@@ -1,61 +1,111 @@
 /*
  * ═══════════════════════════════════════════════════
- *  06 — SIDEBAR CHANNELS
+ *  06 — SIDEBAR CHANNELS & DMs
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
- *  Le style de base est dans 03-panels.css.
+ *  Le style de base (background, blur, border, shadow,
+ *  margin, flex) est dans 03-panels.css.
  *
  *  Ce module gère :
- *    - En-têtes de catégorie (hover)
- *    - Items de salon (hover, arrondi, marge)
- *    - Salon sélectionné (barre gauche Midnight)
+ *    - En-têtes de catégorie
+ *    - Items de salon (hover, sélectionné, icône)
+ *    - Barre de statut utilisateur (bottom panel)
  *    - Badges de notification
  * ═══════════════════════════════════════════════════
  */
 
-/* ── En-tête catégorie — texte épuré ─────────── */
-/* PAS de pill/border : résultat moche sur les catégories */
+/* ── En-têtes de catégorie ────────────────────────── */
 #app-mount [class*="sidebarList_"] [class*="header_"],
 #app-mount [class*="sidebarList_"] [class*="categoryBar_"],
 #app-mount [class*="sidebarList_"] [class*="categoryHeader_"] {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  margin: 6px 0 2px 0 !important;
-  padding: 4px 8px 2px 16px !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  color: rgba(255, 255, 255, 0.38) !important;
-  transition: color 150ms !important;
+  background:      transparent !important;
+  border:          none !important;
+  border-radius:   0 !important;
+  margin:          10px 0 2px 0 !important;
+  padding:         3px 8px 3px 14px !important;
+  font-size:       11px !important;
+  font-weight:     700 !important;
+  letter-spacing:  0.07em !important;
+  text-transform:  uppercase !important;
+  color:           rgba(255, 255, 255, 0.36) !important;
+  transition:      color 150ms ease !important;
 }
 #app-mount [class*="sidebarList_"] [class*="header_"]:hover,
 #app-mount [class*="sidebarList_"] [class*="categoryHeader_"]:hover {
-  color: rgba(255, 255, 255, 0.70) !important;
+  color:      rgba(255, 255, 255, 0.70) !important;
   background: transparent !important;
 }
-/* Note: containerDefault_ = items de salon, pas catégories */
 
-/* ── Item de salon ──────────────────────────────── */
+/* ── Items de salon ───────────────────────────────── */
 #app-mount [class*="sidebarList_"] li [class*="wrapper_"] {
   border-radius: var(--lg-rsm) !important;
-  margin: 2px 6px !important;
-  transition: background 120ms !important;
+  margin:        1px 6px !important;
+  transition:    background 120ms ease !important;
 }
 #app-mount [class*="sidebarList_"] li [class*="wrapper_"]:hover {
   background-color: var(--lg-hover) !important;
 }
 
-/* ── Salon sélectionné — barre gauche (Midnight) ── */
+/* ── Salon sélectionné — barre gauche Shine ───────── */
 #app-mount [class*="sidebarList_"] [class*="modeSelected_"] {
   background-color: var(--lg-sel) !important;
-  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.90) !important;
+  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.88) !important;
 }
 
-/* ── Badges notifications ───────────────────────── */
+/* ── Salon avec mention / non-lu ──────────────────── */
+#app-mount [class*="sidebarList_"] [class*="modeUnread_"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ── Items DM (solo + groupe) ─────────────────────── */
+#app-mount [class*="privateChannels_"] [class*="interactive_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin:        1px 6px !important;
+  transition:    background 120ms ease !important;
+}
+#app-mount [class*="privateChannels_"] [class*="interactive_"]:hover {
+  background: var(--lg-hover) !important;
+}
+#app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
+#app-mount [class*="privateChannels_"] [class*="selected_"] {
+  background: var(--lg-sel) !important;
+  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.70) !important;
+}
+
+/* Headers de groupes DM (MESSAGES DIRECTS, etc.) */
+#app-mount [class*="privateChannels_"] [class*="groupHeader_"],
+#app-mount [class*="privateChannels_"] [class*="header_"] {
+  color:          rgba(255, 255, 255, 0.42) !important;
+  background:     transparent !important;
+  font-size:      11px !important;
+  font-weight:    700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  padding:        10px 8px 3px 14px !important;
+}
+
+/* ── Badges notifications ─────────────────────────── */
 #app-mount [class*="numberBadge_"] {
   background-color: #ed4245 !important;
-  border-radius: 99px !important;
+  border-radius:    99px !important;
+  font-size:        11px !important;
+  font-weight:      700 !important;
+  box-shadow:       0 2px 6px rgba(237, 66, 69, 0.55) !important;
+}
+
+/* ── Barre utilisateur (bottom) ───────────────────── */
+#app-mount [class*="panels_"] {
+  background: rgba(0, 0, 0, 0.22) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter: none !important;
+}
+
+/* Boutons micro/casque/paramètres */
+#app-mount [class*="panels_"] [class*="button_"] {
+  border-radius:    var(--lg-rxs) !important;
+  transition:       background 120ms, filter 150ms !important;
+}
+#app-mount [class*="panels_"] [class*="button_"]:hover {
+  background: rgba(255, 255, 255, 0.10) !important;
+  filter:     brightness(1.18) !important;
 }
