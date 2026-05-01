@@ -1,9 +1,18 @@
 /*
  * ═══════════════════════════════════════════════════
  *  00 — VARIABLES & DESIGN TOKENS
- *  Liquid Glass Discord Theme — NOIR PUR
+ *  Liquid Glass Discord Theme
+ *
+ *  Deux couches :
+ *    1. Variables LG (--lg-*) — système visuel glass
+ *    2. Overrides tokens Discord — inspiré Midnight
+ *       colors.css pour cohérence couleurs/états
  * ═══════════════════════════════════════════════════
  */
+
+/* ══════════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════════ */
 
 @keyframes lg-shimmer-slide {
   0%   { transform: translateX(-120%); opacity: 0; }
@@ -13,50 +22,97 @@
   100% { transform: translateX(320%);  opacity: 0; }
 }
 
+/* ══════════════════════════════════════════════════
+   VARIABLES LIQUID GLASS
+══════════════════════════════════════════════════ */
+
 :root {
-  /* ── Layout ──────────────────────────────────── */
+  /* ── Layout ────────────────────────────────────── */
   --lg-gap: 8px;
   --lg-r:   16px;
   --lg-rsm: 10px;
   --lg-rxs: 6px;
 
-  /* ── Surfaces verre — NOIR PUR ───────────────── */
-  /*
-   * Sur fond noir, l'effet glass vient des bordures
-   * lumineuses et du shimmer inset top.
-   * Le backdrop-filter floute légèrement pour
-   * l'effet givré sur les éléments qui se superposent.
-   */
-  --lg-glass:   rgba(0, 0, 0, 0.52);          /* semi-transparent — laisse passer le fond animé */
-  --lg-border:  rgba(255, 255, 255, 0.55);    /* bordure blanche lumineuse */
-  --lg-bord-h:  rgba(255, 255, 255, 0.85);    /* hover très lumineux */
+  /* ── Surfaces verre ────────────────────────────── */
+  --lg-glass:   rgba(0, 0, 0, 0.52);
+  --lg-border:  rgba(255, 255, 255, 0.55);
+  --lg-bord-h:  rgba(255, 255, 255, 0.85);
 
-  /* ── Backdrop filter ─────────────────────────── */
+  /* ── Backdrop filter ───────────────────────────── */
   --lg-blur: blur(40px) saturate(150%);
 
-  /* ── Ombre principale ────────────────────────── */
+  /* ── Ombre principale ──────────────────────────── */
   --lg-shadow:
     0  4px 20px rgba(0, 0, 0, 0.95),
     0 20px 60px rgba(0, 0, 0, 0.80),
-    inset 0 1.5px 0   rgba(255, 255, 255, 0.65),  /* shimmer top lumineux */
-    inset 0 0     0 1px rgba(255, 255, 255, 0.16); /* double border intérieur */
+    inset 0 1.5px 0   rgba(255, 255, 255, 0.65),
+    inset 0 0     0 1px rgba(255, 255, 255, 0.16);
 
-  /* ── États interactifs ───────────────────────── */
+  /* ── États interactifs ─────────────────────────── */
   --lg-hover: rgba(255, 255, 255, 0.06);
   --lg-sel:   rgba(255, 255, 255, 0.11);
 
-  /* ── Boutons ─────────────────────────────────── */
+  /* ── Boutons ───────────────────────────────────── */
   --lg-btn: rgba(255, 255, 255, 0.07);
   --lg-btn-s:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset,
     0  1px   2px 0 rgba(255, 255, 255, 0.20) inset,
     0  2px  12px 0 rgba(0,   0,   0,   0.40);
+
+  /* ── Midnight layout compat ────────────────────── */
+  --gap: var(--lg-gap);
+  --panel-backdrop-filter: var(--lg-blur);
+  --border-thickness: 1px;
+  --divider-thickness: 2px;
 }
 
+/* ══════════════════════════════════════════════════
+   MIDNIGHT COLOR PALETTE (base colors)
+   Source: midnight-discord/src/colors.css
+══════════════════════════════════════════════════ */
+
+:root {
+  --red-1: oklch(76% 0.12 0);
+  --red-2: oklch(70% 0.12 0);
+  --red-3: oklch(64% 0.12 0);
+  --red-4: oklch(58% 0.12 0);
+  --red-5: oklch(52% 0.12 0);
+
+  --green-1: oklch(76% 0.11 170);
+  --green-2: oklch(70% 0.11 170);
+  --green-3: oklch(64% 0.11 170);
+  --green-4: oklch(58% 0.11 170);
+  --green-5: oklch(52% 0.11 160);
+
+  --blue-1: oklch(76% 0.1 215);
+  --blue-2: oklch(70% 0.1 215);
+  --blue-3: oklch(64% 0.1 215);
+  --blue-4: oklch(58% 0.1 215);
+  --blue-5: oklch(52% 0.1 215);
+
+  --yellow-1: oklch(80% 0.11 90);
+  --yellow-2: oklch(74% 0.11 90);
+  --yellow-3: oklch(68% 0.11 90);
+  --yellow-4: oklch(62% 0.11 90);
+  --yellow-5: oklch(56% 0.11 90);
+
+  --purple-1: oklch(76% 0.11 310);
+  --purple-2: oklch(70% 0.11 310);
+  --purple-3: oklch(64% 0.11 310);
+  --purple-4: oklch(58% 0.11 310);
+  --purple-5: oklch(52% 0.11 310);
+}
+
+/* ══════════════════════════════════════════════════
+   DISCORD CSS VARIABLE OVERRIDES
+   Liquid Glass palette + Midnight status colors
+══════════════════════════════════════════════════ */
+
 :root,
-.theme-dark {
-  /* ── Fonds → transparent (anciens tokens) ─────── */
+.theme-dark,
+.theme-light:not(.custom-user-profile-theme) {
+  /* ── Fonds → transparent ───────────────────────── */
   --background-primary:              transparent !important;
   --background-secondary:            transparent !important;
   --background-secondary-alt:        transparent !important;
@@ -69,32 +125,33 @@
   --deprecated-card-bg:              rgba(255,255,255,0.03) !important;
   --deprecated-store-bg:             transparent !important;
 
-  /* ── Fonds → transparent (tokens Discord 2024) ── */
+  /* ── Nouveaux tokens Discord 2024 ──────────────── */
   --bg-base-primary:                 transparent !important;
   --bg-base-secondary:               transparent !important;
   --bg-base-tertiary:                transparent !important;
   --bg-surface-overlay:              transparent !important;
-  --bg-surface-raised:               transparent !important;
-  --bg-surface-overlay-selected:     transparent !important;
+  --bg-surface-raised:               rgba(0,0,0,0.65) !important;
+  --bg-surface-overlay-selected:     rgba(255,255,255,0.08) !important;
   --surface-overlay:                 transparent !important;
   --surface-raised:                  transparent !important;
+  --background-base-lower:           transparent !important;
+  --background-base-low:             transparent !important;
+  --background-base-lowest:          transparent !important;
 
-  /* ── Hover / sélection ───────────────────────── */
+  /* ── Hover / sélection ─────────────────────────── */
   --background-message-hover:        rgba(255,255,255,0.03) !important;
-  --background-modifier-hover:       rgba(255,255,255,0.05) !important;
-  --background-modifier-active:      rgba(255,255,255,0.08) !important;
-  --background-modifier-selected:    rgba(255,255,255,0.10) !important;
+  --background-modifier-hover:       rgba(255,255,255,0.06) !important;
+  --background-modifier-active:      rgba(255,255,255,0.10) !important;
+  --background-modifier-selected:    rgba(255,255,255,0.11) !important;
   --background-modifier-accent:      rgba(255,255,255,0.05) !important;
 
-  /* ── Inputs ──────────────────────────────────── */
+  /* ── Inputs ────────────────────────────────────── */
   --channeltextarea-background:      rgba(255,255,255,0.07) !important;
   --deprecated-text-input-bg:        rgba(255,255,255,0.07) !important;
   --input-background:                rgba(255,255,255,0.07) !important;
   --modal-background:                rgba(0, 0, 0, 0.97)   !important;
-  --background-base-lower:           transparent             !important;
-  --background-base-low:             transparent             !important;
 
-  /* ── Texte blanc ─────────────────────────────── */
+  /* ── Texte blanc ───────────────────────────────── */
   --text-normal:            rgba(255, 255, 255, 0.90) !important;
   --text-muted:             rgba(255, 255, 255, 0.42) !important;
   --text-faint:             rgba(255, 255, 255, 0.22) !important;
@@ -105,17 +162,65 @@
   --header-primary:         rgba(255, 255, 255, 0.95) !important;
   --header-secondary:       rgba(255, 255, 255, 0.52) !important;
 
-  /* ── Channels & icônes ───────────────────────── */
+  /* Midnight text tokens */
+  --text-0: rgba(0, 0, 0, 0.90) !important;
+  --text-1: hsl(220, 45%, 95%) !important;
+  --text-2: hsl(220, 25%, 70%) !important;
+  --text-3: hsl(220, 20%, 60%) !important;
+  --text-4: hsl(220, 15%, 40%) !important;
+  --text-5: hsl(220, 15%, 25%) !important;
+
+  /* ── Channels & icônes ─────────────────────────── */
   --channels-default:                rgba(255,255,255,0.60) !important;
   --channel-icon:                    rgba(255,255,255,0.42) !important;
   --channel-text-area-placeholder:   rgba(255,255,255,0.28) !important;
 
-  /* ── Interactifs ─────────────────────────────── */
+  /* ── Interactifs ───────────────────────────────── */
   --interactive-normal:   rgba(255,255,255,0.75) !important;
   --interactive-hover:    rgba(255,255,255,0.92) !important;
   --interactive-active:   rgba(255,255,255,1.00) !important;
   --interactive-muted:    rgba(255,255,255,0.32) !important;
 
-  /* ── Séparateurs ─────────────────────────────── */
-  --background-modifier-border: rgba(255,255,255,0.07) !important;
+  /* ── Séparateurs / bordures ────────────────────── */
+  --background-modifier-border: rgba(255,255,255,0.08) !important;
+  --border-subtle:              rgba(255,255,255,0.12) !important;
+  --border-normal:              rgba(255,255,255,0.18) !important;
+  --border-strong:              rgba(255,255,255,0.28) !important;
+  --border-hover:               rgba(255,255,255,0.55) !important;
+
+  /* ── Status — Midnight oklch ───────────────────── */
+  --status-positive-background: color-mix(in hsl, var(--green-2), transparent 80%) !important;
+  --status-warning-background:  color-mix(in hsl, var(--yellow-2), transparent 80%) !important;
+  --status-danger-background:   color-mix(in hsl, var(--red-2), transparent 80%) !important;
+
+  /* ── Floating elements ─────────────────────────── */
+  --bg-floating:              rgba(6, 6, 18, 0.94) !important;
+  --bg-surface-raised:        rgba(8, 8, 22, 0.94) !important;
+  --background-surface-high:  rgba(255,255,255,0.06) !important;
+  --background-surface-higher:rgba(255,255,255,0.08) !important;
+  --background-surface-highest:rgba(255,255,255,0.10) !important;
+
+  /* ── Scrollbar ─────────────────────────────────── */
+  --scrollbar-thin-thumb:     rgba(255,255,255,0.18) !important;
+  --scrollbar-thin-track:     transparent !important;
+  --scrollbar-auto-thumb:     rgba(255,255,255,0.18) !important;
+  --scrollbar-auto-track:     transparent !important;
+
+  /* ── Chat code blocks ──────────────────────────── */
+  --background-code:          rgba(0,0,0,0.35) !important;
+
+  /* ── Brand color overrides ─────────────────────── */
+  --brand-experiment:         #5865f2 !important;
+  --bg-brand:                 rgba(88, 101, 242, 0.90) !important;
+
+  /* ── Radius (Midnight compat) ──────────────────── */
+  --radius-xs: var(--lg-rxs);
+  --radius-sm: var(--lg-rsm);
+  --radius-md: var(--lg-rsm);
+  --radius-lg: var(--lg-r);
+}
+
+body {
+  --font-primary: 'gg sans', sans-serif;
+  --font-display: 'gg sans', sans-serif;
 }

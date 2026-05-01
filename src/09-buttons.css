@@ -3,31 +3,25 @@
  *  09 — BOUTONS (technique Shine)
  *  Liquid Glass Discord Theme
  *
- *  Technique Shine — 4 couches inset box-shadow :
- *    couche 1 : reflet haut  (bord supérieur foncé)
+ *  Midnight: button__85643 (dans recentsIcon)
+ *
+ *  Technique Shine — inset box-shadow :
+ *    couche 1 : reflet haut  (bord supérieur)
  *    couche 2 : reflet bas   (bord inférieur lumineux)
  *    couche 3 : diffusion douce
  *    couche 4 : ombre portée externe
  *
- *  Hover : filter: brightness() uniquement — élégant.
- *
- *  IMPORTANT : sélecteurs sémantiques UNIQUEMENT.
- *  Aucun sélecteur hash (button_a22c, etc.) — trop fragile.
- *  Discord expose ces classes pour les variants de bouton :
- *    lookFilled_   = bouton plein  (Rejoindre, Envoyer…)
+ *  Sélecteurs sémantiques UNIQUEMENT :
+ *    lookFilled_   = bouton plein (Rejoindre, Envoyer…)
  *    lookOutlined_ = bouton contour (Annuler…)
- *    lookLink_     = bouton texte  (Ignorer…)
  *    colorBrand_   = Discord blurple
  *    colorPrimary_ = blanc / primaire
- *    colorDanger_  = rouge  (Quitter, Supprimer)
- *    colorGreen_   = vert   (Accepter)
+ *    colorDanger_  = rouge (Quitter, Supprimer)
+ *    colorGreen_   = vert  (Accepter)
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Boutons toolbar — UNIQUEMENT dans chatContent_ ──
- *  Scope obligatoire : toolbar_ sans parent = trop large
- *  (DM sidebar, barre vocale…).
- * ─────────────────────────────────────────────────── */
+/* ── Boutons toolbar — scopé chatContent_ ──────────── */
 #app-mount [class*="chatContent_"] [class*="toolbar_"] button {
   background-color: transparent !important;
   border-radius:    var(--lg-rxs) !important;
@@ -53,8 +47,8 @@
 }
 
 /* ── Boutons Discord génériques — Shine sémantique ───
- *  lookFilled_   = fond coloré (ex: blurple, rouge)
- *  lookOutlined_ = contour    (ex: bouton annuler)
+ *  lookFilled_   = fond coloré (blurple, rouge, vert)
+ *  lookOutlined_ = contour    (annuler, secondaire)
  * ─────────────────────────────────────────────────── */
 #app-mount [class*="button_"][class*="lookFilled_"],
 #app-mount [class*="button_"][class*="lookOutlined_"] {
@@ -67,16 +61,55 @@
   filter: brightness(1.20) !important;
 }
 
-/* Bouton danger (rouge) — lueur subtile */
+/* ── Bouton danger — lueur rouge ────────────────────── */
 #app-mount [class*="button_"][class*="colorDanger_"] {
   box-shadow:
     var(--lg-btn-s),
     0 0 12px 0 rgba(240, 60, 60, 0.28) !important;
 }
 
-/* Bouton green (accepter) — lueur verte subtile */
+/* ── Bouton green — lueur verte ─────────────────────── */
 #app-mount [class*="button_"][class*="colorGreen_"] {
   box-shadow:
     var(--lg-btn-s),
     0 0 12px 0 rgba(60, 210, 100, 0.28) !important;
+}
+
+/* ── Midnight: recentsIcon button — inbox ───────────── */
+/* Midnight: .recentsIcon_c99c29 .button__85643 { background, border-radius } */
+.recentsIcon_c99c29 [class*="button_"],
+[class*="recentsIcon_"] [class*="button_"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius:    var(--lg-rsm) !important;
+  transition:       background-color 0.15s ease-out !important;
+}
+.recentsIcon_c99c29 [class*="button_"]:hover,
+[class*="recentsIcon_"] [class*="button_"]:hover {
+  background-color: rgba(88, 101, 242, 0.70) !important;
+}
+
+/* ── Midnight: look link buttons ────────────────────── */
+#app-mount [class*="button_"][class*="lookLink_"] {
+  color:      rgba(130, 210, 255, 1.00) !important;
+  transition: filter 200ms ease !important;
+}
+#app-mount [class*="button_"][class*="lookLink_"]:hover {
+  filter: brightness(1.15) !important;
+}
+
+/* ── Boutons d'action ronds (amis, membres) ─────────── */
+#app-mount [class*="friendRow_"] button,
+#app-mount [class*="peopleListItem_"] button,
+#app-mount [class*="listItem__133b"] [class*="actions_"] button,
+#app-mount [class*="container__91a9"] [class*="actions_"] button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border:     1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 50% !important;
+  transition: background 120ms, border-color 120ms !important;
+}
+#app-mount [class*="friendRow_"] button:hover,
+#app-mount [class*="peopleListItem_"] button:hover,
+#app-mount [class*="listItem__133b"] [class*="actions_"] button:hover {
+  background:   rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
 }

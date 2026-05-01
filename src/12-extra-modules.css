@@ -1,209 +1,54 @@
 /*
  * ═══════════════════════════════════════════════════
- *  12 — MODULES COMPLETS (référence Midnight)
+ *  12 — MODULES COMPLETS (Midnight architecture)
  *  Liquid Glass Discord Theme
  *
- *  Couvre tous les panneaux et éléments manquants
- *  identifiés dans midnight-discord :
+ *  Couvre tous les éléments secondaires :
  *    - Paramètres
- *    - Résultats de recherche
- *    - Nitro / Shop / Quêtes
- *    - Forum / Threads
- *    - Server discovery
- *    - DM user panel
- *    - VC cleanup
- *    - Active now inner
- *    - Réactions, bot tag, embeds
- *    - Roundness (images, code, threads)
- *    - Animation slide Midnight
+ *    - Active Now cards
+ *    - VC call grid & stream view
+ *    - Forum post cards
  *    - Sélection texte
+ *    - Voice participants
+ *    - Midnight hash selectors exacts
  * ═══════════════════════════════════════════════════
  */
 
 /* ══════════════════════════════════════════════════
-   PANNEAUX VERRE SUPPLÉMENTAIRES
-   (même traitement que 03-panels.css)
+   PAGE PARAMÈTRES
+   Midnight: standardSidebarView__23e6b, side_aa8da2
 ══════════════════════════════════════════════════ */
 
-/* Résultats de recherche */
-#app-mount [class*="searchResultsWrap_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="searchResultsWrap_"]:hover { border-color: var(--lg-bord-h) !important; }
-
-/* Page Nitro / Home */
-#app-mount [class*="mainPageScroller_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* Boutique Discord */
-#app-mount [class*="shop_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  height: auto !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* Forum */
-#app-mount [class*="container_f369"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* Server discovery */
-#app-mount [class*="container_a592"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  overflow: hidden !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* DM — panneau profil utilisateur (colonne droite en DM) */
-#app-mount [class*="outer_c0bea"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
-  overflow: hidden !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="outer_c0bea"]:hover { border-color: var(--lg-bord-h) !important; }
-
-/* Quêtes — page scroller seulement
-   headerBar_ est trop générique : il peut matcher le wrapper du
-   subtitleContainer_ dans le chat, créant un double-glass rectangulaire.
-   On ne cible plus que le scroller hash-exact des quêtes. */
-#app-mount [class*="scroller__23746"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  transition: border-color 200ms ease !important;
-}
-/* headerBar_ dans le contexte Quêtes/Shop uniquement */
-#app-mount [class*="applicationStore_"] [class*="headerBar_"],
-#app-mount [class*="container__955"] [class*="headerBar_"] {
-  background: var(--lg-glass) !important;
-  backdrop-filter: var(--lg-blur) !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid var(--lg-border) !important;
-  box-shadow: var(--lg-shadow) !important;
-  margin: var(--lg-gap) !important;
-  transition: border-color 200ms ease !important;
-}
-/* Dans le contexte chat/DM, headerBar_ doit être transparent */
-#app-mount [class*="chatContent_"] [class*="headerBar_"],
-#app-mount [class*="chat_"] [class*="headerBar_"] {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-}
-
-/* ══════════════════════════════════════════════════
-   RESET SUPPLÉMENTAIRE — expose gradient derrière
-══════════════════════════════════════════════════ */
-
-/* Page paramètres — conteneurs externes */
+/* Midnight: standardSidebarView background none */
+.standardSidebarView__23e6b,
+.contentRegion__23e6b,
+.contentRegionScroller__23e6b,
 #app-mount [class*="standardSidebarView_"],
 #app-mount [class*="contentRegion_"],
 #app-mount [class*="contentRegionScroller_"] {
   background: transparent !important;
 }
 
-/* Active now — conteneur intérieur */
-#app-mount [class*="container__7d20"],
-#app-mount [class*="scroller__7d20"] {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Game activity panel */
-#app-mount [class*="panel__5dec"] {
-  background: transparent !important;
-}
-
-/* VC / call — wrappers extérieurs */
-#app-mount [class*="channelChatWrapper_"],
-#app-mount [class*="container__722ff"] {
-  background: transparent !important;
-}
-
-/* Nitro / Quêtes — wrappers extérieurs */
-#app-mount [class*="applicationStore_"],
-#app-mount [class*="container__955"] {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Thread panel new / forum */
-#app-mount [class*="container_fb64"] {
-  background: transparent !important;
-}
-
-/* ══════════════════════════════════════════════════
-   PAGE PARAMÈTRES
-══════════════════════════════════════════════════ */
-
-/* Sidebar paramètres — fond glass très léger (inner element sur dark glass) */
+/* Sidebar paramètres — fond glass très léger */
 #app-mount [class*="sidebarRegionScroller_"] {
   background: rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Items de la sidebar paramètres */
+/* Midnight: side_aa8da2 .item_aa8da2 — settings items */
+.side_aa8da2 .item_aa8da2,
 #app-mount [class*="side_"] [class*="item_"] {
   border-radius: var(--lg-rsm) !important;
-  transition: background 120ms ease !important;   /* PAS de margin-left : décale le layout */
-  color: rgba(255, 255, 255, 0.70) !important;
+  transition:    background 120ms ease !important;
+  color:         rgba(255, 255, 255, 0.70) !important;
 }
+.side_aa8da2 .item_aa8da2:hover,
 #app-mount [class*="side_"] [class*="item_"]:hover {
   background: var(--lg-hover) !important;
 }
-#app-mount [class*="side_"] [class*="selected_"] {
+#app-mount [class*="side_"] [class*="selected_"],
+.side_aa8da2 .item_aa8da2.selected__3af7f {
   background: var(--lg-sel) !important;
-  color: rgba(255, 255, 255, 0.95) !important;
+  color:      rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Séparateurs dans la sidebar paramètres */
@@ -212,568 +57,75 @@
 }
 
 /* ══════════════════════════════════════════════════
-   TITLEBARS SUPPLÉMENTAIRES
-   (DM, message requests, nitro, quêtes…)
-   → Style unifié avec subtitleContainer_ en bas de fichier.
-   → Ce bloc est intentionnellement vide (doublon supprimé).
+   ACTIVE NOW — CARDS INDIVIDUELLES
+   Midnight: container__7d20c, scroller__7d20c
 ══════════════════════════════════════════════════ */
 
-/* ══════════════════════════════════════════════════
-   ANIMATION SLIDE — signature Midnight
-   Les éléments des listes glissent à gauche au hover.
-══════════════════════════════════════════════════ */
-
-/* Channels dans la sidebar — hover sans déplacement (évite les décalages) */
-#app-mount [class*="sidebarList_"] [class*="wrapper_"] [class*="link_"] {
-  transition: background 120ms ease !important;
-}
-
-/* Members dans la liste — PAS de margin-left (cause décalage layout) */
-#app-mount [class*="container__91a9"] {
-  transition: background 120ms ease !important;
-}
-
-/* ══════════════════════════════════════════════════
-   ROUNDNESS — images, code, threads
-══════════════════════════════════════════════════ */
-
-/* Images attachées */
-#app-mount [class*="imageWrapper_"] {
-  border-radius: var(--lg-rsm) !important;
-  overflow: hidden !important;
-}
-
-/* Thread link (carte de thread) */
-#app-mount [class*="container__9271"] {
-  border-radius: var(--lg-rsm) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
-}
-
-/* Blocs de code */
-#app-mount .hljs,
-#app-mount [class*="markup_"] pre,
-#app-mount [class*="codeContainer_"] {
-  border-radius: var(--lg-rsm) !important;
-  border: 1px solid rgba(255, 255, 255, 0.10) !important;
-  background: rgba(0, 0, 0, 0.35) !important;
-}
-
-/* Forum post cards */
-#app-mount [class*="mainCard_f369"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--lg-r) !important;
-  transition: border-color 150ms ease !important;
-}
-#app-mount [class*="mainCard_f369"]:hover {
-  border-color: rgba(255, 255, 255, 0.24) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   RÉACTIONS
-══════════════════════════════════════════════════ */
-#app-mount [class*="reaction_"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--lg-rxs) !important;
-  transition: background 120ms, border-color 120ms !important;
-}
-#app-mount [class*="reaction_"]:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
-}
-#app-mount [class*="reaction_"][class*="reacted_"] {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   BOT TAG
-══════════════════════════════════════════════════ */
-#app-mount [class*="botTagRegular_"],
-#app-mount [class*="botTag_"] {
-  background: rgba(130, 180, 255, 0.25) !important;
-  color: rgba(130, 210, 255, 1.00) !important;
-  border-radius: 4px !important;
-}
-
-/* ══════════════════════════════════════════════════
-   DIVIDER — messages non lus
-══════════════════════════════════════════════════ */
-#app-mount [class*="divider_"][class*="isUnread_"],
-#app-mount [class*="divider__908"] {
-  border-width: 2px !important;
-  border-radius: 2px !important;
-  border-color: rgba(130, 210, 255, 0.60) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   NOTICE BANNER (ex: "Tu es dans un appel vocal")
-   PAS de backdrop-filter : notice_ est à l'intérieur d'un
-   panneau verre (chatContent_/sidebarList_) déjà flouté.
-   Double backdrop-filter → fond opaque noir.
-══════════════════════════════════════════════════ */
-#app-mount [class*="notice_"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(255, 255, 255, 0.20) !important;
-  border-radius: var(--lg-rsm) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset !important;
-  box-sizing: border-box !important;
-}
-
-/* ══════════════════════════════════════════════════
-   BANNIÈRE DE SERVEUR — fix largeur
-══════════════════════════════════════════════════ */
-#app-mount [class*="bannerImage_"],
-#app-mount [class*="bannerImg_"] {
-  width: 100% !important;
-}
-#app-mount [class*="bannerVisible_"] [class*="headerEllipseBackdrop_"] {
-  display: none !important;
-}
-#app-mount [class*="headerGlass_"] {
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: auto !important;
-  border-radius: var(--lg-r) var(--lg-r) 0 0 !important;
-}
-
-/* ══════════════════════════════════════════════════
-   SÉLECTION TEXTE
-══════════════════════════════════════════════════ */
-::selection {
-  background: rgba(130, 180, 255, 0.35) !important;
-  color: rgba(255, 255, 255, 1.00) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   AUTOCOMPLETE / SUGGESTIONS
-══════════════════════════════════════════════════ */
-#app-mount [class*="autocomplete_"] {
-  background: rgba(8, 8, 12, 0.90) !important;
-  backdrop-filter: blur(24px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: var(--lg-r) !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 24px 48px 0  rgba(0, 0, 0, 0.50) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   TOOLTIP
-══════════════════════════════════════════════════ */
-#app-mount [class*="tooltip_"] {
-  background: rgba(8, 8, 12, 0.92) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: var(--lg-rxs) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   SPOTIFY PLUGIN (Vencord)
-══════════════════════════════════════════════════ */
-#vc-spotify-player {
+/* Midnight: container__7d20c { background: none } */
+.container__7d20c,
+#app-mount [class*="container__7d20"] {
   background: transparent !important;
 }
-
-/* ══════════════════════════════════════════════════
-   FRIENDS PAGE OUTER — conteneur transparent
-   Midnight : .container__133bf → background: none
-   Sans ça, tout ce qui est à l'intérieur reste noir
-══════════════════════════════════════════════════ */
-#app-mount [class*="container__133b"],
-#app-mount [class*="page__5e43"] {
-  background: transparent !important;
+/* Midnight: scroller__7d20c { border: none } */
+.scroller__7d20c,
+#app-mount [class*="scroller__7d20"] {
   border: none !important;
 }
 
-/* ══════════════════════════════════════════════════
-   DM LIST — "Recherche ou lance une conversation"
-   + items de navigation (Amis, Ton Nitro, Boutique…)
-   Midnight : .channel__972a0, .interactive__972a0
-══════════════════════════════════════════════════ */
-
-/* Bouton "Recherche ou lance une conversation"
-   → plusieurs sélecteurs car la classe varie */
-#app-mount [class*="privateChannels_"] [class*="searchBar_"],
-#app-mount [class*="sidebarList_"] [class*="searchBar_"],
-#app-mount [class*="privateChannelsList_"] [class*="searchBar_"],
-#app-mount [class*="privateChannelsList_"] [class*="search_"],
-#app-mount [class*="channelSearch_"],
-#app-mount [class*="sidebarList_"] > div > [class*="searchBar_"],
-#app-mount [class*="privateChannels_"] > [class*="searchBar_"],
-#app-mount [class*="privateChannels_"] > * > [class*="searchBar_"] {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: 16px !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* Items DM — hover sans déplacement */
-#app-mount [class*="channel__972"],
-#app-mount [class*="channel_"][class*="privateChannels_"] * [class*="link_"] {
-  transition: background 120ms ease !important;
-}
-
-/* Hover sur les items DM standard */
-#app-mount [class*="privateChannels_"] [class*="interactive_"] {
+/* Cards individuelles dans le scroller */
+#app-mount [class*="scroller__7d20"] > * {
+  background:    rgba(255, 255, 255, 0.05) !important;
+  border:        1px solid rgba(255, 255, 255, 0.11) !important;
   border-radius: var(--lg-rsm) !important;
-  transition: background 120ms ease !important;
+  margin:        3px 6px !important;
+  overflow:      hidden !important;
+  transition:    background 150ms, border-color 150ms !important;
 }
-#app-mount [class*="privateChannels_"] [class*="interactive_"]:hover {
-  background: var(--lg-hover) !important;
+#app-mount [class*="scroller__7d20"] > *:hover {
+  background:   rgba(255, 255, 255, 0.09) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
 }
-#app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
-#app-mount [class*="privateChannels_"] [class*="selected_"] {
-  background: var(--lg-sel) !important;
-}
-
-/* Headers de groupes (FRIEND, Messages privés…) */
-#app-mount [class*="privateChannels_"] [class*="groupHeader_"],
-#app-mount [class*="privateChannels_"] [class*="header_"] {
-  color: rgba(255, 255, 255, 0.45) !important;
+#app-mount [class*="scroller__7d20"] > * > * {
   background: transparent !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
 }
 
-/* ══════════════════════════════════════════════════
-   ACTIVE NOW — items individuels
-   Midnight : .container__7d20c inner transparent
-   + styles des cards d'activité
-══════════════════════════════════════════════════ */
+/* Cards activité dans nowPlayingColumn */
+#app-mount [class*="nowPlayingColumn_"] [class*="activity_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="userActivity_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="memberContentCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="card_"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+  transition:    background 150ms, border-color 150ms !important;
+}
+#app-mount [class*="nowPlayingColumn_"] [class*="activity_"]:hover,
+#app-mount [class*="nowPlayingColumn_"] [class*="card_"]:hover {
+  background:   rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
 
-/* Conteneur principal transparent */
+/* Conteneur inner transparent */
 #app-mount [class*="nowPlayingColumn_"] [class*="container_"] {
   background: transparent !important;
 }
 
-/* Cards activité individuelles */
-#app-mount [class*="nowPlayingColumn_"] [class*="activity_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="userActivity_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="memberContentCard_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="activityCard_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="card_"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--lg-rsm) !important;
-  transition: background 150ms, border-color 150ms !important;
-}
-#app-mount [class*="nowPlayingColumn_"] [class*="activity_"]:hover,
-#app-mount [class*="nowPlayingColumn_"] [class*="userActivity_"]:hover,
-#app-mount [class*="nowPlayingColumn_"] [class*="memberContentCard_"]:hover,
-#app-mount [class*="nowPlayingColumn_"] [class*="card_"]:hover {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
-}
-
-/* Header "En ligne" dans la colonne Active Now */
+/* Header "En ligne" dans Active Now */
 #app-mount [class*="nowPlayingColumn_"] [class*="header_"] {
-  background: transparent !important;
-  color: rgba(255, 255, 255, 0.55) !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
+  background:     transparent !important;
+  color:          rgba(255, 255, 255, 0.55) !important;
+  font-size:      11px !important;
+  font-weight:    700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
 }
-
-/* ══════════════════════════════════════════════════
-   PEOPLES LIST — items amis au centre
-   (friendRow_ dans peopleColumn_ / chatContent_)
-══════════════════════════════════════════════════ */
-
-/* Reset du conteneur outer de la page amis */
-#app-mount [class*="peopleColumn_"] > [class*="content_"],
-#app-mount [class*="tabBody_"] {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Conteneur de liste amis → transparent pour voir le panneau glass parent */
-#app-mount [class*="peopleList_"],
-#app-mount [class*="scroller__133b"],
-#app-mount [class*="list__133b"] {
-  background: transparent !important;
-}
-
-/* Titre de section "En ligne — 26" */
-#app-mount [class*="friendsRowHeader_"],
-#app-mount [class*="rowHeader_"],
-#app-mount [class*="groupHeader__133b"] {
-  background: transparent !important;
-  color: rgba(255, 255, 255, 0.45) !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-}
-
-/* Items individuels de la liste amis */
-#app-mount [class*="listItem__133b"],
-#app-mount [class*="peopleListItem_"],
-#app-mount [class*="member__133b"],
-#app-mount [class*="friendRow_"] {
-  border-radius: var(--lg-rsm) !important;
-  margin: 1px 4px !important;
-  transition: background 120ms ease !important;
-}
-#app-mount [class*="listItem__133b"]:hover,
-#app-mount [class*="peopleListItem_"]:hover,
-#app-mount [class*="member__133b"]:hover,
-#app-mount [class*="friendRow_"]:hover {
-  background: rgba(255, 255, 255, 0.07) !important;
-}
-
-/* Boutons d'action (message, appel, etc.) dans les items amis */
-#app-mount [class*="listItem__133b"] [class*="actions_"],
-#app-mount [class*="peopleListItem_"] [class*="actions_"],
-#app-mount [class*="friendRow_"] [class*="actions_"] {
-  gap: 4px !important;
-}
-#app-mount [class*="listItem__133b"] [class*="actions_"] button,
-#app-mount [class*="peopleListItem_"] [class*="actions_"] button,
-#app-mount [class*="friendRow_"] [class*="actions_"] button {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: 50% !important;
-  transition: background 120ms, border-color 120ms !important;
-}
-#app-mount [class*="listItem__133b"] [class*="actions_"] button:hover,
-#app-mount [class*="peopleListItem_"] [class*="actions_"] button:hover,
-#app-mount [class*="friendRow_"] [class*="actions_"] button:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: rgba(255, 255, 255, 0.32) !important;
-}
-
-/* Barre de recherche dans la page amis */
-#app-mount [class*="peopleList_"] [class*="searchBar_"],
-#app-mount [class*="tabBody_"] [class*="searchBar_"],
-#app-mount [class*="searchBar__133b"],
-#app-mount [class*="filterBar_"] {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border: 1px solid rgba(255, 255, 255, 0.20) !important;
-  border-radius: 16px !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
-  transition: border-color 200ms ease !important;
-}
-
-/* ══════════════════════════════════════════════════
-   POPOVERS & HOVER CARDS
-   (hover cards canaux, emojis, etc.)
-   NB : userProfileOuter_ et profileModal_ sont EXCLUS
-   → ils ont leur propre glass dans 10-menus.css avec
-     #app-mount (spéc. 1,1,0) qui prend le dessus ici.
-══════════════════════════════════════════════════ */
-#app-mount [class*="popout_"]:not([class*="userProfileOuter_"]):not([class*="profileModal_"]) {
-  background: rgba(8, 8, 12, 0.88) !important;
-  backdrop-filter: blur(32px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: var(--lg-r) !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.14) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
-    0 24px 64px 0  rgba(0, 0, 0, 0.60) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   MESSAGE BUBBLE — médias & stickers
-══════════════════════════════════════════════════ */
-#app-mount [class*="stickerImage_"],
-#app-mount [class*="sticker_"] {
-  border-radius: var(--lg-rsm) !important;
-}
-
-/* Lien d'aperçu (channel mention, user mention) */
-#app-mount [class*="mention_"] {
-  background: rgba(130, 180, 255, 0.18) !important;
-  border-radius: 4px !important;
-  color: rgba(130, 210, 255, 1.00) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   VOICE CHANNEL — items participants
-══════════════════════════════════════════════════ */
-#app-mount [class*="voiceUser_"],
-#app-mount [class*="user_"][class*="voice"] {
-  border-radius: var(--lg-rsm) !important;
-  transition: background 120ms !important;
-}
-#app-mount [class*="voiceUser_"]:hover {
-  background: var(--lg-hover) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   DM GROUP ITEMS — conversations de groupe dans sidebar
-   Ces items utilisent des classes différentes des DMs solo
-══════════════════════════════════════════════════ */
-
-/* Items DM (solo et groupe) dans le scroller */
-#app-mount [class*="privateChannels_"] [class*="channel_"],
-#app-mount [class*="scroller__99"] [class*="channel_"] {
-  border-radius: var(--lg-rsm) !important;
-  margin: 1px 4px !important;
-  transition: background 120ms ease !important;
-}
-#app-mount [class*="privateChannels_"] [class*="channel_"]:hover,
-#app-mount [class*="scroller__99"] [class*="channel_"]:hover {
-  background: var(--lg-hover) !important;
-}
-
-/* Forcer les conteneurs de DM items à être transparents */
-#app-mount [class*="privateChannels_"] [class*="channel_"] > *,
-#app-mount [class*="scroller__99"] [class*="channel_"] [class*="content_"] {
-  background: transparent !important;
-}
-
-/* ══════════════════════════════════════════════════
-   BARRE NAV AMIS — glass visible (voir bloc ci-dessous)
-   Défini en bas du fichier pour éviter doublon.
-══════════════════════════════════════════════════ */
-
-/* ══════════════════════════════════════════════════
-   ACTIVE NOW — STREAM LIVE CARD (vidéo preview)
-   Visible en bas de la colonne "En ligne"
-══════════════════════════════════════════════════ */
-#app-mount [class*="nowPlayingColumn_"] [class*="stream_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="livePreview_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="watchTogetherCard_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="previewContainer_"],
-#app-mount [class*="nowPlayingColumn_"] video {
-  border-radius: var(--lg-rsm) !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-}
-
-/* Wrapper de la card stream entière */
-#app-mount [class*="nowPlayingColumn_"] [class*="streamCard_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="liveCard_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="applicationStreamPreview_"] {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: var(--lg-r) !important;
-  overflow: hidden !important;
-}
-
-/* Texte sous la vidéo (Joue sur Xbox, EA SPORTS FC…) */
-#app-mount [class*="nowPlayingColumn_"] [class*="gameInfo_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="richPresenceText_"],
-#app-mount [class*="nowPlayingColumn_"] [class*="activityText_"] {
-  background: transparent !important;
-}
-
-/* ══════════════════════════════════════════════════
-   SIDEBAR DM — fond de l'en-tête "Amis" / nav links
-   (les liens Amis, Ton Nitro, Boutique, Quêtes)
-   Ces éléments utilisent linkTop_ ou similaire dans Discord
-══════════════════════════════════════════════════ */
-#app-mount [class*="sidebarList_"] [class*="linkTop_"],
-#app-mount [class*="sidebarList_"] [class*="wrapperDefaultText_"],
-#app-mount [class*="privateChannels_"] [class*="linkTop_"] {
-  border-radius: var(--lg-rsm) !important;
-  margin: 1px 4px !important;
-  transition: background 120ms ease !important;
-}
-#app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover,
-#app-mount [class*="privateChannels_"] [class*="linkTop_"]:hover {
-  background: var(--lg-hover) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   ACTIVE NOW — CARTES INDIVIDUELLES
-   Midnight: scroller__7d20c = scroller interne
-   On cible les enfants directs du scroller pour
-   leur donner un style glass sans connaître leur classe
-══════════════════════════════════════════════════ */
-#app-mount [class*="container__7d20"] { background: transparent !important; }
-#app-mount [class*="scroller__7d20"] { border: none !important; }
-
-#app-mount [class*="scroller__7d20"] > * {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.11) !important;
-  border-radius: var(--lg-rsm) !important;
-  margin: 3px 6px !important;
-  overflow: hidden !important;
-  transition: background 150ms, border-color 150ms !important;
-}
-#app-mount [class*="scroller__7d20"] > *:hover {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border-color: rgba(255, 255, 255, 0.24) !important;
-}
-#app-mount [class*="scroller__7d20"] > * > * { background: transparent !important; }
-
-/* ══════════════════════════════════════════════════
-   DM SIDEBAR — BOUTON "Recherche ou lance une conversation"
-   Midnight: container__2637a = channel list inner
-   Le bouton search est dans ce container
-══════════════════════════════════════════════════ */
-#app-mount [class*="container__2637"] {
-  background: transparent !important;
-  padding-bottom: 0 !important;
-}
-
-#app-mount [class*="container__2637"] [class*="search"],
-#app-mount [class*="container__2637"] [class*="Search"],
-#app-mount [class*="container__2637"] input,
-#app-mount [class*="container__2637"] [role="searchbox"],
-#app-mount [class*="privateChannels_"] [class*="search"],
-#app-mount [class*="privateChannels_"] [class*="Search"],
-#app-mount [class*="sidebarList_"] [class*="dmSearch_"],
-#app-mount [class*="sidebarList_"] [class*="findFriend_"],
-#app-mount [class*="sidebarList_"] [class*="filterInput_"],
-#app-mount [class*="sidebarList_"] [class*="openDM_"] {
-  background: rgba(255, 255, 255, 0.09) !important;
-  border: 1px solid rgba(255, 255, 255, 0.20) !important;
-  border-radius: 16px !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.40) inset !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="container__2637"] [class*="search"]:focus-within,
-#app-mount [class*="privateChannels_"] [class*="search"]:focus-within {
-  border-color: rgba(255, 255, 255, 0.42) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   MIDNIGHT HASH SELECTORS — fiabilité maximale
-   Classes hash exactes connues depuis le source Midnight
-══════════════════════════════════════════════════ */
-/* DM list inner scroller (Midnight: scroller__99e7c) */
-#app-mount [class*="scroller__99e"] { background: transparent !important; margin-bottom: 0 !important; }
-/* Friends page tab body (Midnight: tabBody__133bf) */
-#app-mount [class*="tabBody__133b"] { background: transparent !important; border: none !important; }
-/* Channel list header (Midnight: clickable_f37, header_f37) */
-#app-mount [class*="clickable_f37"],
-#app-mount [class*="header_f37"] { background: none !important; }
-/* Chat gradient masque (Midnight: chatGradient__36d07) → supprimé */
-#app-mount [class*="chatGradient__36d"] { display: none !important; }
-/* Children gradient shadow (Midnight: children__9293f:after) */
-#app-mount [class*="children__9293"]:after { display: none !important; }
-/* Channel list inner scroller (Midnight: scroller__629e4) */
-#app-mount [class*="scroller__629"] { margin-bottom: 0 !important; }
 
 /* ══════════════════════════════════════════════════
    ÉCRAN APPEL / VC CALL GRID
-   Conteneurs du grid d'appel vidéo — reset transparent
-   + arrondis sur les tiles participant
+   Midnight: callContainer_cb9592, wrapper_cb9592
 ══════════════════════════════════════════════════ */
 
-/* Containers principaux de l'appel → transparents */
+/* Containers principaux transparents */
 #app-mount [class*="callBody_"],
 #app-mount [class*="gridContainer_"],
 #app-mount [class*="participants_"],
@@ -782,52 +134,24 @@
   background: transparent !important;
 }
 
-/* Tiles vidéo / avatar dans la grille d'appel */
+/* Tiles vidéo / avatar dans la grille */
 #app-mount [class*="chatContent_"] [class*="grid_"],
 #app-mount [class*="tile_"],
 #app-mount [class*="voiceTile_"] {
   border-radius: var(--lg-rsm) !important;
-  overflow: hidden !important;
+  overflow:      hidden !important;
 }
 
-/* Conteneur de l'appel vidéo centré */
 #app-mount [class*="focusRing_"],
 #app-mount [class*="tileGrid_"] {
   background: transparent !important;
 }
 
 /* ══════════════════════════════════════════════════
-   POPUP ACTIVITÉ DANS LES APPELS
-   "Tu cherches quelque chose à faire ?"
-   → activityShelf_ / launchActivities_
-══════════════════════════════════════════════════ */
-#app-mount [class*="activityShelf_"],
-#app-mount [class*="callActivities_"],
-#app-mount [class*="launchActivities_"],
-#app-mount [class*="activityPanel_"],
-#app-mount [class*="inCallActivities_"] {
-  background: rgba(8, 8, 16, 0.82) !important;
-  backdrop-filter: blur(32px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: var(--lg-r) !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
-    0 24px 64px 0  rgba(0, 0, 0, 0.65) !important;
-}
-
-/* ══════════════════════════════════════════════════
-   VUE STREAM / APPEL VOCAL — arrondis + glass
-   Corrige :
-     - Barre "Salon de X" coins carrés (liveVoiceChannelNotice_)
-     - Bande thumbnails participants coins carrés
-     - Bouton "Regarder" sans style
+   BARRE "SALON DE X" (VC / stream notice)
+   + MINIATURES PARTICIPANTS
 ══════════════════════════════════════════════════ */
 
-/* Barre "Salon de X" (vue appel/stream) — dark navy glass
-   Fond semi-opaque pour rester lisible même sur contenu sombre.
-   Shimmer via ::before transform (compatible !important). */
 #app-mount [class*="liveVoiceChannelNotice_"],
 #app-mount [class*="callNotice_"],
 #app-mount [class*="voiceBanner_"],
@@ -836,90 +160,87 @@
 #app-mount [class*="channelCallArea_"],
 #app-mount [class*="callHeader_"],
 #app-mount [class*="viewerBanner_"] {
-  background: rgba(14, 20, 52, 0.48) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  backdrop-filter: blur(40px) saturate(185%) !important;
+  background:              rgba(14, 20, 52, 0.48) !important;
+  position:                relative !important;
+  overflow:                hidden !important;
+  backdrop-filter:         blur(40px) saturate(185%) !important;
   -webkit-backdrop-filter: blur(40px) saturate(185%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.50) !important;
+  border:        1px solid rgba(255, 255, 255, 0.50) !important;
   border-radius: var(--lg-r) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.30) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.46) inset,
     0 12px 40px 0  rgba(0, 0, 0, 0.45) !important;
-  margin: 0 var(--lg-gap) var(--lg-gap) !important;
+  margin:  0 var(--lg-gap) var(--lg-gap) !important;
   padding: 0 16px !important;
 }
+
 /* Shimmer sur la barre vocale */
 #app-mount [class*="liveVoiceChannelNotice_"]::before,
 #app-mount [class*="callNotice_"]::before,
-#app-mount [class*="voiceBanner_"]::before,
-#app-mount [class*="callBanner_"]::before,
-#app-mount [class*="attachedBar_"]::before {
-  content: "" !important;
+#app-mount [class*="voiceBanner_"]::before {
+  content:  "" !important;
   position: absolute !important;
-  inset: 0 !important;
+  inset:    0 !important;
   background: linear-gradient(
     95deg,
     transparent 20%,
     rgba(255, 255, 255, 0.18) 50%,
     transparent 80%
   ) !important;
-  animation: lg-shimmer-slide 9s ease-in-out 2s infinite !important;
+  animation:      lg-shimmer-slide 9s ease-in-out 2s infinite !important;
   pointer-events: none !important;
-  border-radius: inherit !important;
+  border-radius:  inherit !important;
 }
 
-/* ── Reset toolbar_ DANS la barre vocale (évite double couche) ── */
+/* Reset toolbar dans la barre vocale */
 #app-mount [class*="liveVoiceChannelNotice_"] [class*="toolbar_"],
-#app-mount [class*="callNotice_"] [class*="toolbar_"],
-#app-mount [class*="voiceBanner_"] [class*="toolbar_"] {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+#app-mount [class*="callNotice_"] [class*="toolbar_"] {
+  background:    transparent !important;
+  border:        none !important;
+  box-shadow:    none !important;
   border-radius: 0 !important;
-  padding: 0 !important;
+  padding:       0 !important;
 }
-/* Boutons icônes dans la barre vocale — cercle glass simple */
+
+/* Boutons dans la barre vocale */
 #app-mount [class*="liveVoiceChannelNotice_"] [class*="toolbar_"] button,
 #app-mount [class*="liveVoiceChannelNotice_"] button:not([class*="lookFilled_"]),
 #app-mount [class*="callNotice_"] button {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  background:    rgba(255, 255, 255, 0.12) !important;
+  border:        1px solid rgba(255, 255, 255, 0.24) !important;
   border-radius: 50% !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
-  width: 28px !important;
+  width:  28px !important;
   height: 28px !important;
 }
 
-/* Bande miniatures participants (bas-d'écran fullscreen) */
+/* Bande miniatures participants */
 #app-mount [class*="overflowRow_"],
 #app-mount [class*="thinBar_"],
 #app-mount [class*="viewerList_"],
-#app-mount [class*="memberGridRow_"],
-#app-mount [class*="horizontalParticipants_"],
 #app-mount [class*="membersBar_"] {
-  background: rgba(6, 8, 28, 0.84) !important;
-  backdrop-filter: blur(24px) saturate(140%) !important;
+  background:              rgba(6, 8, 28, 0.84) !important;
+  backdrop-filter:         blur(24px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border:        1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: var(--lg-r) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
-    0 12px 36px 0   rgba(0, 0, 0, 0.55) !important;
-  margin: 0 var(--lg-gap) var(--lg-gap) !important;
+    0 12px 36px 0  rgba(0, 0, 0, 0.55) !important;
+  margin:   0 var(--lg-gap) var(--lg-gap) !important;
   overflow: hidden !important;
 }
 
-/* Bouton "Regarder" / "Watch" — Shine pill */
+/* Bouton "Regarder" */
 #app-mount [class*="watchButton_"],
 #app-mount [class*="followButton_"],
 #app-mount [class*="liveButton_"],
 #app-mount [class*="joinCallButton_"] {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background:    rgba(255, 255, 255, 0.12) !important;
+  border:        1px solid rgba(255, 255, 255, 0.28) !important;
   border-radius: 999px !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.26) inset,
@@ -928,18 +249,328 @@
   transition: filter 200ms ease !important;
 }
 #app-mount [class*="watchButton_"]:hover,
-#app-mount [class*="followButton_"]:hover,
 #app-mount [class*="liveButton_"]:hover {
   filter: brightness(1.28) !important;
 }
 
-/* Conteneur global de la vue appel — arrondis + fond sombre */
+/* Vue stream globale */
 #app-mount [class*="fullscreenOnNow_"],
 #app-mount [class*="streamView_"],
 #app-mount [class*="videoGridContainer_"] {
   border-radius: var(--lg-r) !important;
-  overflow: hidden !important;
-  background: rgba(4, 4, 16, 0.95) !important;
+  overflow:      hidden !important;
+  background:    rgba(4, 4, 16, 0.95) !important;
 }
 
-/* subtitleContainer_ déplacé dans 08-chat.css */
+/* ══════════════════════════════════════════════════
+   POPUP ACTIVITÉ EN APPEL
+   "Tu cherches quelque chose à faire ?"
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="activityShelf_"],
+#app-mount [class*="callActivities_"],
+#app-mount [class*="launchActivities_"],
+#app-mount [class*="activityPanel_"],
+#app-mount [class*="inCallActivities_"] {
+  background:              rgba(8, 8, 16, 0.82) !important;
+  backdrop-filter:         blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border:        1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 24px 64px 0  rgba(0, 0, 0, 0.65) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   VOICE CHANNEL — items participants
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="voiceUser_"],
+#app-mount [class*="user_"][class*="voice"] {
+  border-radius: var(--lg-rsm) !important;
+  transition:    background 120ms !important;
+}
+#app-mount [class*="voiceUser_"]:hover {
+  background: var(--lg-hover) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   FORUM POST CARDS
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="mainCard_f369"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-r) !important;
+  transition:    border-color 150ms ease !important;
+}
+#app-mount [class*="mainCard_f369"]:hover {
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVE NOW — STREAM LIVE CARD
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="nowPlayingColumn_"] [class*="stream_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="livePreview_"],
+#app-mount [class*="nowPlayingColumn_"] video {
+  border-radius: var(--lg-rsm) !important;
+  overflow:      hidden !important;
+  border:        1px solid rgba(255, 255, 255, 0.14) !important;
+}
+#app-mount [class*="nowPlayingColumn_"] [class*="streamCard_"],
+#app-mount [class*="nowPlayingColumn_"] [class*="applicationStreamPreview_"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-r) !important;
+  overflow:      hidden !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MISC RESETS SUPPLÉMENTAIRES
+   Midnight: wrappers VC/home/thread transparents
+══════════════════════════════════════════════════ */
+
+/* Nitro / Quêtes wrappers */
+#app-mount [class*="applicationStore_"],
+#app-mount [class*="container__955"] {
+  background: transparent !important;
+  border:     none !important;
+}
+
+/* VC outer wrappers */
+#app-mount [class*="channelChatWrapper_"],
+#app-mount [class*="container__722ff"] {
+  background: transparent !important;
+}
+
+/* Thread panel */
+#app-mount [class*="container_fb64"] {
+  background: transparent !important;
+}
+
+/* Nitro home inner */
+.homeWrapper__0920e,
+.applicationStore_f07d62,
+#app-mount [class*="homeWrapper_"] {
+  background: transparent !important;
+  border:     none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ROUNDNESS & POLISH
+══════════════════════════════════════════════════ */
+
+/* Images */
+#app-mount [class*="imageWrapper_"] {
+  border-radius: var(--lg-rsm) !important;
+  overflow:      hidden !important;
+}
+
+/* Code blocks */
+#app-mount .hljs,
+#app-mount [class*="markup_"] pre,
+#app-mount [class*="codeContainer_"] {
+  border-radius: var(--lg-rsm) !important;
+  border:     1px solid rgba(255, 255, 255, 0.10) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Thread link card — Midnight: container__9271d */
+.container__9271d,
+#app-mount [class*="container__9271"] {
+  border-radius: var(--lg-rsm) !important;
+  border:        1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Midnight: outer_c0bea0 inner */
+.inner_c0bea0 {
+  border-radius: calc(var(--lg-r) - 4px) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RÉACTIONS
+   Midnight: reaction__23977 { border-width: 2px }
+══════════════════════════════════════════════════ */
+
+.reaction__23977,
+.reactionBtn__23977.forceShow__23977,
+#app-mount [class*="reaction_"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rxs) !important;
+  transition:    background 120ms, border-color 120ms !important;
+}
+#app-mount [class*="reaction_"]:hover {
+  background:   rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+#app-mount [class*="reaction_"][class*="reacted_"] {
+  background:   rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   BOT TAG
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="botTagRegular_"],
+#app-mount [class*="botTag_"] {
+  background:    rgba(130, 180, 255, 0.25) !important;
+  color:         rgba(130, 210, 255, 1.00) !important;
+  border-radius: 4px !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MENTIONS
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="mention_"] {
+  background:    rgba(130, 180, 255, 0.18) !important;
+  border-radius: 4px !important;
+  color:         rgba(130, 210, 255, 1.00) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SÉLECTION TEXTE
+══════════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(130, 180, 255, 0.35) !important;
+  color:      rgba(255, 255, 255, 1.00) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SPOTIFY PLUGIN (Vencord)
+══════════════════════════════════════════════════ */
+
+#vc-spotify-player {
+  background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MIDNIGHT HASH SELECTORS EXACTS
+   Classes hash connues — fiabilité maximale
+══════════════════════════════════════════════════ */
+
+/* DM list inner scroller */
+#app-mount [class*="scroller__99e"] {
+  background: transparent !important;
+  margin-bottom: 0 !important;
+}
+
+/* Friends page tab body */
+#app-mount [class*="tabBody__133b"] {
+  background: transparent !important;
+  border:     none !important;
+}
+
+/* Channel list header */
+#app-mount [class*="clickable_f37"],
+#app-mount [class*="header_f37"] {
+  background: none !important;
+}
+
+/* Chat gradient masque — supprimé */
+#app-mount [class*="chatGradient__36d"],
+.chatGradient__36d07 {
+  display: none !important;
+}
+
+/* Children gradient shadow — supprimé */
+#app-mount [class*="children__9293"]::after,
+.children__9293f::after {
+  display: none !important;
+}
+
+/* Channel list inner scroller margin */
+#app-mount [class*="scroller__629"] {
+  margin-bottom: 0 !important;
+}
+
+/* Midnight: message reply input */
+.replyInput__5ba62 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Midnight: burstGlow reactions supprimé */
+.burstGlow__23977 {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   BANNIÈRE DE SERVEUR
+   Midnight: bannerImage_f37cb1, headerGlass_f37cb1
+══════════════════════════════════════════════════ */
+
+.bannerImage_f37cb1,
+.bannerImg_f37cb1,
+#app-mount [class*="bannerImage_"],
+#app-mount [class*="bannerImg_"] {
+  width: 100% !important;
+}
+
+.bannerVisible_f37cb1 .headerEllipseBackdrop_f37cb1,
+#app-mount [class*="bannerVisible_"] [class*="headerEllipseBackdrop_"] {
+  display: none !important;
+}
+
+.headerGlass_f37cb1,
+#app-mount [class*="headerGlass_"] {
+  top:    0 !important;
+  left:   0 !important;
+  right:  0 !important;
+  width:  auto !important;
+  border-radius: var(--lg-r) var(--lg-r) 0 0 !important;
+}
+
+/* ══════════════════════════════════════════════════
+   STICKERS & MÉDIAS
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="stickerImage_"],
+#app-mount [class*="sticker_"] {
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   EMBEDS
+   Midnight: embedFull__623de { border-radius }
+══════════════════════════════════════════════════ */
+
+.embedFull__623de,
+#app-mount [class*="embedFull_"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.24) inset !important;
+  border-radius: var(--lg-rsm) !important;
+  border:        1px solid rgba(255, 255, 255, 0.10) !important;
+  overflow:      hidden !important;
+}
+
+/* ══════════════════════════════════════════════════
+   DIVIDER MESSAGES NON-LUS
+   Midnight: divider__908e2 { border-width }
+══════════════════════════════════════════════════ */
+
+.divider__908e2,
+.endCap__908e2,
+#app-mount [class*="divider_"][class*="isUnread_"] {
+  border-width:  2px !important;
+  border-radius: 2px !important;
+  border-color:  rgba(130, 210, 255, 0.55) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   UNREAD PILLS (channel list bottom)
+   Midnight: bottom__7aaec, unreadBottom__629e4
+══════════════════════════════════════════════════ */
+
+.bottom__7aaec,
+.unreadBottom__629e4 {
+  bottom: 0 !important;
+}

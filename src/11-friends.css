@@ -3,26 +3,30 @@
  *  11 — PAGE AMIS & LISTE MEMBRES
  *  Liquid Glass Discord Theme
  *
+ *  Midnight exact selectors (container__133bf = outer) :
+ *    → peopleColumn__133bf = friends column (glass panel)
+ *    → tabBody__133bf      = tab body (transparent)
+ *    → container__91a9d    = member list items
+ *    → channel__972a0      = DM items
+ *
  *  Règles importantes :
  *    → tabBar_ scopé à peopleColumn_ UNIQUEMENT
- *      (évite le conflit avec les tabs du profil
- *       utilisateur dans 10-menus.css)
- *    → Pas de backdrop-filter sur les éléments internes
- *      (déjà dans un panel flouté → double-filter)
- *    → Pas de margin-left animé (cause décalage layout)
+ *      (évite conflit avec tabs profil dans 10-menus.css)
+ *    → Pas de backdrop-filter sur éléments internes
+ *      (déjà dans panel flouté → double-filter)
  * ═══════════════════════════════════════════════════
  */
 
 /* ── Barre navigation Amis (Tous / En ligne / En attente)
- *  Scopée à peopleColumn_ pour ne pas toucher les tabs
- *  du profil utilisateur (10-menus.css gère celles-là).
+ *  Scopée à peopleColumn_ — ne touche pas les tabs profil.
  * ─────────────────────────────────────────────────── */
-#app-mount [class*="peopleColumn_"] [class*="tabBar_"] {
-  background:       rgba(255, 255, 255, 0.10) !important;
-  backdrop-filter:  none !important;
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"],
+.peopleColumn__133bf [class*="tabBar_"] {
+  background:              rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
-  border-radius:    var(--lg-r) !important;
-  border:           1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius:           var(--lg-r) !important;
+  border:                  1px solid rgba(255, 255, 255, 0.22) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.28) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.44) inset,
@@ -45,30 +49,31 @@
   background: rgba(255, 255, 255, 0.08) !important;
   color:      rgba(255, 255, 255, 0.92) !important;
 }
-#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][class*="selected_"],
-#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][aria-selected="true"] {
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][aria-selected="true"],
+#app-mount [class*="peopleColumn_"] [class*="tabBar_"] [class*="item_"][class*="selected_"] {
   background: rgba(255, 255, 255, 0.14) !important;
   color:      rgba(255, 255, 255, 1.00) !important;
 }
 
 /* ── Barre de recherche / filtre amis ─────────────── */
+#app-mount [class*="peopleColumn_"] [class*="searchBar_"],
 #app-mount [class*="tabBody_"] [class*="searchBar_"],
 #app-mount [class*="peopleList_"] [class*="searchBar_"],
 #app-mount [class*="searchBar__133b"],
 #app-mount [class*="filterBar__133b"],
 #app-mount [class*="filterBar_"] {
-  background:       rgba(255, 255, 255, 0.09) !important;
-  backdrop-filter:  none !important;
+  background:              rgba(255, 255, 255, 0.09) !important;
+  backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
-  border:           1px solid rgba(255, 255, 255, 0.20) !important;
-  border-radius:    20px !important;
+  border:        1px solid rgba(255, 255, 255, 0.20) !important;
+  border-radius: 20px !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset !important;
   transition: border-color 200ms ease !important;
 }
+#app-mount [class*="peopleColumn_"] [class*="searchBar_"]:focus-within,
 #app-mount [class*="tabBody_"] [class*="searchBar_"]:focus-within,
-#app-mount [class*="peopleList_"] [class*="searchBar_"]:focus-within,
 #app-mount [class*="searchBar__133b"]:focus-within {
   border-color: rgba(255, 255, 255, 0.42) !important;
 }
@@ -76,52 +81,68 @@
 /* ── Conteneurs internes — transparents ──────────── */
 #app-mount [class*="friendsContainer_"],
 #app-mount [class*="peopleList_"],
+#app-mount [class*="peopleListSectionTitle_"],
+/* Midnight: tabBody__133bf */
+.tabBody__133bf,
 #app-mount [class*="tabBody_"],
-#app-mount [class*="peopleListSectionTitle_"] {
-  background:       transparent !important;
-  backdrop-filter:  none !important;
+/* Midnight: container__133bf outer */
+.container__133bf,
+#app-mount [class*="container__133b"] {
+  background:              transparent !important;
+  backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
-  border:           none !important;
-  box-shadow:       none !important;
+  border:                  none !important;
+  box-shadow:              none !important;
 }
 
-/* ── Lignes amis — hover Midnight ─────────────────── */
+/* ── Headers de section (En ligne — 26) ─────────── */
+#app-mount [class*="friendsRowHeader_"],
+#app-mount [class*="rowHeader_"],
+#app-mount [class*="groupHeader__133b"],
+#app-mount [class*="peopleListSectionTitle_"] {
+  background:     transparent !important;
+  color:          rgba(255, 255, 255, 0.45) !important;
+  font-size:      11px !important;
+  font-weight:    700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* ── Items amis — hover Midnight ─────────────────── */
+/* Midnight: container__91a9d (member/friend items) */
+.container__91a9d,
+#app-mount [class*="listItem__133b"],
+#app-mount [class*="peopleListItem_"],
+#app-mount [class*="member__133b"],
 #app-mount [class*="friendRow_"],
-#app-mount [class*="peopleListItem_"] {
+#app-mount [class*="peopleList_"] > * > * {
   border-radius: var(--lg-rsm) !important;
-  margin:        2px 8px !important;
+  margin:        1px 4px !important;
   transition:    background 120ms ease !important;
 }
-#app-mount [class*="friendRow_"]:hover,
-#app-mount [class*="peopleListItem_"]:hover {
-  background-color: var(--lg-hover) !important;
+.container__91a9d:hover,
+#app-mount [class*="listItem__133b"]:hover,
+#app-mount [class*="peopleListItem_"]:hover,
+#app-mount [class*="member__133b"]:hover,
+#app-mount [class*="friendRow_"]:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
 }
 
-/* ── Boutons d'action (message, appel, options) ───── */
-#app-mount [class*="friendRow_"] button,
-#app-mount [class*="peopleListItem_"] button {
-  background-color: var(--lg-btn) !important;
-  border-radius:    50% !important;
-  box-shadow:       var(--lg-btn-s) !important;
-  transition:       filter 200ms ease !important;
-}
-#app-mount [class*="friendRow_"] button:hover,
-#app-mount [class*="peopleListItem_"] button:hover {
-  filter: brightness(1.22) !important;
-}
-
-/* ── Liste membres serveur — interne transparent ──── */
+/* ── Liste membres serveur (panel droit) ──────────── */
+/* Midnight: members_c8ffbb, member_c8ffbb { background: none } */
+.members_c8ffbb,
+.member_c8ffbb,
 #app-mount [class*="members_"] {
   background:  transparent !important;
   border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
-#app-mount [class*="member_"] {
+#app-mount [class*="member_"]:not([class*="members_"]) {
   background:    transparent !important;
   border-radius: var(--lg-rsm) !important;
   margin:        1px 8px !important;
   transition:    background 120ms ease !important;
 }
-#app-mount [class*="member_"]:hover {
+#app-mount [class*="member_"]:not([class*="members_"]):hover {
   background-color: var(--lg-hover) !important;
 }
 
@@ -134,4 +155,11 @@
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
   padding:        10px 12px 4px !important;
+}
+
+/* ── Boutons d'action (message, appel, options) ───── */
+#app-mount [class*="friendRow_"] [class*="actions_"],
+#app-mount [class*="peopleListItem_"] [class*="actions_"],
+#app-mount [class*="listItem__133b"] [class*="actions_"] {
+  gap: 4px !important;
 }

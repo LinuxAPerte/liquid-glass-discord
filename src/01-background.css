@@ -2,11 +2,14 @@
  * ═══════════════════════════════════════════════════
  *  01 — FOND ANIMÉ — LIQUID GLASS
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
  *  Fond sombre animé avec blobs bleus/cyan.
  *  Les panels semi-transparents laissent passer
  *  le mouvement → vrai effet liquid glass.
+ *
+ *  Midnight: bg__960e4 { background transparent }
+ *  → on laisse Discord's bg layer transparent,
+ *    le fond vient de html/body.
  * ═══════════════════════════════════════════════════
  */
 
@@ -40,4 +43,19 @@ html, body {
   background-attachment: fixed !important;
   background-size: 180% 180%, 160% 160%, 140% 140%, 100% 100% !important;
   animation: lg-bg 20s ease-in-out infinite !important;
+}
+
+/* ── Midnight: bg__960e4 — Discord's background layer ─ */
+/* Midnight: remove-bg-layer removes this. We keep it
+   transparent so our html/body gradient shows through. */
+.bg__960e4,
+#app-mount [class*="bg_"] {
+  background: transparent !important;
+}
+
+/* ── Midnight: app__160d8 — outer Discord wrapper ───── */
+.app__160d8,
+#app-mount,
+.app_bd26cc {
+  background: transparent !important;
 }
