@@ -1,111 +1,284 @@
 /*
  * ═══════════════════════════════════════════════════
- *  03 — LAYOUT & GLASS PANELS — RESPONSIVE
+ *  03 — LAYOUT & GLASS PANELS
  *  Liquid Glass Discord Theme
  *
- *  Architecture flex :
- *    guilds_          → flex: 0 0 auto  (largeur Discord)
- *    sidebarList_     → flex: 0 0 auto  (largeur Discord)
- *    chatContent_     → flex: 1 1 auto  (extensible)
- *    peopleColumn_    → flex: 1 1 auto  (extensible)
- *    nowPlayingColumn_→ flex: 0 0 auto  (largeur fixe)
- *    membres          → flex: 0 0 auto  (largeur fixe)
+ *  Approche duale Midnight + wildcards :
+ *    → Sélecteurs exacts Midnight pour couverture totale
+ *    → Wildcards [class*=] pour résilience aux updates
  *
- *  Règles responsive :
- *    → min-width: 0 sur les panels extensibles (évite flex overflow)
- *    → overflow: hidden sur tous sauf guilds_ (pills non clippées)
- *    → overflow: visible sur guilds_ (indicateurs de sélection)
- *    → PAS de height: auto ni width fixe — Discord gère ça
+ *  Tous les panels principaux reçoivent le style verre :
+ *    background: var(--lg-glass)
+ *    backdrop-filter: var(--lg-blur)
+ *    border + border-radius + box-shadow
+ *
+ *  Panels avec layout spécifique gérés individuellement.
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Verre unifié : tous les panels principaux ────── */
+/* ══════════════════════════════════════════════════
+   PANELS PRINCIPAUX — style verre unifié
+   Midnight source: main.css panel separation list
+══════════════════════════════════════════════════ */
+
+/* Colonne serveurs */
 #app-mount [class*="guilds_"],
+.guilds__5e434,
+
+/* Sidebar canaux / DMs */
 #app-mount [class*="sidebarList_"],
-#app-mount [class*="privateChannels_"],
+.sidebarList__5e434,
+
+/* Zone de chat */
 #app-mount [class*="chatContent_"],
+.chatContent_f75fb0,
+
+/* Page amis */
 #app-mount [class*="peopleColumn_"],
-#app-mount [class*="nowPlayingColumn_"] {
-  background:        var(--lg-glass)  !important;
-  backdrop-filter:   var(--lg-blur)   !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius:     var(--lg-r)      !important;
-  border:            1px solid var(--lg-border) !important;
-  box-shadow:        var(--lg-shadow) !important;
-  transition:        border-color 250ms ease !important;
+.peopleColumn__133bf,
+
+/* Active Now */
+#app-mount [class*="nowPlayingColumn_"],
+.nowPlayingColumn__133bf,
+
+/* Liste membres serveur */
+#app-mount [class*="membersWrap_"],
+#app-mount [class*="memberSidebar_"],
+#app-mount [class*="container_c8ff"],
+.container_c8ffbb,
+.content_f75fb0 > .membersWrap_c8ffbb,
+
+/* Page Nitro / Home */
+#app-mount [class*="mainPageScroller_"],
+.mainPageScroller__80907,
+
+/* Quêtes — titlebar */
+.headerBar__1a9ce,
+
+/* Quêtes — scroller */
+.scroller__23746,
+
+/* Boutique Discord */
+#app-mount [class*="shop_"],
+.shop__6db1d,
+
+/* DM user panel (colonne droite en DM) */
+#app-mount [class*="outer_c0bea"],
+.content_f75fb0 > aside > .outer_c0bea0,
+
+/* Résultats de recherche */
+#app-mount [class*="searchResultsWrap_"],
+.searchResultsWrap_a98f3b,
+
+/* Forum */
+#app-mount [class*="container_f369"],
+.container_f369db,
+
+/* Server discovery */
+#app-mount [class*="container_a592"],
+.container_a592e1,
+
+/* VC call container */
+.callContainer_cb9592,
+.wrapper_cb9592.sidebarOpen_cb9592 .callContainer_cb9592,
+.callContainer__722ff,
+
+/* Server boosts titlebar + tab */
+.container__89463 > .toolbar__89463,
+.container__89463 > .contentContainer__89463,
+
+/* Friends titlebar */
+.container__133bf > .container__9293f,
+
+/* Message requests titlebar */
+.container_f391e3 > .container__9293f,
+
+/* Nitro page titlebar */
+.homeWrapper__0920e > .container__9293f,
+
+/* VC chat titlebar */
+.container__01ae2 > .container__9293f,
+
+/* New thread panel titlebar */
+.container_fb64c9 > .container__9293f,
+
+/* Chat titlebar */
+.chat_f75fb0 > .subtitleContainer_f75fb0,
+
+/* Server members header/page */
+.chat_f75fb0 > .header_c791b2,
+.chat_f75fb0 > .scrollerBase_d125d2,
+.chat_f75fb0 > .header__0b563,
+.chat_f75fb0 > .container__0b563,
+
+/* Message requests page */
+.container_f391e3 > .content_f75fb0 {
+  background:               var(--lg-glass)  !important;
+  backdrop-filter:          var(--lg-blur)   !important;
+  -webkit-backdrop-filter:  var(--lg-blur)   !important;
+  border-radius:            var(--lg-r)      !important;
+  border:                   1px solid var(--lg-border) !important;
+  box-shadow:               var(--lg-shadow) !important;
+  transition:               border-color 250ms ease !important;
+  box-sizing: border-box !important;
 }
 
 /* Hover : éclat de la bordure */
 #app-mount [class*="guilds_"]:hover,
+.guilds__5e434:hover,
 #app-mount [class*="sidebarList_"]:hover,
-#app-mount [class*="privateChannels_"]:hover,
+.sidebarList__5e434:hover,
 #app-mount [class*="chatContent_"]:hover,
+.chatContent_f75fb0:hover,
 #app-mount [class*="peopleColumn_"]:hover,
-#app-mount [class*="nowPlayingColumn_"]:hover {
+.peopleColumn__133bf:hover,
+#app-mount [class*="nowPlayingColumn_"]:hover,
+.nowPlayingColumn__133bf:hover,
+#app-mount [class*="membersWrap_"]:hover,
+#app-mount [class*="container_c8ff"]:hover,
+.container_c8ffbb:hover,
+#app-mount [class*="searchResultsWrap_"]:hover,
+.searchResultsWrap_a98f3b:hover,
+#app-mount [class*="outer_c0bea"]:hover {
   border-color: var(--lg-bord-h) !important;
 }
 
-/* ── Colonne icônes serveurs ──────────────────────── */
-#app-mount [class*="guilds_"] {
+/* ══════════════════════════════════════════════════
+   LAYOUT — marges et flex par panel
+   Midnight: sidebar__5e434 + specific overrides
+══════════════════════════════════════════════════ */
+
+/* ── Colonne serveurs ─────────────────────────────── */
+#app-mount [class*="guilds_"],
+.guilds__5e434 {
   margin:   var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
   overflow: visible !important;   /* pills de sélection non clippées */
   flex:     0 0 auto !important;
 }
 
-/* ── Sidebar canaux / DMs ────────────────────────── */
-/* PAS de overflow:hidden ici — Discord gère le scroll
-   interne via ses propres scrollers. overflow:hidden sur
-   ce panel clippe les listes et cache canaux/catégories. */
+/* ── Sidebar canaux / DMs ─────────────────────────── */
+/* PAS de overflow:hidden — Discord gère scroll interne */
 #app-mount [class*="sidebarList_"],
-#app-mount [class*="privateChannels_"] {
-  margin: var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  flex:   0 0 auto !important;
+.sidebarList__5e434 {
+  margin:          var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  margin-bottom:   calc(var(--custom-app-panels-height, 0) + var(--lg-gap)) !important;
+  flex:            0 0 auto !important;
 }
 
 /* ── Zone de chat — extensible ──────────────────── */
-#app-mount [class*="chatContent_"] {
-  margin:    var(--lg-gap) !important;
-  overflow:  hidden !important;
-  flex:      1 1 auto !important;
-  min-width: 0 !important;   /* évite l'overflow sur petites fenêtres */
-}
-
-/* ── Colonne amis / Discovery (centre) ──────────── */
-#app-mount [class*="peopleColumn_"] {
+#app-mount [class*="chatContent_"],
+.chatContent_f75fb0 {
   margin:    var(--lg-gap) !important;
   overflow:  hidden !important;
   flex:      1 1 auto !important;
   min-width: 0 !important;
 }
 
-/* ── Colonne "Active Now" ────────────────────────── */
-#app-mount [class*="nowPlayingColumn_"] {
+/* ── Colonne amis — extensible ──────────────────── */
+#app-mount [class*="peopleColumn_"],
+.peopleColumn__133bf {
+  margin:    var(--lg-gap) !important;
+  overflow:  hidden !important;
+  flex:      1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* ── Active Now ─────────────────────────────────── */
+#app-mount [class*="nowPlayingColumn_"],
+.nowPlayingColumn__133bf {
   margin:   var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
   overflow: hidden !important;
   flex:     0 0 auto !important;
 }
 
-/* ── Liste membres serveur (panel droit) ──────────
- *  Sélecteurs sémantiques prioritaires.
- *  container_c8ff gardé en fallback (hash Discord connu).
- *  PAS de height: auto ni min-width — Discord gère.
- * ─────────────────────────────────────────────── */
+/* ── Liste membres ──────────────────────────────── */
 #app-mount [class*="membersWrap_"],
 #app-mount [class*="memberSidebar_"],
-#app-mount [class*="container_c8ff"] {
-  background:        var(--lg-glass)  !important;
-  backdrop-filter:   var(--lg-blur)   !important;
-  -webkit-backdrop-filter: var(--lg-blur) !important;
-  border-radius:     var(--lg-r)      !important;
-  border:            1px solid var(--lg-border) !important;
-  box-shadow:        var(--lg-shadow) !important;
-  margin:            var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
-  overflow:          hidden !important;
-  flex:              0 0 auto !important;
-  transition:        border-color 250ms ease !important;
+#app-mount [class*="container_c8ff"],
+.container_c8ffbb,
+.content_f75fb0 > .membersWrap_c8ffbb {
+  margin:     var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow:   hidden !important;
+  flex:       0 0 auto !important;
+  height:     auto !important;
+  min-width:  fit-content !important;
 }
-#app-mount [class*="membersWrap_"]:hover,
-#app-mount [class*="memberSidebar_"]:hover,
-#app-mount [class*="container_c8ff"]:hover {
-  border-color: var(--lg-bord-h) !important;
+
+/* ── Résultats de recherche ─────────────────────── */
+#app-mount [class*="searchResultsWrap_"],
+.searchResultsWrap_a98f3b {
+  margin:  var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  flex:    0 0 auto !important;
+}
+
+/* ── DM user panel ──────────────────────────────── */
+#app-mount [class*="outer_c0bea"],
+.content_f75fb0 > aside > .outer_c0bea0 {
+  margin:   var(--lg-gap) var(--lg-gap) var(--lg-gap) 0 !important;
+  overflow: hidden !important;
+}
+
+/* ── Boutique / Nitro / Forum / Discovery ────────── */
+#app-mount [class*="shop_"],
+.shop__6db1d,
+#app-mount [class*="mainPageScroller_"],
+.mainPageScroller__80907,
+#app-mount [class*="container_f369"],
+.container_f369db,
+#app-mount [class*="container_a592"],
+.container_a592e1 {
+  margin:   var(--lg-gap) !important;
+  overflow: hidden !important;
+  height:   auto !important;
+}
+
+/* ── Panels "user panel" (07-profile.css gère) ────── */
+/* NE PAS toucher panels_ ici — voir 07-profile.css */
+
+/* ══════════════════════════════════════════════════
+   INNER CONTAINERS — transparents pour exposer le verre
+   Midnight: members, inner scrollers, tab bodies
+══════════════════════════════════════════════════ */
+
+/* Channel list inner containers */
+.container__2637a,
+.clickable_f37cb1,
+.header_f37cb1,
+#app-mount [class*="container__2637"],
+#app-mount [class*="scroller__99"] {
+  background: none !important;
+}
+
+/* Member list inner */
+.members_c8ffbb,
+.member_c8ffbb {
+  background: none !important;
+}
+
+/* DM list inner */
+.privateChannels_e6b769,
+.scroller__99e7c {
+  background: none !important;
+}
+
+/* Active Now inner */
+.container__7d20c {
+  background: none !important;
+}
+.scroller__7d20c {
+  border: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   POPOUT MODALS — glass dark
+   Midnight: container__8a031
+══════════════════════════════════════════════════ */
+.container__8a031,
+#app-mount [class*="container__8a03"] {
+  background:              rgba(6, 6, 16, 0.88) !important;
+  backdrop-filter:         blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+  border-radius:           var(--lg-r) !important;
+  border:                  1px solid var(--lg-border) !important;
+  box-shadow:              var(--lg-shadow) !important;
 }

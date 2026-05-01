@@ -942,48 +942,4 @@
   background: rgba(4, 4, 16, 0.95) !important;
 }
 
-/* ══════════════════════════════════════════════════
-   HEADER CANAL / DM — subtitleContainer_ glass
-   Gradient 180° + shimmer ::before transform animé.
-   Pas de backdrop-filter : dans chatContent_ déjà flouté.
-   NOTE: container__9293 SUPPRIMÉ — hash instable qui peut
-   matcher n'importe quel container Discord.
-══════════════════════════════════════════════════ */
-#app-mount [class*="subtitleContainer_"] {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.32) 0%,
-    rgba(255, 255, 255, 0.20) 100%
-  ) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.52) !important;
-  box-shadow:
-    0 -1px   1.5px 0 rgba(255, 255, 255, 0.46) inset,
-    0  1px   1.5px 0 rgba(255, 255, 255, 0.66) inset,
-    0  2px   8px   0 rgba(255, 255, 255, 0.22) inset !important;
-  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
-  padding: 0 12px !important;
-  z-index: 10 !important;
-  transition: border-color 200ms ease !important;
-}
-#app-mount [class*="subtitleContainer_"]:hover {
-  border-color: rgba(255, 255, 255, 0.76) !important;
-}
-#app-mount [class*="subtitleContainer_"]::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background: linear-gradient(
-    95deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.22) 50%,
-    transparent 80%
-  ) !important;
-  animation: lg-shimmer-slide 7s ease-in-out infinite !important;
-  pointer-events: none !important;
-  border-radius: inherit !important;
-}
+/* subtitleContainer_ déplacé dans 08-chat.css */

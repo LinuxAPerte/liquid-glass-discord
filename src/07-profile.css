@@ -1,80 +1,89 @@
 /*
  * ═══════════════════════════════════════════════════
- *  07 — PANNEAU PROFIL
+ *  07 — PANNEAU PROFIL (user panel bas)
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
- *  Technique inspirée de Shine :
+ *  Midnight: panels__5e434 { bottom/left/width }
+ *
+ *  Technique fog (Shine) :
  *    → panels_ est TRANSPARENT (pas de card opaque)
  *    → Un pseudo-élément ::after crée un "fog" verre
  *      qui monte du bas via mask-image gradient
- *    → Les boutons (mic/sourd/paramètres) sont groupés
+ *    → Les boutons (mic/sourd/paramètres) groupés
  *      dans une capsule pill (border-radius: 999px)
- *      avec les boutons individuels à border-radius: 0
  *
- *  Positionnement :
- *    → left/right/bottom + width: auto = flottant
+ *  Positionnement Midnight :
+ *    → bottom: 0; left: 0; width: 100%
  *    → overflow: visible pour que le fog dépasse
  * ═══════════════════════════════════════════════════
  */
 
 /* ── Container principal — transparent ──────────── */
-#app-mount [class*="panels_"] {
-  background: transparent !important;
-  backdrop-filter: none !important;
+#app-mount [class*="panels_"],
+.panels__5e434 {
+  background:              transparent !important;
+  backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
-  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-  left: var(--lg-gap) !important;
-  right: var(--lg-gap) !important;
-  bottom: var(--lg-gap) !important;
-  width: auto !important;
+  border:                  none !important;
+  box-shadow:              none !important;
+  border-radius:           0 0 var(--lg-r) var(--lg-r) !important;
+  overflow:                visible !important;
+  bottom:                  0 !important;
+  left:                    0 !important;
+  width:                   100% !important;
 }
 
 /* ── Fog verre montant (technique Shine) ─────────── */
-#app-mount [class*="panels_"]::after {
-  display: block !important;
-  content: "" !important;
+#app-mount [class*="panels_"]::after,
+.panels__5e434::after {
+  display:  block !important;
+  content:  "" !important;
   position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 190% !important;
-  background: rgba(0, 0, 0, 0.025) !important;
-  backdrop-filter: blur(22px) saturate(140%) !important;
+  bottom:   0 !important;
+  left:     0 !important;
+  width:    100% !important;
+  height:   190% !important;
+  background:              rgba(0, 0, 0, 0.025) !important;
+  backdrop-filter:         blur(22px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
   mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 55%) !important;
-  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
-  z-index: 0 !important;
+  border-radius:  0 0 var(--lg-r) var(--lg-r) !important;
+  z-index:        0 !important;
   pointer-events: none !important;
 }
 
 /* ── Contenu au-dessus du fog ───────────────────── */
-#app-mount [class*="panels_"] > * {
+#app-mount [class*="panels_"] > *,
+.panels__5e434 > * {
   position: relative !important;
-  z-index: 10 !important;
+  z-index:  10 !important;
 }
 
 /* Fog remonte davantage si voix active */
-#app-mount [class*="panels_"]:has([class*="voiceContainer_"])::after {
+#app-mount [class*="panels_"]:has([class*="voiceContainer_"])::after,
+.panels__5e434:has([class*="voiceContainer_"])::after {
   mask-image: linear-gradient(to bottom, transparent 0%, black 38%) !important;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 38%) !important;
+}
+
+/* ── Midnight: listening along — no border-top ──── */
+.listeningAlong_e0cf27 {
+  border-top: none !important;
 }
 
 /* ── Avatar ─────────────────────────────────────── */
 #app-mount [class*="panels_"] [class*="avatar_"],
 #app-mount [class*="panels_"] [class*="avatarWrapper_"] {
   border-radius: 50% !important;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) !important;
+  box-shadow:    0 0 0 2px rgba(255, 255, 255, 0.25) !important;
 }
 
 /* ── Nom d'utilisateur ──────────────────────────── */
 #app-mount [class*="panels_"] [class*="nameTag_"] {
   border-radius: var(--lg-rxs) !important;
-  padding: 3px 6px !important;
-  transition: background 120ms !important;
+  padding:       3px 6px !important;
+  transition:    background 120ms !important;
 }
 #app-mount [class*="panels_"] [class*="nameTag_"]:hover {
   background-color: var(--lg-hover) !important;
@@ -83,9 +92,9 @@
 /* ── Groupe boutons — pill Shine ─────────────────── */
 #app-mount [class*="panels_"] [class*="buttons_"] {
   border-radius: 999px !important;
-  overflow: hidden !important;
-  gap: 0 !important;
-  background: rgba(255, 255, 255, 0.06) !important;
+  overflow:      hidden !important;
+  gap:           0 !important;
+  background:    rgba(255, 255, 255, 0.06) !important;
   box-shadow:
     0 -2px   0.75px -1px rgba(255, 255, 255, 0.15) inset,
     0  1.5px 0.75px -1px rgba(255, 255, 255, 0.30) inset,
@@ -98,9 +107,9 @@
   box-shadow:
     0 -2px   0.75px -1px rgba(255, 255, 255, 0.10) inset,
     0  1.5px 0.75px -1px rgba(255, 255, 255, 0.22) inset !important;
-  border-radius: 0 !important;
-  padding: 2px !important;
-  box-sizing: content-box !important;
+  border-radius:   0 !important;
+  padding:         2px !important;
+  box-sizing:      content-box !important;
   backdrop-filter: blur(2px) !important;
   -webkit-backdrop-filter: blur(2px) !important;
   transition: background 150ms ease !important;
@@ -127,26 +136,28 @@
 /* ── Conteneur voix actif — glass pill ──────────── */
 #app-mount [class*="voiceContainer_"] {
   background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border:     1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: var(--lg-rsm) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset !important;
   backdrop-filter: none !important;
-  margin-bottom: 4px !important;
-  padding: 6px 8px !important;
+  margin-bottom:   4px !important;
+  padding:         6px 8px !important;
 }
 
-/* ── Game activity panel (ex: Bodycam) — glass card ── */
+/* ── Game activity panel — glass card ──────────── */
 #app-mount [class*="panel__5dec"],
 #app-mount [class*="activityPanel_"],
 #app-mount [class*="gameActivity_"] {
   background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border:     1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: var(--lg-rsm) !important;
   box-shadow: 0 -0.5px 1px 0 rgba(255, 255, 255, 0.18) inset !important;
   margin-bottom: 4px !important;
-  padding: 6px 8px !important;
+  padding:       6px 8px !important;
   transition: background 150ms, border-color 150ms !important;
 }
-#app-mount [class*="panel__5dec"]:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+#app-mount [class*="panel__5dec"]:hover {
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}

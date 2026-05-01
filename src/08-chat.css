@@ -2,49 +2,51 @@
  * ═══════════════════════════════════════════════════
  *  08 — ZONE DE CHAT
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
  *  Le style de base de chatContent_ est dans 03-panels.
  *
  *  Ce module gère :
- *    - Toolbar header (pill Shine)
+ *    - Header de salon (subtitleContainer — Shine pill)
+ *    - Toolbar (pill Shine)
  *    - Hover sur les messages
- *    - Reply glass (Shine)
- *    - Zone de saisie (channelTextArea Shine exacte)
+ *    - Reply glass
+ *    - Zone de saisie (channelTextArea Shine)
+ *    - Embeds / messages / code roundness (Midnight)
+ *    - Unread divider (Midnight)
  * ═══════════════════════════════════════════════════
  */
 
-/* ── Header de salon (subtitleContainer) — Shine inset ─────
- *  PAS de backdrop-filter ici : subtitleContainer_ est à
- *  l'intérieur de chatContent_ (déjà flouté). Un double
- *  backdrop-filter crée un fond noir opaque invisible.
- *  On utilise les inset box-shadows Shine à la place.
- * ─────────────────────────────────────────────────────── */
-#app-mount [class*="subtitleContainer_"] {
+/* ── Header de salon (subtitleContainer) — Shine inset ─
+ *  subtitleContainer_ est SIBLING de chatContent_ :
+ *  pas de double backdrop-filter → blur OK ici.
+ * ─────────────────────────────────────────────────── */
+#app-mount [class*="subtitleContainer_"],
+.chat_f75fb0 > .subtitleContainer_f75fb0 {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.32) 0%,
     rgba(255, 255, 255, 0.20) 100%
   ) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-radius: var(--lg-r) !important;
-  border: 1px solid rgba(255, 255, 255, 0.52) !important;
+  position:        relative !important;
+  overflow:        hidden !important;
+  backdrop-filter: blur(24px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+  border-radius:   var(--lg-r) !important;
+  border:          1px solid rgba(255, 255, 255, 0.52) !important;
   box-shadow:
     0 -1px   1.5px 0 rgba(255, 255, 255, 0.46) inset,
     0  1px   1.5px 0 rgba(255, 255, 255, 0.66) inset,
     0  2px   8px   0 rgba(255, 255, 255, 0.22) inset !important;
-  margin: var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
-  padding: 0 12px !important;
-  z-index: 10 !important;
+  margin:     var(--lg-gap) var(--lg-gap) 4px var(--lg-gap) !important;
+  padding:    0 12px !important;
+  z-index:    10 !important;
   transition: border-color 200ms ease !important;
 }
 #app-mount [class*="subtitleContainer_"]:hover {
   border-color: rgba(255, 255, 255, 0.76) !important;
 }
-/* Shimmer ::before — transform animé (seule technique compatible !important) */
+
+/* Shimmer ::before — transform animé */
 #app-mount [class*="subtitleContainer_"]::before {
   content: "" !important;
   position: absolute !important;
@@ -59,19 +61,21 @@
   pointer-events: none !important;
   border-radius: inherit !important;
 }
-#app-mount [class*="subtitleContainer_"] [class*="title_"] {
+#app-mount [class*="subtitleContainer_"] [class*="title_"],
+.title_f75fb0 {
   background: transparent !important;
-  border: none !important;
+  border:     none !important;
+  margin-bottom: 0 !important;
 }
 
-/* ── Toolbar — pill (Shine) — UNIQUEMENT dans chatContent_ ──
- *  Sélecteur restreint à chatContent_ pour éviter de styler
- *  les toolbar_ dans la sidebar DM (bouton "nouveau groupe")
- *  ou d'autres contextes non voulus. */
+/* ── Toolbar — pill Shine (scopé chatContent_) ────────
+ *  Sélecteur restreint à chatContent_ pour éviter de
+ *  styler les toolbar_ dans la sidebar DM ou VC.
+ * ─────────────────────────────────────────────────── */
 #app-mount [class*="chatContent_"] [class*="toolbar_"] {
   border-radius: 99px !important;
-  background: rgba(255, 255, 255, 0.22) !important;
-  border: 1px solid rgba(255, 255, 255, 0.40) !important;
+  background:    rgba(255, 255, 255, 0.22) !important;
+  border:        1px solid rgba(255, 255, 255, 0.40) !important;
   box-shadow:
     0 -1.5px 0.4px  -1px rgba(255, 255, 255, 0.36) inset,
     0  1.5px 0.75px -1px rgba(255, 255, 255, 0.58) inset,
@@ -81,69 +85,79 @@
   transition: all 0.3s !important;
 }
 
-/* ── Hover message ──────────────────────────────── */
+/* ── Hover message ──────────────────────────────────── */
 #app-mount li[class*="message_"]:hover,
-#app-mount li[id^="chat-messages-"]:hover {
+#app-mount li[id^="chat-messages-"]:hover,
+.message__5126c:hover {
   background-color: rgba(255, 255, 255, 0.04) !important;
   border-radius: 8px !important;
 }
 
-/* ── Reply (message réponse) — glass Shine ───────── */
+/* Midnight: improve message roundness */
+.message__5126c {
+  border-radius: 6px !important;
+  margin-left: 4px !important;
+}
+
+/* ── Reply — glass Shine ────────────────────────────── */
 #app-mount [class*="repliedMessage_"] {
   border-radius: 10px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  background:    rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(2px) !important;
-  padding: 3px 8px !important;
+  padding:       3px 8px !important;
   box-shadow:
     0 -0.5px 1px -1px rgba(255, 255, 255, 0.50) inset,
     0  0.5px 1px -1px rgba(255, 255, 255, 1.00) inset !important;
 }
 
-/* ── Zone de saisie — form wrapper ─────────────── */
+/* ── Zone de saisie — form wrapper ─────────────────── */
 #app-mount [class*="form_"] {
   background: transparent !important;
-  padding: 0 12px !important;
-  position: relative !important;
+  padding:    0 12px !important;
+  position:   relative !important;
+}
+.form_f75fb0 {
+  margin-top: 0 !important;
 }
 #app-mount [class*="form_"] [class*="inner_"],
 #app-mount [class*="form_"] [class*="textArea_"],
-#app-mount [class*="form_"] [class*="scrollableContainer_"] {
-  background: transparent !important;
-  border: none !important;
+#app-mount [class*="form_"] [class*="scrollableContainer_"],
+.form_f75fb0 .themedBackground__74017 {
+  background: none !important;
+  border:     none !important;
   box-shadow: none !important;
 }
 
-/* ── Fog montant (technique Shine) — supprime la zone
-      noire entre les messages et la barre de saisie ── */
+/* ── Fog montant — supprime zone noire bas du chat ─── */
 #app-mount [class*="form_"]::after {
-  display: block !important;
-  content: "" !important;
+  display:  block !important;
+  content:  "" !important;
   position: absolute !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  width: 100% !important;
-  height: 160% !important;
+  left:     0 !important;
+  bottom:   0 !important;
+  width:    100% !important;
+  height:   160% !important;
   background: transparent !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   mask-image: linear-gradient(to top, black 24px, transparent) !important;
   -webkit-mask-image: linear-gradient(to top, black 24px, transparent) !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
+  z-index:         0 !important;
+  pointer-events:  none !important;
 }
 
-/* Barre de bas de chat au-dessus du fog */
+/* Barre bas du chat au-dessus du fog */
 #app-mount [class*="channelBottomBarArea_"] {
-  position: relative !important;
-  z-index: 200 !important;
+  position:      relative !important;
+  z-index:       200 !important;
   margin-bottom: 10px !important;
 }
 
-/* ── channelTextArea — Shine exacte ─────────────── */
-#app-mount [class*="channelTextArea_"] {
+/* ── channelTextArea — Shine ────────────────────────── */
+#app-mount [class*="channelTextArea_"],
+.channelTextArea_f75fb0 {
   border-radius: 26px !important;
-  background: rgba(255, 255, 255, 0.09) !important;
-  background-blend-mode: plus-lighter !important;
+  background:    rgba(255, 255, 255, 0.09) !important;
   box-shadow:
     0 -0.5px 1px 0 rgba(255, 255, 255, 0.22) inset,
     0  0.5px 1px 0 rgba(255, 255, 255, 0.38) inset,
@@ -151,5 +165,103 @@
     0  2px  16px 0 rgba(0,   0,   0,   0.28) !important;
   backdrop-filter: blur(12px) saturate(120%) !important;
   -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  margin: 0 !important;
+}
+
+/* ── Chat gradient mask — supprimé (Midnight) ──────── */
+/* Midnight: chatGradient__36d07 { display: none } */
+.chatGradient__36d07,
+#app-mount [class*="chatGradient__36d"] {
+  display: none !important;
+}
+
+/* ── Children gradient shadow — supprimé (Midnight) ── */
+.children__9293f::after,
+#app-mount [class*="children__9293"]::after {
+  display: none !important;
+}
+
+/* ── Unread divider (Midnight) ──────────────────────── */
+/* Midnight: divider__908e2 { border-width: 4px } */
+.divider__908e2,
+#app-mount [class*="divider_"][class*="isUnread_"] {
+  border-width:  2px !important;
+  border-radius: 2px !important;
+  border-color:  rgba(130, 210, 255, 0.55) !important;
+}
+
+/* ── Embeds (Midnight) ──────────────────────────────── */
+/* Midnight: embedFull__623de { border-radius: var(--radius-md) } */
+.embedFull__623de,
+#app-mount [class*="embedFull_"] {
+  border-radius: var(--lg-rsm) !important;
+  border:        1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ── Images & code blocks roundness (Midnight) ──────── */
+.imageWrapper_af017a,
+#app-mount [class*="imageWrapper_"] {
+  border-radius: var(--lg-rsm) !important;
+  overflow: hidden !important;
+}
+#app-mount .hljs,
+#app-mount [class*="markup_"] pre,
+#app-mount [class*="codeContainer_"] {
+  border-radius: var(--lg-rsm) !important;
+  border:     1px solid rgba(255, 255, 255, 0.10) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ── Thread link card ───────────────────────────────── */
+/* Midnight: container__9271d { border-radius: var(--radius-md) } */
+.container__9271d,
+#app-mount [class*="container__9271"] {
+  border-radius: var(--lg-rsm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ── Réactions ──────────────────────────────────────── */
+/* Midnight: reaction__23977 { border-width: 2px } */
+.reaction__23977,
+.reactionBtn__23977.forceShow__23977,
+#app-mount [class*="reaction_"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rxs) !important;
+  transition: background 120ms, border-color 120ms !important;
+}
+#app-mount [class*="reaction_"]:hover {
+  background:   rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+#app-mount [class*="reaction_"][class*="reacted_"] {
+  background:   rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ── Mentions ───────────────────────────────────────── */
+#app-mount [class*="mention_"] {
+  background:    rgba(130, 180, 255, 0.18) !important;
+  border-radius: 4px !important;
+  color:         rgba(130, 210, 255, 1.00) !important;
+}
+
+/* ── Bot tag ────────────────────────────────────────── */
+#app-mount [class*="botTagRegular_"],
+#app-mount [class*="botTag_"] {
+  background:    rgba(130, 180, 255, 0.25) !important;
+  color:         rgba(130, 210, 255, 1.00) !important;
+  border-radius: 4px !important;
+}
+
+/* ── Midnight: channel bar improvements ─────────────── */
+/* Midnight: barBase__0f481 — messages bar */
+.barBase__0f481:not(.bottomBar__0f481) {
+  top:           12px !important;
+  left:          12px !important;
+  right:         12px !important;
+  border-radius: var(--lg-rsm) !important;
+  padding:       0 8px !important;
+  border-top:    1px solid rgba(255, 255, 255, 0.10) !important;
 }

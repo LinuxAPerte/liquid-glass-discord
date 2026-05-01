@@ -2,44 +2,215 @@
  * ═══════════════════════════════════════════════════
  *  02 — RESET BACKGROUNDS
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
- *  Retire les backgrounds opaques de Discord pour
- *  exposer le fond animé derrière les panneaux verre.
- *
- *  Approche ciblée (inspiré Midnight) :
- *    → PAS de * { transparent } global qui casse tout
- *    → On cible uniquement les conteneurs wrappers
+ *  Approche duale (Midnight exact + wildcards) :
+ *    → Sélecteurs hash exacts de Midnight pour précision
+ *    → Wildcards [class*=] pour résilience aux updates Discord
  *
  *  ⚠ background-image intentionnellement préservé
  *    (couleurs de rôles, icônes CSS Discord)
  * ═══════════════════════════════════════════════════
  */
 
-#app-mount,
+/* ── Corps + racine app ─────────────────────────── */
+.app__160d8,
 #app-mount [class*="app_"],
-#app-mount [class*="bg_"],
-#app-mount [class*="base_"],           /* wrapper principal contenu Discord — CRITIQUE */
+#app-mount [class*="bg_"] {
+  background: transparent !important;
+}
+
+/* ── Outer wrappers Discord (chat, page, layer, base) ── */
+/* Midnight: chat_f75fb0 outer group, container__133bf, page__5e434 */
+.chat_f75fb0,
+.container__133bf,
+.page__5e434,
+#app-mount [class*="base_"],
 #app-mount [class*="baseLayer_"],
 #app-mount [class*="layers_"],
 #app-mount [class*="layer_"],
-#app-mount [class*="content_"],
-#app-mount [class*="chat_"],
-#app-mount [class*="chatLayer_"],
-#app-mount [class*="mainContent_"],
 #app-mount [class*="page_"],
-#app-mount [class*="sidebar_"],
-#app-mount [class*="privateChannels_"],
-#app-mount [class*="members_"],
-#app-mount [class*="member_"],
-#app-mount [class*="title_"],
-#app-mount [class*="subtitleContainer_"],
-#app-mount [class*="scroller__99"],
-#app-mount [class*="container__2637"],
-#app-mount [class*="homeWrapper_"],
-#app-mount [class*="wrapper_cdf"],
-#app-mount [class*="wrapper_fc8"],
-#app-mount [class*="callContainer_"],
-#app-mount [class*="wrapper_cb9"] {
+#app-mount [class*="mainContent_"] {
   background-color: transparent !important;
+}
+
+/* ── Wrappers opaques intérieurs ───────────────────── */
+/* Midnight: .wrapper_cdf8a9, .wrapper_fc8177 (message loading) */
+.wrapper_cdf8a9,
+.wrapper_cdf8a9 > .wrapper_fc8177,
+#app-mount [class*="wrapper_cdf"],
+#app-mount [class*="wrapper_fc8"] {
+  background: none !important;
+}
+
+/* ── DM / channel list inner ───────────────────────── */
+/* Midnight: privateChannels_e6b769, scroller__99e7c */
+.privateChannels_e6b769,
+.scroller__99e7c,
+.clickable_f37cb1,
+.header_f37cb1,
+.container__2637a,
+.scroller__629e4 {
+  background: none !important;
+}
+.scroller__99e7c,
+.scroller__629e4 {
+  margin-bottom: 0 !important;
+}
+.container__2637a {
+  padding-bottom: 0 !important;
+}
+
+/* ── Member list inner ─────────────────────────────── */
+/* Midnight: members_c8ffbb, member_c8ffbb */
+.members_c8ffbb,
+.member_c8ffbb,
+#app-mount [class*="members_"],
+#app-mount [class*="member_"] {
+  background: none !important;
+}
+
+/* ── Friends tab body ──────────────────────────────── */
+/* Midnight: tabBody__133bf */
+.tabBody__133bf,
+#app-mount [class*="tabBody_"] {
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Active now inner ──────────────────────────────── */
+/* Midnight: container__7d20c, scroller__7d20c */
+.container__7d20c {
+  background: none !important;
+}
+.scroller__7d20c {
+  border: none !important;
+}
+
+/* ── Nitro page group ─────────────────────────────── */
+/* Midnight: homeWrapper__0920e, applicationStore_f07d62 */
+.homeWrapper__0920e,
+.applicationStore_f07d62,
+#app-mount [class*="homeWrapper_"] {
+  background: none !important;
+  border: none !important;
+}
+
+/* ── VC containers ────────────────────────────────── */
+/* Midnight: wrapper_cb9592, channelChatWrapper_cb9592 */
+.wrapper_cb9592,
+.channelChatWrapper_cb9592,
+#app-mount [class*="wrapper_cb9"] {
+  background: none !important;
+}
+
+/* ── New thread panel ─────────────────────────────── */
+/* Midnight: container_fb64c9 */
+.container_fb64c9,
+#app-mount [class*="container_fb6"] {
+  background: none !important;
+}
+
+/* ── VC container ─────────────────────────────────── */
+/* Midnight: container__01ae2 */
+.container__01ae2 {
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Quests outer ─────────────────────────────────── */
+/* Midnight: container__955a3 */
+.container__955a3 {
+  border: none !important;
+}
+
+/* ── Settings ─────────────────────────────────────── */
+/* Midnight: standardSidebarView__23e6b, contentRegion__23e6b, contentRegionScroller__23e6b */
+.standardSidebarView__23e6b,
+.contentRegion__23e6b,
+.contentRegionScroller__23e6b,
+#app-mount [class*="standardSidebarView_"],
+#app-mount [class*="contentRegion_"],
+#app-mount [class*="contentRegionScroller_"] {
+  background: none !important;
+}
+
+/* ── Boosts page ──────────────────────────────────── */
+/* Midnight: page__5e434 > .container__89463, page__5e434 > .chat_f75fb0 */
+.page__5e434 > .container__89463,
+.page__5e434 > .chat_f75fb0,
+#app-mount [class*="page_"] > [class*="container__89"],
+#app-mount [class*="page_"] > [class*="chat_"] {
+  background: none !important;
+}
+
+/* ── VC popout titlebar ───────────────────────────── */
+/* Midnight: titleBar__0bd4a */
+.titleBar__0bd4a {
+  background: none !important;
+}
+
+/* ── Chat title inner ─────────────────────────────── */
+/* Midnight: title_f75fb0 — inner content of subtitleContainer */
+.title_f75fb0 {
+  background: none !important;
+  border: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Misc inner reset ─────────────────────────────── */
+/* Midnight: listeningAlong_e0cf27 */
+.listeningAlong_e0cf27 {
+  border-top: none !important;
+}
+/* Midnight: chat gradient fade — remove */
+.chatGradient__36d07 {
+  display: none !important;
+}
+/* Midnight: children__9293f pseudo-shadow — remove */
+.children__9293f::after {
+  display: none !important;
+}
+/* Midnight: form_f75fb0 margin-top fix */
+.form_f75fb0 {
+  margin-top: 0 !important;
+}
+/* Midnight: resizeHandle__01ae2 */
+.resizeHandle__01ae2 {
+  background: transparent !important;
+}
+/* Midnight: server list shadow */
+.wrapper_ef3116 {
+  mask: none !important;
+}
+/* Midnight: sidebar bottom shadow */
+.sidebar__5e434::after {
+  display: none !important;
+}
+/* Midnight: server banner fixes */
+.bannerImage_f37cb1,
+.bannerImg_f37cb1,
+#app-mount [class*="bannerImage_"],
+#app-mount [class*="bannerImg_"] {
+  width: 100% !important;
+}
+.bannerVisible_f37cb1 .headerEllipseBackdrop_f37cb1,
+#app-mount [class*="bannerVisible_"] [class*="headerEllipseBackdrop_"] {
+  display: none !important;
+}
+.headerGlass_f37cb1,
+#app-mount [class*="headerGlass_"] {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  border-radius: var(--lg-r) var(--lg-r) 0 0 !important;
+}
+/* Midnight: chat outer left border */
+.page__5e434 > div > .chat_f75fb0 > .content_f75fb0 {
+  border-left: none !important;
+}
+
+/* ── Spotify Vencord plugin ───────────────────────── */
+#vc-spotify-player {
+  background: none !important;
 }

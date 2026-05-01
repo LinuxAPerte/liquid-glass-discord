@@ -2,30 +2,70 @@
  * ═══════════════════════════════════════════════════
  *  05 — LISTE DES SERVEURS (guilds)
  *  Liquid Glass Discord Theme
- * ═══════════════════════════════════════════════════
  *
- *  Le style de base (background, blur, border, shadow,
- *  margin) est géré dans 03-panels.css.
+ *  Le style de base (glass, border, shadow, margin)
+ *  est géré dans 03-panels.css.
  *
  *  Ce module gère :
  *    - Pills de sélection (indicateur blanc)
  *    - Séparateur DM / serveurs
+ *    - Inner scroller (Midnight: scroller_ef3116)
+ *    - Server list shadow / mask suppression
+ *    - Unread mentions indicator
  * ═══════════════════════════════════════════════════
  */
 
 /* ── Pills de sélection ─────────────────────────── */
 #app-mount [class*="guilds_"] [class*="pill_"] rect,
-#app-mount [class*="guilds_"] [class*="pill_"] path {
+#app-mount [class*="guilds_"] [class*="pill_"] path,
+.guilds__5e434 [class*="pill_"] rect,
+.guilds__5e434 [class*="pill_"] path {
   fill: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Midnight: item__58105 — selection marker */
+.item__58105 {
+  width: 4px !important;
+  border-radius: 4px !important;
 }
 
 /* ── Séparateur DM / serveurs ───────────────────── */
 #app-mount [class*="guilds_"] [class*="separator_"],
-#app-mount [class*="guilds_"] hr {
+#app-mount [class*="guilds_"] hr,
+.guilds__5e434 [class*="separator_"],
+.guilds__5e434 hr {
   background-color: rgba(255, 255, 255, 0.20) !important;
   border: none !important;
   height: 2px !important;
   border-radius: 1px !important;
   width: 32px !important;
   margin: 0 auto !important;
+}
+
+/* ── Inner scroller ─────────────────────────────── */
+/* Midnight: scroller_ef3116 */
+.scroller_ef3116,
+#app-mount [class*="guilds_"] [class*="scroller_"] {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+/* ── Server list shadow / mask ──────────────────── */
+/* Midnight: wrapper_ef3116 { mask: none } */
+.wrapper_ef3116,
+#app-mount [class*="guilds_"] > [class*="wrapper_"] {
+  mask: none !important;
+}
+
+/* Midnight: folderGroup__48112, listItem__650eb */
+.folderGroup__48112,
+.listItem__650eb {
+  width: 100% !important;
+}
+
+/* ── Unread mentions indicator ──────────────────── */
+/* Midnight: unreadMentionsIndicatorBottom_ef3116, Top */
+.unreadMentionsIndicatorBottom_ef3116,
+.unreadMentionsIndicatorTop_ef3116 {
+  padding: 6px !important;
 }

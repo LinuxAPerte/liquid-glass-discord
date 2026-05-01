@@ -3,21 +3,25 @@
  *  06 — SIDEBAR CHANNELS & DMs
  *  Liquid Glass Discord Theme
  *
- *  Le style de base (background, blur, border, shadow,
- *  margin, flex) est dans 03-panels.css.
+ *  Le style de base (glass, border, shadow, margin)
+ *  est géré dans 03-panels.css.
  *
  *  Ce module gère :
  *    - En-têtes de catégorie
- *    - Items de salon (hover, sélectionné, icône)
- *    - Barre de statut utilisateur (bottom panel)
+ *    - Items de salon (hover, sélectionné)
  *    - Badges de notification
+ *    - Bouton "Recherche ou lance une conversation"
+ *    - Items nav DM (Amis, Nitro, Boutique, Quêtes)
+ *    - Sélecteurs Midnight exacts en complément
  * ═══════════════════════════════════════════════════
  */
 
 /* ── En-têtes de catégorie ────────────────────────── */
 #app-mount [class*="sidebarList_"] [class*="header_"],
 #app-mount [class*="sidebarList_"] [class*="categoryBar_"],
-#app-mount [class*="sidebarList_"] [class*="categoryHeader_"] {
+#app-mount [class*="sidebarList_"] [class*="categoryHeader_"],
+.sidebarList__5e434 [class*="header_"],
+.sidebarList__5e434 [class*="categoryHeader_"] {
   background:      transparent !important;
   border:          none !important;
   border-radius:   0 !important;
@@ -37,44 +41,51 @@
 }
 
 /* ── Items de salon ───────────────────────────────── */
-#app-mount [class*="sidebarList_"] li [class*="wrapper_"] {
+#app-mount [class*="sidebarList_"] li [class*="wrapper_"],
+.sidebarList__5e434 li [class*="wrapper_"] {
   border-radius: var(--lg-rsm) !important;
   margin:        1px 6px !important;
   transition:    background 120ms ease !important;
 }
-#app-mount [class*="sidebarList_"] li [class*="wrapper_"]:hover {
+#app-mount [class*="sidebarList_"] li [class*="wrapper_"]:hover,
+.sidebarList__5e434 li [class*="wrapper_"]:hover {
   background-color: var(--lg-hover) !important;
 }
 
-/* ── Salon sélectionné — barre gauche Shine ───────── */
-#app-mount [class*="sidebarList_"] [class*="modeSelected_"] {
+/* ── Salon sélectionné — barre gauche ─────────────── */
+#app-mount [class*="sidebarList_"] [class*="modeSelected_"],
+.sidebarList__5e434 [class*="modeSelected_"] {
   background-color: var(--lg-sel) !important;
   box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.88) !important;
 }
 
-/* ── Salon avec mention / non-lu ──────────────────── */
+/* ── Salon non-lu ─────────────────────────────────── */
 #app-mount [class*="sidebarList_"] [class*="modeUnread_"] {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* ── Items DM (solo + groupe) ─────────────────────── */
-#app-mount [class*="privateChannels_"] [class*="interactive_"] {
+#app-mount [class*="privateChannels_"] [class*="interactive_"],
+.privateChannels_e6b769 [class*="interactive_"] {
   border-radius: var(--lg-rsm) !important;
   margin:        1px 6px !important;
   transition:    background 120ms ease !important;
 }
-#app-mount [class*="privateChannels_"] [class*="interactive_"]:hover {
+#app-mount [class*="privateChannels_"] [class*="interactive_"]:hover,
+.privateChannels_e6b769 [class*="interactive_"]:hover {
   background: var(--lg-hover) !important;
 }
 #app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
-#app-mount [class*="privateChannels_"] [class*="selected_"] {
+#app-mount [class*="privateChannels_"] [class*="selected_"],
+.privateChannels_e6b769 [class*="interactiveSelected_"] {
   background: var(--lg-sel) !important;
   box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.70) !important;
 }
 
-/* Headers de groupes DM (MESSAGES DIRECTS, etc.) */
+/* ── Headers de groupes DM ────────────────────────── */
 #app-mount [class*="privateChannels_"] [class*="groupHeader_"],
-#app-mount [class*="privateChannels_"] [class*="header_"] {
+#app-mount [class*="privateChannels_"] [class*="header_"],
+.privateChannels_e6b769 [class*="groupHeader_"] {
   color:          rgba(255, 255, 255, 0.42) !important;
   background:     transparent !important;
   font-size:      11px !important;
@@ -84,8 +95,61 @@
   padding:        10px 8px 3px 14px !important;
 }
 
+/* ── Bouton "Recherche ou lance une conversation" ──── */
+/* Midnight: container__2637a contient ce bouton */
+#app-mount [class*="container__2637"] [class*="search"],
+#app-mount [class*="container__2637"] [class*="Search"],
+#app-mount [class*="sidebarList_"] [class*="dmSearch_"],
+#app-mount [class*="sidebarList_"] [class*="findFriend_"],
+#app-mount [class*="sidebarList_"] [class*="filterInput_"],
+#app-mount [class*="sidebarList_"] [class*="openDM_"],
+#app-mount [class*="privateChannels_"] [class*="searchBar_"],
+#app-mount [class*="privateChannels_"] > * > [class*="searchBar_"] {
+  background:    rgba(255, 255, 255, 0.09) !important;
+  border:        1px solid rgba(255, 255, 255, 0.20) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.40) inset !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: border-color 200ms ease !important;
+}
+#app-mount [class*="container__2637"] [class*="search"]:focus-within,
+#app-mount [class*="privateChannels_"] [class*="searchBar_"]:focus-within {
+  border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+/* ── Items nav sidebar DM (Amis, Nitro, Boutique) ─── */
+/* Midnight: channel__972a0 */
+.channel__972a0,
+#app-mount [class*="sidebarList_"] [class*="linkTop_"],
+#app-mount [class*="sidebarList_"] [class*="wrapperDefaultText_"],
+#app-mount [class*="privateChannels_"] [class*="linkTop_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin:        1px 4px !important;
+  transition:    background 120ms ease !important;
+}
+.channel__972a0:hover,
+#app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover {
+  background: var(--lg-hover) !important;
+}
+
+/* ── Items DM solo/groupe dans le scroller ─────────── */
+#app-mount [class*="privateChannels_"] [class*="channel_"],
+#app-mount [class*="scroller__99"] [class*="channel_"] {
+  border-radius: var(--lg-rsm) !important;
+  margin:        1px 4px !important;
+  transition:    background 120ms ease !important;
+}
+#app-mount [class*="privateChannels_"] [class*="channel_"]:hover,
+#app-mount [class*="scroller__99"] [class*="channel_"]:hover {
+  background: var(--lg-hover) !important;
+}
+
 /* ── Badges notifications ─────────────────────────── */
-#app-mount [class*="numberBadge_"] {
+#app-mount [class*="numberBadge_"],
+#app-mount [class*="sidebarList_"] [class*="badge_"] {
   background-color: #ed4245 !important;
   border-radius:    99px !important;
   font-size:        11px !important;
@@ -93,5 +157,15 @@
   box-shadow:       0 2px 6px rgba(237, 66, 69, 0.55) !important;
 }
 
-/* Note : panels_ (barre utilisateur bas) est géré dans 07-profile.css
-   avec le fog effect. Ne pas dupliquer ici. */
+/* ── Midnight exact — inner containers ────────────── */
+.scroller__629e4,
+#app-mount [class*="scroller__629"] {
+  margin-bottom: 0 !important;
+}
+.container__2637a,
+#app-mount [class*="container__2637"] {
+  background:     none !important;
+  padding-bottom: 0 !important;
+}
+
+/* Note : panels_ (barre utilisateur bas) est géré dans 07-profile.css */
