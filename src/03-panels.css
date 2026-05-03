@@ -149,9 +149,11 @@
 ══════════════════════════════════════════════════ */
 
 /* ── Colonne serveurs ─────────────────────────────── */
+/* margin-bottom = panels height + gap → aligne le bas du verre
+   avec le bas de sidebarList (idem responsive user panel)       */
 #app-mount [class*="guilds_"],
 .guilds__5e434 {
-  margin:   var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
+  margin:   var(--lg-gap) 0 calc(var(--custom-app-panels-height, 0) + var(--lg-gap)) var(--lg-gap) !important;
   overflow: visible !important;   /* pills de sélection non clippées */
   flex:     0 0 auto !important;
 }
@@ -160,8 +162,7 @@
 /* PAS de overflow:hidden — Discord gère scroll interne */
 #app-mount [class*="sidebarList_"],
 .sidebarList__5e434 {
-  margin:          var(--lg-gap) 0 var(--lg-gap) var(--lg-gap) !important;
-  margin-bottom:   calc(var(--custom-app-panels-height, 0) + var(--lg-gap)) !important;
+  margin:          var(--lg-gap) 0 calc(var(--custom-app-panels-height, 0) + var(--lg-gap)) var(--lg-gap) !important;
   flex:            0 0 auto !important;
 }
 
