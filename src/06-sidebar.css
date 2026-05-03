@@ -199,9 +199,13 @@
 }
 
 /* ── Midnight exact — inner containers ────────────── */
+/* scroller__629e4 = scroller interne de la sidebarList (canaux/DMs)
+   padding-bottom = hauteur du user panel + gap → le dernier item
+   reste visible au-dessus du panneau utilisateur                  */
 .scroller__629e4,
 #app-mount [class*="scroller__629"] {
-  margin-bottom: 0 !important;
+  margin-bottom:  0 !important;
+  padding-bottom: calc(var(--custom-app-panels-height, 52px) + var(--lg-gap)) !important;
 }
 .container__2637a,
 #app-mount [class*="container__2637"] {
