@@ -19,8 +19,13 @@
   background: transparent !important;
 }
 
+/* Midnight: #app-mount::backdrop { display: none } */
+#app-mount::backdrop {
+  display: none !important;
+}
+
 /* ── Outer wrappers Discord (chat, page, layer, base) ── */
-/* Midnight: chat_f75fb0 outer group, container__133bf, page__5e434 */
+/* Midnight: chat_f75fb0, container__133bf, page__5e434 */
 .chat_f75fb0,
 .container__133bf,
 .page__5e434,
@@ -31,6 +36,11 @@
 #app-mount [class*="page_"],
 #app-mount [class*="mainContent_"] {
   background-color: transparent !important;
+}
+
+/* Midnight: chat_f75fb0 { border: none } */
+.chat_f75fb0 {
+  border: none !important;
 }
 
 /* ── Wrappers opaques intérieurs ───────────────────── */
@@ -103,6 +113,14 @@
   background: none !important;
 }
 
+/* Midnight: chat_ee72fa::before { display: none } */
+.chat_ee72fa::before,
+.chat_fb64c9::before,
+#app-mount [class*="chat_ee72"]::before,
+#app-mount [class*="chat_fb64"]::before {
+  display: none !important;
+}
+
 /* ── New thread panel ─────────────────────────────── */
 /* Midnight: container_fb64c9 */
 .container_fb64c9,
@@ -116,11 +134,28 @@
   background: none !important;
   border: none !important;
 }
+/* Midnight: container__01ae2 { padding-left: ... } */
+.container__01ae2 {
+  padding-left: calc((var(--lg-gap) - 8px)) !important;
+}
+
+/* ── VC chat layer wrapper layout ─────────────────── */
+/* Midnight: page__5e434 > div > .chatLayerWrapper__01ae2 */
+.page__5e434 > div > .chatLayerWrapper__01ae2 {
+  margin: 0 var(--lg-gap) var(--lg-gap) 0 !important;
+  height: calc(100% - var(--lg-gap)) !important;
+}
 
 /* ── Quests outer ─────────────────────────────────── */
 /* Midnight: container__955a3 */
 .container__955a3 {
   border: none !important;
+}
+
+/* ── Nitro shop inner ─────────────────────────────── */
+/* Midnight: shop__08415 { margin-top } */
+.shop__08415 {
+  margin-top: calc(var(--custom-channel-header-height, 48px) * -1 - 16px) !important;
 }
 
 /* ── Settings ─────────────────────────────────────── */
@@ -132,6 +167,13 @@
 #app-mount [class*="contentRegion_"],
 #app-mount [class*="contentRegionScroller_"] {
   background: none !important;
+}
+
+/* ── Settings sidebar spacing ─────────────────────── */
+/* Midnight: sidebarContainer__656be { margin-inline-start } */
+.sidebarContainer__656be,
+#app-mount [class*="sidebarContainer_"] {
+  margin-inline-start: var(--lg-gap) !important;
 }
 
 /* ── Boosts page ──────────────────────────────────── */
@@ -186,7 +228,15 @@
 .sidebar__5e434::after {
   display: none !important;
 }
-/* Midnight: server banner fixes */
+
+/* ── Backdrop ─────────────────────────────────────── */
+/* Midnight: backdrop__8a7fc { background-color: var(--bg-4) } */
+.backdrop__8a7fc,
+#app-mount [class*="backdrop__8a7"] {
+  background-color: rgba(0, 0, 0, 0.70) !important;
+}
+
+/* ── Server banner fixes ──────────────────────────── */
 .bannerImage_f37cb1,
 .bannerImg_f37cb1,
 #app-mount [class*="bannerImage_"],
@@ -208,6 +258,27 @@
 /* Midnight: chat outer left border */
 .page__5e434 > div > .chat_f75fb0 > .content_f75fb0 {
   border-left: none !important;
+}
+
+/* ── container_c8ffbb / membersWrap_c8ffbb layout ─── */
+/* Midnight: overflow: hidden; height: auto; min-width: fit-content */
+.container_c8ffbb,
+.content_f75fb0 > .membersWrap_c8ffbb {
+  overflow: hidden !important;
+  height: auto !important;
+  min-width: fit-content !important;
+}
+
+/* ── VC full-screen layout ───────────────────────── */
+/* Midnight: wrapper_cb9592.fullScreen_cb9592 { margin, width, height } */
+.wrapper_cb9592.fullScreen_cb9592 {
+  margin-top:  var(--lg-gap) !important;
+  margin-left: var(--lg-gap) !important;
+  width:  calc(100% - var(--lg-gap)) !important;
+  height: calc(100% - var(--lg-gap)) !important;
+}
+.wrapper_cb9592.fullScreen_cb9592 + div + div .container__01ae2 {
+  margin-top: var(--lg-gap) !important;
 }
 
 /* ── Spotify Vencord plugin ───────────────────────── */

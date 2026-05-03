@@ -4,12 +4,13 @@
  *  Liquid Glass Discord Theme
  *
  *  Couvre tous les éléments secondaires :
- *    - Paramètres
+ *    - Paramètres (sidebar, items, séparateurs)
  *    - Active Now cards
  *    - VC call grid & stream view
  *    - Forum post cards
  *    - Sélection texte
- *    - Voice participants
+ *    - Badges / Bot tags / Switches / Réactions
+ *    - Color overrides Midnight complets
  *    - Midnight hash selectors exacts
  * ═══════════════════════════════════════════════════
  */
@@ -29,26 +30,45 @@
   background: transparent !important;
 }
 
-/* Sidebar paramètres — fond glass très léger */
+/* Sidebar paramètres (Midnight: sidebar__409aa, sidebarRegionScroller__23e6b) */
+.sidebar__409aa,
+.sidebarRegionScroller__23e6b,
+#app-mount [class*="sidebar__409"],
 #app-mount [class*="sidebarRegionScroller_"] {
-  background: rgba(255, 255, 255, 0.06) !important;
+  background: rgba(0, 0, 0, 0.30) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Midnight: fixedContent__409aa::after — fade gradient */
+.fixedContent__409aa::after,
+#app-mount [class*="fixedContent__409"]::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.30), transparent) !important;
+}
+
+/* Midnight: fixedContent__409aa .searchBarContainer wrapper */
+.fixedContent__409aa .searchBarContainer_cf016e .wrapper__72c38,
+#app-mount [class*="fixedContent_"] [class*="searchBarContainer_"] [class*="wrapper_"] {
+  background-color: rgba(0, 0, 0, 0.50) !important;
+  border-radius: var(--lg-rsm) !important;
 }
 
 /* Midnight: side_aa8da2 .item_aa8da2 — settings items */
 .side_aa8da2 .item_aa8da2,
 #app-mount [class*="side_"] [class*="item_"] {
   border-radius: var(--lg-rsm) !important;
-  transition:    background 120ms ease !important;
+  transition:    background 120ms ease, margin-left var(--list-item-transition) !important;
   color:         rgba(255, 255, 255, 0.70) !important;
+  will-change:   margin-left !important;
 }
 .side_aa8da2 .item_aa8da2:hover,
 #app-mount [class*="side_"] [class*="item_"]:hover {
-  background: var(--lg-hover) !important;
+  background:  var(--lg-hover) !important;
+  margin-left: 10px !important;
 }
 #app-mount [class*="side_"] [class*="selected_"],
-.side_aa8da2 .item_aa8da2.selected__3af7f {
-  background: var(--lg-sel) !important;
-  color:      rgba(255, 255, 255, 0.95) !important;
+.side_aa8da2 .item_aa8da2.selected_aa8da2 {
+  background:  var(--lg-sel) !important;
+  color:       rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Séparateurs dans la sidebar paramètres */
@@ -134,12 +154,28 @@
   background: transparent !important;
 }
 
+/* Midnight: panel__5dec7, container__722ff — transparent */
+.panel__5dec7,
+.container__722ff,
+#app-mount [class*="panel__5dec"],
+#app-mount [class*="container__722ff"],
+#app-mount [class*="channelChatWrapper_"] {
+  background: none !important;
+}
+
 /* Tiles vidéo / avatar dans la grille */
 #app-mount [class*="chatContent_"] [class*="grid_"],
 #app-mount [class*="tile_"],
 #app-mount [class*="voiceTile_"] {
   border-radius: var(--lg-rsm) !important;
   overflow:      hidden !important;
+}
+
+/* Midnight: colorable_f1ceac.primaryDark_f1ceac, reaction_f8896c */
+.colorable_f1ceac.primaryDark_f1ceac,
+.reaction_f8896c,
+#app-mount [class*="colorable_"][class*="primaryDark_"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 #app-mount [class*="focusRing_"],
@@ -264,7 +300,6 @@
 
 /* ══════════════════════════════════════════════════
    POPUP ACTIVITÉ EN APPEL
-   "Tu cherches quelque chose à faire ?"
 ══════════════════════════════════════════════════ */
 
 #app-mount [class*="activityShelf_"],
@@ -297,20 +332,6 @@
 }
 
 /* ══════════════════════════════════════════════════
-   FORUM POST CARDS
-══════════════════════════════════════════════════ */
-
-#app-mount [class*="mainCard_f369"] {
-  background:    rgba(255, 255, 255, 0.06) !important;
-  border:        1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--lg-r) !important;
-  transition:    border-color 150ms ease !important;
-}
-#app-mount [class*="mainCard_f369"]:hover {
-  border-color: rgba(255, 255, 255, 0.24) !important;
-}
-
-/* ══════════════════════════════════════════════════
    ACTIVE NOW — STREAM LIVE CARD
 ══════════════════════════════════════════════════ */
 
@@ -327,37 +348,6 @@
   border:        1px solid rgba(255, 255, 255, 0.14) !important;
   border-radius: var(--lg-r) !important;
   overflow:      hidden !important;
-}
-
-/* ══════════════════════════════════════════════════
-   MISC RESETS SUPPLÉMENTAIRES
-   Midnight: wrappers VC/home/thread transparents
-══════════════════════════════════════════════════ */
-
-/* Nitro / Quêtes wrappers */
-#app-mount [class*="applicationStore_"],
-#app-mount [class*="container__955"] {
-  background: transparent !important;
-  border:     none !important;
-}
-
-/* VC outer wrappers */
-#app-mount [class*="channelChatWrapper_"],
-#app-mount [class*="container__722ff"] {
-  background: transparent !important;
-}
-
-/* Thread panel */
-#app-mount [class*="container_fb64"] {
-  background: transparent !important;
-}
-
-/* Nitro home inner */
-.homeWrapper__0920e,
-.applicationStore_f07d62,
-#app-mount [class*="homeWrapper_"] {
-  background: transparent !important;
-  border:     none !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -415,8 +405,10 @@
 
 /* ══════════════════════════════════════════════════
    BOT TAG
+   Midnight: botTagRegular__82f07 { background: var(--accent-2) }
 ══════════════════════════════════════════════════ */
 
+.botTagRegular__82f07,
 #app-mount [class*="botTagRegular_"],
 #app-mount [class*="botTag_"] {
   background:    rgba(130, 180, 255, 0.25) !important;
@@ -435,12 +427,156 @@
 }
 
 /* ══════════════════════════════════════════════════
+   BADGES
+   Midnight: badge_c3d04b, textBadge__2b1f5
+══════════════════════════════════════════════════ */
+
+/* Badge de notification (Midnight: badge_c99c29, iconBadge__9293f, mentionsBar__7aaec) */
+.badge_c99c29,
+.iconBadge__9293f,
+.mentionsBar__7aaec,
+.mention__3b95d,
+#app-mount [class*="badge_"][class*="numberBadge_"] {
+  background-color: var(--accent-new) !important;
+}
+
+/* Badge de texte (Midnight: textBadge__2b1f5) */
+.textBadge__2b1f5 {
+  color: var(--text-0) !important;
+}
+
+/* Badge avec --primary-500 override */
+.textBadge__2b1f5[style='background-color: var(--primary-500);'] {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Midnight: addFriend__133bf hover/selected */
+#app-mount .addFriend__133bf:hover {
+  color: var(--text-0) !important;
+}
+#app-mount .addFriend__133bf[aria-selected=true] {
+  background-color: var(--accent-5) !important;
+  color: var(--text-0) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SWITCHES / TOGGLES
+   Midnight: container__3f21e
+══════════════════════════════════════════════════ */
+
+/* Vencord switch support */
+.container__3f21e,
+[data-nav-anchor-key="vencord_plugins_category"] .vc-switch-container {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  transition: background-color 0.2s ease !important;
+}
+.container__3f21e.checked__3f21e,
+[data-nav-anchor-key="vencord_plugins_category"] .vc-switch-container.vc-switch-checked {
+  background-color: var(--accent-2) !important;
+}
+
+/* Slider SVG fill */
+.container__3f21e .slider__3f21e > svg > path,
+.vc-switch-container .vc-switch-slider > svg > path {
+  fill: rgba(255, 255, 255, 0.14) !important;
+  transition: fill 0.2s ease !important;
+}
+.container__3f21e.checked__3f21e .slider__3f21e > svg > path,
+.vc-switch-container.vc-switch-checked .vc-switch-slider > svg > path {
+  fill: var(--accent-2) !important;
+}
+
+/* Switch indicator (switchIndicator_a28278) */
+.switchIndicator_a28278 {
+  transition: 0.2s ease !important;
+}
+.switchIndicator_a28278[style^='opacity: 1; background-color: rgb(88, 101, 242)'] {
+  background-color: var(--accent-3) !important;
+}
+.switchIndicator_a28278[style^='opacity: 1; background-color: rgb(68, 82, 187)'] {
+  background-color: var(--accent-4) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   STICKER PICKER / WRAPPER
+   Midnight: wrapper__44df5
+══════════════════════════════════════════════════ */
+
+.wrapper__44df5,
+#app-mount [class*="wrapper__44df"] {
+  background-color: rgba(0, 0, 0, 0.70) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   COULEURS STATUTS — overrides SVG
+   Midnight: rect[fill='...'] overrides
+══════════════════════════════════════════════════ */
+
+/* Online */
+rect[fill='#45a366'],
+path[fill='#45a366'],
+path[fill='var(--status-positive)'] { fill: var(--online) !important; }
+.status_a423bd[style='background-color: rgb(69, 163, 102);'] {
+  background-color: var(--online) !important;
+}
+
+/* Idle */
+rect[fill='#ffc04e'] { fill: var(--idle) !important; }
+.status_a423bd[style='background-color: rgb(255, 192, 78);'] {
+  background-color: var(--idle) !important;
+}
+
+/* DND */
+rect[fill='#da3e44'] { fill: var(--dnd) !important; }
+.status_a423bd[style='background-color: rgb(218, 62, 68);'] {
+  background-color: var(--dnd) !important;
+}
+
+/* Offline */
+rect[fill='#84858d'] { fill: var(--offline) !important; }
+.status_a423bd[style='background-color: rgb(132, 133, 141);'] {
+  background-color: var(--offline) !important;
+}
+
+/* Streaming */
+rect[fill='#9147ff'] { fill: var(--streaming) !important; }
+
+/* Mentioned message bar (Midnight: mentioned__5126c::before) */
+.colorPickerSwatch__459fb[style="background-color: rgb(88, 101, 242);"],
+.newBadge_faa96b,
+.mentioned__5126c:before {
+  background-color: var(--accent-2) !important;
+}
+
+/* Reply bar */
+.replying__5126c:before {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   POLL
+   Midnight: polls-victor-fill, polls-voted-fill
+══════════════════════════════════════════════════ */
+
+#app-mount [class*="poll_"] [class*="winner_"],
+#app-mount [class*="pollResult_"][class*="winning_"] {
+  background: color-mix(in hsl, var(--green-2), transparent 90%) !important;
+}
+#app-mount [class*="poll_"] [class*="voted_"],
+#app-mount [class*="pollResult_"][class*="voted_"] {
+  background: color-mix(in hsl, var(--accent-2), transparent 90%) !important;
+}
+
+/* ══════════════════════════════════════════════════
    SÉLECTION TEXTE
 ══════════════════════════════════════════════════ */
 
-::selection {
-  background: rgba(130, 180, 255, 0.35) !important;
-  color:      rgba(255, 255, 255, 1.00) !important;
+::selection,
+:is(div, span, code, a)::selection,
+.highlight {
+  background: var(--accent-3) !important;
+  color:      var(--text-0)   !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -449,6 +585,9 @@
 
 #vc-spotify-player {
   background: transparent !important;
+}
+#vc-spotify-player {
+  --vc-spotify-green: var(--accent-2) !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -492,7 +631,8 @@
 }
 
 /* Midnight: message reply input */
-.replyInput__5ba62 {
+.replyInput__5ba62,
+#app-mount [class*="replyInput_"] {
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -573,4 +713,51 @@
 .bottom__7aaec,
 .unreadBottom__629e4 {
   bottom: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RÉSULTATS DE RECHERCHE
+   Midnight: result__2dc39
+══════════════════════════════════════════════════ */
+
+.result__2dc39::after {
+  display: none !important;
+}
+.result__2dc39:hover {
+  outline: 2px solid var(--accent-2) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   MISC RESETS SUPPLÉMENTAIRES
+══════════════════════════════════════════════════ */
+
+/* Nitro / Quêtes wrappers */
+#app-mount [class*="applicationStore_"],
+#app-mount [class*="container__955"] {
+  background: transparent !important;
+  border:     none !important;
+}
+
+/* Thread panel */
+#app-mount [class*="container_fb64"] {
+  background: transparent !important;
+}
+
+/* Nitro home inner */
+.homeWrapper__0920e,
+.applicationStore_f07d62,
+#app-mount [class*="homeWrapper_"] {
+  background: transparent !important;
+  border:     none !important;
+}
+
+/* Midnight: textContentFooter gradient */
+.textContentFooter__9a337 {
+  background: linear-gradient(0deg, rgba(0,0,0,0.70), transparent) !important;
+}
+
+/* Midnight: flash highlight */
+.flash__03436[data-flash='true'] {
+  background: var(--reply) !important;
 }

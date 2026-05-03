@@ -3,10 +3,10 @@
  *  00 — VARIABLES & DESIGN TOKENS
  *  Liquid Glass Discord Theme
  *
- *  Deux couches :
+ *  Trois couches :
  *    1. Variables LG (--lg-*) — système visuel glass
- *    2. Overrides tokens Discord — inspiré Midnight
- *       colors.css pour cohérence couleurs/états
+ *    2. Palette Midnight  (--bg-*, --accent-*, --text-*, --online…)
+ *    3. Overrides tokens Discord — full Midnight colors.css port
  * ═══════════════════════════════════════════════════
  */
 
@@ -65,6 +65,7 @@
   --panel-backdrop-filter: var(--lg-blur);
   --border-thickness: 1px;
   --divider-thickness: 2px;
+  --border-hover-transition: 0.2s ease;
 }
 
 /* ══════════════════════════════════════════════════
@@ -105,8 +106,85 @@
 }
 
 /* ══════════════════════════════════════════════════
+   MIDNIGHT PALETTE — SURFACES & ÉTATS
+   Mapped to Liquid Glass glass values
+══════════════════════════════════════════════════ */
+
+:root {
+  /* ── Surfaces adaptées glass ───────────────────── */
+  --bg-1: rgba(255, 255, 255, 0.08);   /* interactive hover surface */
+  --bg-2: rgba(0, 0, 0, 0.45);         /* medium dark (cards, inputs) */
+  --bg-3: rgba(0, 0, 0, 0.62);         /* dark surface (menus/popouts) */
+  --bg-4: rgba(0, 0, 0, 0.78);         /* darkest (modals) */
+
+  /* ── États interactifs ─────────────────────────── */
+  --hover:         rgba(255, 255, 255, 0.06);
+  --active:        rgba(255, 255, 255, 0.10);
+  --active-2:      rgba(255, 255, 255, 0.16);
+  --message-hover: rgba(255, 255, 255, 0.03);
+
+  /* ── Accent blurple ─────────────────────────────── */
+  --accent-1:   var(--blue-1);
+  --accent-2:   var(--blue-2);
+  --accent-3:   var(--blue-3);
+  --accent-4:   var(--blue-4);
+  --accent-5:   var(--blue-5);
+  --accent-new: var(--blue-2);
+
+  /* ── Gradients mentions/reply ───────────────────── */
+  --mention:       linear-gradient(to right, color-mix(in hsl, var(--blue-2), transparent 90%) 40%, transparent);
+  --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--blue-2), transparent 95%) 40%, transparent);
+  --reply:         linear-gradient(to right, color-mix(in hsl, hsl(220, 20%, 60%), transparent 90%) 40%, transparent);
+  --reply-hover:   linear-gradient(to right, color-mix(in hsl, hsl(220, 20%, 60%), transparent 95%) 40%, transparent);
+
+  /* ── Statuts présence (Midnight: --online, --dnd…) ─ */
+  --online:    var(--green-2);
+  --dnd:       var(--red-2);
+  --idle:      var(--yellow-2);
+  --streaming: var(--purple-2);
+  --offline:   hsl(220, 15%, 40%);
+
+  /* ── Texte Midnight (--text-0…5) ────────────────── */
+  --text-0: rgba(0, 0, 0, 0.90);         /* inverted (on accent) */
+  --text-1: hsl(220, 45%, 95%);          /* primary */
+  --text-2: hsl(220, 25%, 70%);          /* secondary */
+  --text-3: hsl(220, 20%, 60%);          /* tertiary */
+  --text-4: hsl(220, 15%, 40%);          /* muted */
+  --text-5: hsl(220, 15%, 25%);          /* faint */
+
+  /* ── Bordures Midnight ───────────────────────────── */
+  --border-light:  rgba(255, 255, 255, 0.10);
+  --border:        rgba(255, 255, 255, 0.18);
+  --button-border: rgba(255, 255, 255, 0.20);
+
+  /* ── Fenêtre (top-bar / window controls) ─────────── */
+  --window-control-size:       14px;
+  --window-controls-padding:   calc(var(--gap) - (var(--window-control-size) / 2) + 1px);
+  --top-bar-height:             32px;
+  --custom-app-top-bar-height: var(--top-bar-height);
+
+  /* ── Animations ─────────────────────────────────── */
+  --list-item-transition:    0.2s ease;
+  --dms-icon-svg-transition: 0.4s ease;
+
+  /* ── DM home button (Midnight: dms-button.css) ──── */
+  --dms-icon-svg-url:   url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg');
+  --dms-icon-svg-size:  90%;
+  --dms-icon-color-before: rgba(255, 255, 255, 0.42);
+  --dms-icon-color-after:  rgba(255, 255, 255, 1.00);
+  --dms-background-color:  linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+
+  /* ── Radius (Midnight compat) ──────────────────── */
+  --radius-xs: var(--lg-rxs);
+  --radius-sm: var(--lg-rsm);
+  --radius-md: var(--lg-rsm);
+  --radius-lg: var(--lg-r);
+}
+
+/* ══════════════════════════════════════════════════
    DISCORD CSS VARIABLE OVERRIDES
-   Liquid Glass palette + Midnight status colors
+   Full port de midnight-discord/src/colors.css
+   → valeurs adaptées Liquid Glass (glass/transparent)
 ══════════════════════════════════════════════════ */
 
 :root,
@@ -134,9 +212,9 @@
   --bg-surface-overlay-selected:     rgba(255,255,255,0.08) !important;
   --surface-overlay:                 transparent !important;
   --surface-raised:                  transparent !important;
-  --background-base-lower:           transparent !important;
-  --background-base-low:             transparent !important;
-  --background-base-lowest:          transparent !important;
+  --background-base-lower:           var(--lg-glass) !important;
+  --background-base-low:             var(--lg-glass) !important;
+  --background-base-lowest:          rgba(0,0,0,0.70) !important;
 
   /* ── Hover / sélection ─────────────────────────── */
   --background-message-hover:        rgba(255,255,255,0.03) !important;
@@ -144,80 +222,132 @@
   --background-modifier-active:      rgba(255,255,255,0.10) !important;
   --background-modifier-selected:    rgba(255,255,255,0.11) !important;
   --background-modifier-accent:      rgba(255,255,255,0.05) !important;
+  --background-mod-subtle:           rgba(255,255,255,0.04) !important;
+  --background-mod-normal:           rgba(255,255,255,0.07) !important;
+  --background-mod-strong:           rgba(255,255,255,0.12) !important;
+  --interactive-background-hover:    rgba(255,255,255,0.06) !important;
+  --interactive-background-active:   rgba(255,255,255,0.10) !important;
+  --interactive-background-selected: rgba(255,255,255,0.11) !important;
 
-  /* ── Inputs ────────────────────────────────────── */
+  /* ── Inputs / modales ──────────────────────────── */
   --channeltextarea-background:      rgba(255,255,255,0.07) !important;
   --deprecated-text-input-bg:        rgba(255,255,255,0.07) !important;
   --input-background:                rgba(255,255,255,0.07) !important;
+  --input-background-default:        rgba(255,255,255,0.08) !important;
+  --input-border-default:            rgba(255,255,255,0.10) !important;
+  --input-border-hover:              rgba(255,255,255,0.22) !important;
+  --input-border-active:             var(--blue-2)          !important;
+  --input-placeholder-text-default:  rgba(255,255,255,0.30) !important;
   --modal-background:                rgba(0, 0, 0, 0.97)   !important;
+  --modal-footer-background:         rgba(0, 0, 0, 0.30)   !important;
+  --card-background-default:         rgba(255,255,255,0.06) !important;
+  --background-code:                 rgba(0, 0, 0, 0.35)   !important;
+  --background-scrim:                rgba(0, 0, 0, 0.70)   !important;
 
   /* ── Texte blanc ───────────────────────────────── */
   --text-normal:            rgba(255, 255, 255, 0.90) !important;
   --text-muted:             rgba(255, 255, 255, 0.42) !important;
   --text-faint:             rgba(255, 255, 255, 0.22) !important;
-  --text-link:              rgba(130, 210, 255, 1.00) !important;
-  --text-positive:          rgba( 80, 220, 120, 1.00) !important;
-  --text-warning:           rgba(255, 200,  80, 1.00) !important;
-  --text-danger:            rgba(255,  90,  90, 1.00) !important;
-  --header-primary:         rgba(255, 255, 255, 0.95) !important;
-  --header-secondary:       rgba(255, 255, 255, 0.52) !important;
-
-  /* Midnight text tokens */
-  --text-0: rgba(0, 0, 0, 0.90) !important;
-  --text-1: hsl(220, 45%, 95%) !important;
-  --text-2: hsl(220, 25%, 70%) !important;
-  --text-3: hsl(220, 20%, 60%) !important;
-  --text-4: hsl(220, 15%, 40%) !important;
-  --text-5: hsl(220, 15%, 25%) !important;
+  --text-link:              var(--blue-1)              !important;
+  --text-positive:          var(--green-1)             !important;
+  --text-warning:           var(--yellow-1)            !important;
+  --text-danger:            var(--red-1)               !important;
+  --text-brand:             var(--blue-1)              !important;
+  --text-default:           hsl(220, 20%, 60%)         !important;
+  --text-strong:            hsl(220, 25%, 70%)         !important;
+  --text-subtle:            hsl(220, 15%, 40%)         !important;
+  --header-primary:         rgba(255, 255, 255, 0.95)  !important;
+  --header-secondary:       rgba(255, 255, 255, 0.52)  !important;
 
   /* ── Channels & icônes ─────────────────────────── */
   --channels-default:                rgba(255,255,255,0.60) !important;
   --channel-icon:                    rgba(255,255,255,0.42) !important;
   --channel-text-area-placeholder:   rgba(255,255,255,0.28) !important;
+  --icon-default:                    rgba(255,255,255,0.42) !important;
+  --icon-muted:                      rgba(255,255,255,0.28) !important;
+  --icon-subtle:                     rgba(255,255,255,0.35) !important;
+  --icon-strong:                     rgba(255,255,255,0.60) !important;
+  --icon-link:                       var(--blue-1)          !important;
+  --icon-status-online:              var(--green-2)         !important;
+  --icon-status-dnd:                 var(--red-2)           !important;
+  --icon-status-idle:                var(--yellow-2)        !important;
+  --icon-status-offline:             hsl(220, 15%, 40%)     !important;
 
   /* ── Interactifs ───────────────────────────────── */
-  --interactive-normal:   rgba(255,255,255,0.75) !important;
-  --interactive-hover:    rgba(255,255,255,0.92) !important;
-  --interactive-active:   rgba(255,255,255,1.00) !important;
-  --interactive-muted:    rgba(255,255,255,0.32) !important;
+  --interactive-normal:              rgba(255,255,255,0.75) !important;
+  --interactive-hover:               rgba(255,255,255,0.92) !important;
+  --interactive-active:              rgba(255,255,255,1.00) !important;
+  --interactive-muted:               rgba(255,255,255,0.32) !important;
+  --interactive-text-default:        hsl(220, 15%, 40%)     !important;
+  --interactive-text-hover:          hsl(220, 20%, 60%)     !important;
+  --interactive-text-active:         hsl(220, 25%, 70%)     !important;
+  --interactive-icon-default:        rgba(255,255,255,0.42) !important;
+  --interactive-icon-hover:          rgba(255,255,255,0.70) !important;
+  --interactive-icon-active:         rgba(255,255,255,0.92) !important;
 
   /* ── Séparateurs / bordures ────────────────────── */
-  --background-modifier-border: rgba(255,255,255,0.08) !important;
-  --border-subtle:              rgba(255,255,255,0.12) !important;
-  --border-normal:              rgba(255,255,255,0.18) !important;
-  --border-strong:              rgba(255,255,255,0.28) !important;
-  --border-hover:               rgba(255,255,255,0.55) !important;
+  --background-modifier-border:      rgba(255,255,255,0.08) !important;
+  --border-subtle:                   rgba(255,255,255,0.12) !important;
+  --border-normal:                   rgba(255,255,255,0.18) !important;
+  --border-strong:                   rgba(255,255,255,0.28) !important;
+  --border-hover:                    rgba(255,255,255,0.55) !important;
+  --border-muted:                    rgba(255,255,255,0.08) !important;
+  --border-focus:                    rgba(255,255,255,0.55) !important;
+  --spine-default:                   rgba(255,255,255,0.20) !important;
 
-  /* ── Status — Midnight oklch ───────────────────── */
-  --status-positive-background: color-mix(in hsl, var(--green-2), transparent 80%) !important;
-  --status-warning-background:  color-mix(in hsl, var(--yellow-2), transparent 80%) !important;
-  --status-danger-background:   color-mix(in hsl, var(--red-2), transparent 80%) !important;
+  /* ── Status ────────────────────────────────────── */
+  --status-positive:            var(--green-2)                                          !important;
+  --status-positive-background: color-mix(in hsl, var(--green-2), transparent 80%)     !important;
+  --status-warning:             var(--yellow-2)                                         !important;
+  --status-warning-background:  color-mix(in hsl, var(--yellow-2), transparent 80%)    !important;
+  --status-danger:              var(--red-2)                                            !important;
+  --status-danger-background:   color-mix(in hsl, var(--red-2), transparent 80%)       !important;
+  --status-online:              var(--green-2)                                          !important;
+  --status-speaking:            var(--green-2)                                          !important;
+
+  /* ── Mentions ──────────────────────────────────── */
+  --mention-background:              color-mix(in hsl, var(--blue-2), transparent 90%) !important;
+  --mention-foreground:              var(--blue-1)                                     !important;
+  --message-mentioned-background-default: var(--mention)                               !important;
+  --message-mentioned-background-hover:   var(--mention-hover)                         !important;
+  --message-background-hover:             var(--message-hover)                         !important;
 
   /* ── Floating elements ─────────────────────────── */
-  --bg-floating:              rgba(6, 6, 18, 0.94) !important;
-  --bg-surface-raised:        rgba(8, 8, 22, 0.94) !important;
-  --background-surface-high:  rgba(255,255,255,0.06) !important;
-  --background-surface-higher:rgba(255,255,255,0.08) !important;
-  --background-surface-highest:rgba(255,255,255,0.10) !important;
+  --bg-floating:               rgba(6, 6, 18, 0.94)   !important;
+  --background-surface-high:   rgba(255,255,255,0.06)  !important;
+  --background-surface-higher: rgba(255,255,255,0.08)  !important;
+  --background-surface-highest:rgba(255,255,255,0.10)  !important;
+  --bg-surface-raised:         rgba(8, 8, 22, 0.94)   !important;
 
   /* ── Scrollbar ─────────────────────────────────── */
-  --scrollbar-thin-thumb:     rgba(255,255,255,0.18) !important;
-  --scrollbar-thin-track:     transparent !important;
-  --scrollbar-auto-thumb:     rgba(255,255,255,0.18) !important;
-  --scrollbar-auto-track:     transparent !important;
+  --scrollbar-thin-thumb:      rgba(255,255,255,0.18) !important;
+  --scrollbar-thin-track:      transparent             !important;
+  --scrollbar-auto-thumb:      rgba(255,255,255,0.18) !important;
+  --scrollbar-auto-track:      transparent             !important;
 
-  /* ── Chat code blocks ──────────────────────────── */
-  --background-code:          rgba(0,0,0,0.35) !important;
+  /* ── Brand / Blurple ───────────────────────────── */
+  --brand-experiment:          #5865f2               !important;
+  --bg-brand:                  rgba(88,101,242,0.90)  !important;
+  --background-brand:          var(--accent-2)        !important;
+  --badge-background-default:  var(--accent-2)        !important;
+  --control-brand-foreground:  var(--accent-2)        !important;
 
-  /* ── Brand color overrides ─────────────────────── */
-  --brand-experiment:         #5865f2 !important;
-  --bg-brand:                 rgba(88, 101, 242, 0.90) !important;
+  /* ── Checkbox / Radio ──────────────────────────── */
+  --checkbox-background-default:          rgba(255,255,255,0.07) !important;
+  --checkbox-background-hover:            rgba(255,255,255,0.10) !important;
+  --checkbox-background-selected-default: var(--accent-2)        !important;
+  --checkbox-border-default:              rgba(255,255,255,0.18) !important;
+  --radio-background-default:             rgba(255,255,255,0.07) !important;
+  --radio-background-selected-default:    var(--accent-2)        !important;
+  --radio-border-default:                 rgba(255,255,255,0.18) !important;
 
-  /* ── Radius (Midnight compat) ──────────────────── */
-  --radius-xs: var(--lg-rxs);
-  --radius-sm: var(--lg-rsm);
-  --radius-md: var(--lg-rsm);
-  --radius-lg: var(--lg-r);
+  /* ── Switch ────────────────────────────────────── */
+  --switch-background-default:            rgba(255,255,255,0.15) !important;
+  --switch-background-selected-default:   var(--accent-2)        !important;
+  --switch-border-default:                rgba(255,255,255,0.18) !important;
+
+  /* ── Home ──────────────────────────────────────── */
+  --home-background:           rgba(0,0,0,0.70) !important;
 }
 
 body {

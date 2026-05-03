@@ -7,12 +7,14 @@
  *
  *  Ce module gère :
  *    - Header de salon (subtitleContainer — Shine pill)
+ *    - chatHeaderBar (Midnight: chatHeaderBar_dc83f5)
  *    - Toolbar (pill Shine)
  *    - Hover sur les messages
  *    - Reply glass
  *    - Zone de saisie (channelTextArea Shine)
  *    - Embeds / messages / code roundness (Midnight)
- *    - Unread divider (Midnight)
+ *    - Unread divider + new messages bar
+ *    - Media container (container__8a031)
  * ═══════════════════════════════════════════════════
  */
 
@@ -68,6 +70,28 @@
   margin-bottom: 0 !important;
 }
 
+/* ── chatHeaderBar (Midnight: chatHeaderBar_dc83f5) ──
+ *  La barre de titre dans le chat (avec l'icône du salon)
+ * ─────────────────────────────────────────────────── */
+.chatHeaderBar_dc83f5,
+#app-mount [class*="chatHeaderBar_"] {
+  background:    rgba(255, 255, 255, 0.10) !important;
+  border-radius: var(--lg-rsm) !important;
+  border:        1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.32) inset !important;
+  margin:   12px 12px 0 !important;
+  padding-left: 16px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+/* Midnight: chatHeaderBar_dc83f5::after { display: none } */
+.chatHeaderBar_dc83f5::after,
+#app-mount [class*="chatHeaderBar_"]::after {
+  display: none !important;
+}
+
 /* ── Toolbar — pill Shine (scopé chatContent_) ────────
  *  Sélecteur restreint à chatContent_ pour éviter de
  *  styler les toolbar_ dans la sidebar DM ou VC.
@@ -97,6 +121,14 @@
 .message__5126c {
   border-radius: 6px !important;
   margin-left: 4px !important;
+}
+
+/* Midnight: message mention bar */
+.message__5126c.mentioned__5126c::before,
+.replying__5126c::before,
+.ephemeral__5126c::before {
+  width: 2px !important;
+  border-radius: 2px !important;
 }
 
 /* ── Reply — glass Shine ────────────────────────────── */
@@ -169,6 +201,12 @@
   margin: 0 !important;
 }
 
+/* Midnight: slateTextArea margin */
+.slateTextArea_ec4baf,
+#app-mount [class*="slateTextArea_"] {
+  margin-left: 2px !important;
+}
+
 /* ── Chat gradient mask — supprimé (Midnight) ──────── */
 /* Midnight: chatGradient__36d07 { display: none } */
 .chatGradient__36d07,
@@ -182,6 +220,19 @@
   display: none !important;
 }
 
+/* ── New messages bar (Midnight: newMessagesBar__0f481) ─ */
+.newMessagesBar__0f481,
+#app-mount [class*="newMessagesBar_"] {
+  background-color: var(--accent-3) !important;
+  border-radius: var(--lg-rsm) !important;
+}
+
+/* Alt bar button (Midnight: barButtonAlt__0f481) */
+.barButtonAlt__0f481 {
+  --control-secondary-background-default: var(--accent-3) !important;
+  --control-secondary-background-hover:   var(--accent-4) !important;
+}
+
 /* ── Unread divider (Midnight) ──────────────────────── */
 /* Midnight: divider__908e2 { border-width: 4px } */
 .divider__908e2,
@@ -190,9 +241,35 @@
   border-radius: 2px !important;
   border-color:  rgba(130, 210, 255, 0.55) !important;
 }
+/* Midnight: endCap__908e2 { margin-top } */
+.endCap__908e2 {
+  margin-top: calc(2px / -2) !important;
+}
+/* Midnight: divider content margin */
+.divider__908e2 .content__908e2 {
+  margin-top: calc(2px - 2px * 2) !important;
+}
+
+/* ── Channel bar top (barBase) ─────────────────────── */
+/* Midnight: barBase__0f481:not(.bottomBar__0f481) */
+.barBase__0f481:not(.bottomBar__0f481),
+#app-mount [class*="barBase_"]:not([class*="bottomBar_"]) {
+  top:           12px !important;
+  left:          12px !important;
+  right:         12px !important;
+  border-radius: var(--lg-rsm) !important;
+  padding:       0 8px !important;
+  border-top:    1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ── Unread/mention pills ───────────────────────────── */
+/* Midnight: bottom__7aaec, unreadBottom__629e4 */
+.bottom__7aaec,
+.unreadBottom__629e4 {
+  bottom: 0 !important;
+}
 
 /* ── Embeds (Midnight) ──────────────────────────────── */
-/* Midnight: embedFull__623de { border-radius: var(--radius-md) } */
 .embedFull__623de,
 #app-mount [class*="embedFull_"] {
   border-radius: var(--lg-rsm) !important;
@@ -222,7 +299,6 @@
 }
 
 /* ── Réactions ──────────────────────────────────────── */
-/* Midnight: reaction__23977 { border-width: 2px } */
 .reaction__23977,
 .reactionBtn__23977.forceShow__23977,
 #app-mount [class*="reaction_"] {
@@ -240,6 +316,11 @@
   border-color: rgba(255, 255, 255, 0.35) !important;
 }
 
+/* Midnight: burstGlow supprimé */
+.burstGlow__23977 {
+  display: none !important;
+}
+
 /* ── Mentions ───────────────────────────────────────── */
 #app-mount [class*="mention_"] {
   background:    rgba(130, 180, 255, 0.18) !important;
@@ -255,13 +336,9 @@
   border-radius: 4px !important;
 }
 
-/* ── Midnight: channel bar improvements ─────────────── */
-/* Midnight: barBase__0f481 — messages bar */
-.barBase__0f481:not(.bottomBar__0f481) {
-  top:           12px !important;
-  left:          12px !important;
-  right:         12px !important;
+/* ── Reply input (Midnight: replyInput__5ba62) ──────── */
+.replyInput__5ba62,
+#app-mount [class*="replyInput_"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
   border-radius: var(--lg-rsm) !important;
-  padding:       0 8px !important;
-  border-top:    1px solid rgba(255, 255, 255, 0.10) !important;
 }

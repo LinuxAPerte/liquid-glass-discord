@@ -3,14 +3,19 @@
  *  10 — MENUS CONTEXTUELS, MODALES & PROFIL
  *  Liquid Glass Discord Theme
  *
- *  Midnight transparency-blur.css inspirations :
- *    → menu_c1e9c4[role="menu"] = context menus
- *    → contentWrapper__08434   = emoji/gif panel
- *    → root__49fc1             = invite modal
- *    → outer_c0bea0            = profile popup
- *    → autocomplete__6b0e0     = autocomplete
- *    → container__55c99        = search suggestions
- *    → messagesPopoutWrap_e8b59c = inbox
+ *  Midnight selectors :
+ *    → menu_c1e9c4[role="menu"]   = context menus
+ *    → contentWrapper__08434      = emoji/gif panel
+ *    → root__49fc1                = invite modal
+ *    → outer_c0bea0               = profile popup
+ *    → autocomplete__6b0e0        = autocomplete
+ *    → container__55c99           = search suggestions
+ *    → messagesPopoutWrap_e8b59c  = inbox
+ *    → quickSelectPopout_ebaca5   = quick DM search
+ *    → voiceBar__7aaec            = VC voice bar
+ *    → mainCard_f369db            = forum cards
+ *    → accountProfileCard_a27e58  = account card
+ *    → participantsButton__211d1  = VC participants
  * ═══════════════════════════════════════════════════
  */
 
@@ -97,6 +102,19 @@
   border-radius: var(--lg-r) !important;
 }
 
+/* Quick DM search popout (Midnight: quickSelectPopout_ebaca5) */
+.quickSelectPopout_ebaca5,
+#app-mount [class*="quickSelectPopout_"] {
+  background:              rgba(6, 6, 16, 0.94) !important;
+  backdrop-filter:         blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border:        1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--lg-r) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 24px 56px 0  rgba(0, 0, 0, 0.65) !important;
+}
+
 /* Channel hover popout (Midnight: popout__76f04) */
 .popout__76f04,
 #app-mount [class*="popout_"]:not([class*="userProfileOuter_"]):not([class*="profileModal_"]) {
@@ -117,6 +135,58 @@
   background:              rgba(6, 6, 16, 0.88) !important;
   backdrop-filter:         blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* ── Voice bar (Midnight: voiceBar__7aaec) ─────────── */
+.voiceBar__7aaec,
+#app-mount [class*="voiceBar_"] {
+  background-color: rgba(6, 6, 16, 0.88) !important;
+  backdrop-filter:  blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+  box-shadow:
+    0 -0.5px 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0  0.5px 1px 0 rgba(255, 255, 255, 0.22) inset !important;
+}
+.voiceBar__7aaec .barText__7aaec,
+.voiceChannelsIcon__7aaec,
+#app-mount [class*="voiceBar_"] [class*="barText_"] {
+  color: var(--accent-2) !important;
+}
+
+/* ── Participants button (Midnight: participantsButton__211d1) ─ */
+.participantsButton__211d1,
+#app-mount [class*="participantsButton_"] {
+  background-color: rgba(6, 6, 16, 0.88) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-rsm) !important;
+  backdrop-filter:  blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* ── Account profile card (Midnight: accountProfileCard_a27e58) ─ */
+.accountProfileCard_a27e58,
+#app-mount [class*="accountProfileCard_"] {
+  background-color: rgba(6, 6, 16, 0.88) !important;
+  backdrop-filter:  blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-r) !important;
+}
+
+/* ── Forum main card (Midnight: mainCard_f369db) ───── */
+.mainCard_f369db,
+#app-mount [class*="mainCard_f369"] {
+  background:    rgba(255, 255, 255, 0.06) !important;
+  border:        1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--lg-r) !important;
+  transition:    border-color 150ms ease !important;
+  backdrop-filter: none !important;
+}
+.mainCard_f369db:hover,
+#app-mount [class*="mainCard_f369"]:hover {
+  border-color: rgba(255, 255, 255, 0.24) !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -200,6 +270,14 @@
   border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
 }
 
+/* Midnight: container__8a031 with footer — special padding */
+.container__8a031:has(> div > .footer_a55fdc) {
+  padding-bottom: 0 !important;
+}
+.container__8a031:has(> div > .footer_a55fdc) .footer_a55fdc {
+  border-radius: 0 0 var(--lg-r) var(--lg-r) !important;
+}
+
 /* ══════════════════════════════════════════════════
    PROFIL UTILISATEUR — LIQUID GLASS REDESIGN
    Midnight: outer_c0bea0 { border-radius, border }
@@ -259,6 +337,11 @@
   background:              transparent !important;
   backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
+}
+
+/* Midnight: inner_c0bea0 { border-radius } */
+.inner_c0bea0 {
+  border-radius: calc(var(--lg-r) - 4px) !important;
 }
 
 /* ── Tabs (À propos / Serveurs / Amis en commun) ─ */
@@ -443,4 +526,9 @@
   border-radius:           var(--lg-rxs) !important;
   backdrop-filter:         blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
+}
+/* Midnight: tooltipGrey color */
+.tooltipGrey_c36707 {
+  color: var(--text-3) !important;
+  background-color: var(--bg-3) !important;
 }

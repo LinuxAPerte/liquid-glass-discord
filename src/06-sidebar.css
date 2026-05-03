@@ -12,6 +12,7 @@
  *    - Badges de notification
  *    - Bouton "Recherche ou lance une conversation"
  *    - Items nav DM (Amis, Nitro, Boutique, Quêtes)
+ *    - Animations hover slide (Midnight: animations.css)
  *    - Sélecteurs Midnight exacts en complément
  * ═══════════════════════════════════════════════════
  */
@@ -45,11 +46,46 @@
 .sidebarList__5e434 li [class*="wrapper_"] {
   border-radius: var(--lg-rsm) !important;
   margin:        1px 6px !important;
-  transition:    background 120ms ease !important;
+  transition:    background 120ms ease, margin-left var(--list-item-transition) !important;
+  will-change:   margin-left !important;
 }
 #app-mount [class*="sidebarList_"] li [class*="wrapper_"]:hover,
 .sidebarList__5e434 li [class*="wrapper_"]:hover {
   background-color: var(--lg-hover) !important;
+}
+
+/* ── Animations hover slide (Midnight: animations.css) ─
+ *  Midnight: wrapper__2ea32 .link__2ea32 → margin-left: 10px
+ *           channel__972a0 → margin-left: 18px
+ * ─────────────────────────────────────────────────── */
+/* Channel links */
+.wrapper__2ea32 .link__2ea32,
+#app-mount [class*="sidebarList_"] [class*="wrapper_"] [class*="link_"] {
+  transition: margin-left var(--list-item-transition) !important;
+  will-change: margin-left !important;
+}
+.wrapper__2ea32:hover .link__2ea32,
+#app-mount [class*="sidebarList_"] [class*="wrapper_"]:hover [class*="link_"] {
+  margin-left: 10px !important;
+}
+
+/* Unread dot animation (Midnight: unread__2ea32) */
+.unread__2ea32 {
+  border-radius: 50% !important;
+  width:  8px !important;
+  height: 8px !important;
+  margin-left: -4px !important;
+  transition: var(--list-item-transition) !important;
+  will-change: margin-left !important;
+}
+.wrapper__2ea32:hover .unread__2ea32 {
+  margin-left: 4px !important;
+}
+.typeThread__2ea32 .unread__2ea32 {
+  margin-left: -8px !important;
+}
+.wrapper__2ea32.typeThread__2ea32:hover .unread__2ea32 {
+  margin-left: 0px !important;
 }
 
 /* ── Salon sélectionné — barre gauche ─────────────── */
@@ -65,15 +101,20 @@
 }
 
 /* ── Items DM (solo + groupe) ─────────────────────── */
+/* Midnight: channel__972a0 — hover slide + style */
+.channel__972a0,
 #app-mount [class*="privateChannels_"] [class*="interactive_"],
 .privateChannels_e6b769 [class*="interactive_"] {
   border-radius: var(--lg-rsm) !important;
-  margin:        1px 6px !important;
-  transition:    background 120ms ease !important;
+  margin:        1px 4px !important;
+  transition:    background 120ms ease, margin-left var(--list-item-transition) !important;
+  will-change:   margin-left !important;
 }
+.channel__972a0:hover,
 #app-mount [class*="privateChannels_"] [class*="interactive_"]:hover,
 .privateChannels_e6b769 [class*="interactive_"]:hover {
   background: var(--lg-hover) !important;
+  margin-left: 18px !important;
 }
 #app-mount [class*="privateChannels_"] [class*="interactiveSelected_"],
 #app-mount [class*="privateChannels_"] [class*="selected_"],
@@ -121,18 +162,18 @@
 }
 
 /* ── Items nav sidebar DM (Amis, Nitro, Boutique) ─── */
-/* Midnight: channel__972a0 */
-.channel__972a0,
+/* Midnight: channel__972a0 + linkTop_ */
 #app-mount [class*="sidebarList_"] [class*="linkTop_"],
 #app-mount [class*="sidebarList_"] [class*="wrapperDefaultText_"],
 #app-mount [class*="privateChannels_"] [class*="linkTop_"] {
   border-radius: var(--lg-rsm) !important;
   margin:        1px 4px !important;
-  transition:    background 120ms ease !important;
+  transition:    background 120ms ease, margin-left var(--list-item-transition) !important;
 }
-.channel__972a0:hover,
-#app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover {
+#app-mount [class*="sidebarList_"] [class*="linkTop_"]:hover,
+#app-mount [class*="privateChannels_"] [class*="linkTop_"]:hover {
   background: var(--lg-hover) !important;
+  margin-left: 10px !important;
 }
 
 /* ── Items DM solo/groupe dans le scroller ─────────── */
