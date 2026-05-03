@@ -52,6 +52,21 @@
   background: none !important;
 }
 
+/* ── Header group global reset ─────────────────────── */
+/* Midnight: container__9293f { background-color: var(--bg-3) }
+   → reset global ici (spécificité faible) ; les instances
+     spécifiques (friends, VC…) reçoivent le verre dans 03-panels.css */
+.container__9293f {
+  background:              transparent !important;
+  backdrop-filter:         none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* En-tête serveur dans la sidebar (container_f37cb1) */
+.container_f37cb1 {
+  background: transparent !important;
+}
+
 /* ── DM / channel list inner ───────────────────────── */
 /* Midnight: privateChannels_e6b769, scroller__99e7c */
 .privateChannels_e6b769,
