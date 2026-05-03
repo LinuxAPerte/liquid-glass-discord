@@ -1,21 +1,25 @@
-/*
+﻿/*
  * ═══════════════════════════════════════════════════
- *  07 — PANNEAU PROFIL, USER PANEL & MODAL PROFIL
+ *  07 — PANNEAU PROFIL & USER PANEL
  *  Liquid Glass Discord Theme
  *
- *  Sections :
- *    A. User panel bas de sidebar (panels__5e434)
- *    B. Popup profil (outer_c0bea0 — petit popup)
- *    C. Grand modal profil (.user-profile-sidebar)
- *       → Banner, Avatar, Username, Badges,
- *         Boutons, Tabs, Widget cards, Note, etc.
+ *  Midnight: panels__5e434, outer_c0bea0, inner_c0bea0,
+ *            container_df39b2, container__37e49,
+ *            connection_e131a9, listeningAlong_e0cf27,
+ *            panel__5dec7, container__722ff, root__24502
+ *
+ *  Technique fog (Shine) :
+ *    → panels_ est TRANSPARENT (pas de card opaque)
+ *    → Un pseudo-élément ::after crée un "fog" verre
+ *      qui monte du bas via mask-image gradient
+ *    → Les boutons (mic/sourd/paramètres) groupés
+ *      dans une capsule pill (border-radius: 999px)
+ *
+ *  Positionnement Midnight :
+ *    → bottom: 0; left: 0; width: 100%
+ *    → overflow: visible pour que le fog dépasse
  * ═══════════════════════════════════════════════════
  */
-
-/* ═══════════════════════════════════════════════════
-   A. USER PANEL — barre bas de sidebar
-   panels__5e434, fog, buttons pill, voix, activité
- * ═══════════════════════════════════════════════════ */
 
 /* ── Container principal — transparent ──────────── */
 #app-mount [class*="panels_"],
@@ -32,7 +36,7 @@
   width:                   100% !important;
 }
 
-/* ── Fog verre montant ─────────────────────────── */
+/* ── Fog verre montant (technique Shine) ─────────── */
 #app-mount [class*="panels_"]::after,
 .panels__5e434::after {
   display:  block !important;
@@ -52,7 +56,7 @@
   pointer-events: none !important;
 }
 
-/* Contenu au-dessus du fog */
+/* ── Contenu au-dessus du fog ───────────────────── */
 #app-mount [class*="panels_"] > *,
 .panels__5e434 > * {
   position: relative !important;
@@ -66,19 +70,22 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 38%) !important;
 }
 
-/* Midnight: listening along — no border-top */
+/* ── Midnight: listening along — no border-top ──── */
 .listeningAlong_e0cf27,
 #app-mount [class*="listeningAlong_"] {
   border-top: none !important;
 }
 
-/* Midnight: CallTimer plugin */
+/* ── Midnight: CallTimer plugin — extra spacing ──── */
+/* connection_e131a9 avec CallTimer actif */
 .connection_e131a9:has(> .inner_e131a9 .labelWrapper__06d62 > a .lineClamp1__4bd52 p),
 #app-mount [class*="connection_"]:has(> [class*="inner_"] [class*="labelWrapper_"] > a [class*="lineClamp1_"] p) {
   padding: calc(var(--lg-gap) - 4px + 4px) 0 !important;
 }
 
-/* Midnight: game activity / VC chat bg — transparent */
+/* ── Midnight: game activity bg / VC chat bg ─────── */
+/* panel__5dec7 = game activity panel */
+/* container__722ff = fond entre VC et chat VC */
 .panel__5dec7,
 .container__722ff,
 #app-mount [class*="panel__5dec"],
@@ -86,7 +93,7 @@
   background: none !important;
 }
 
-/* Midnight: root__24502 */
+/* ── Midnight: root__24502 — profile popup root ──── */
 .root__24502,
 #app-mount [class*="root__24502"] {
   background: none !important;
@@ -109,7 +116,7 @@
   background-color: var(--lg-hover) !important;
 }
 
-/* ── Status custom ──────────────────────────────── */
+/* ── Status custom / tag ─────────────────────────── */
 #app-mount [class*="panels_"] [class*="customStatus_"],
 #app-mount [class*="panels_"] [class*="accountCustomStatusText_"],
 #app-mount [class*="panels_"] [class*="customTag_"] {
@@ -118,13 +125,14 @@
   opacity:   0.85 !important;
 }
 
-/* ── Speaking indicator ─────────────────────────── */
+/* ── Speaking indicator ──────────────────────────── */
+/* Anneau vert autour de l'avatar quand on parle */
 #app-mount [class*="panels_"] [class*="speaking_"] [class*="avatar_"],
 #app-mount [class*="panels_"] [class*="speaking_"] [class*="avatarWrapper_"] {
   box-shadow: 0 0 0 2px var(--online) !important;
 }
 
-/* ── Groupe boutons — pill ─────────────────────── */
+/* ── Groupe boutons — pill Shine ─────────────────── */
 #app-mount [class*="panels_"] [class*="buttons_"] {
   border-radius: 999px !important;
   overflow:      hidden !important;
@@ -133,10 +141,10 @@
   box-shadow:
     0 -2px   0.75px -1px rgba(255, 255, 255, 0.15) inset,
     0  1.5px 0.75px -1px rgba(255, 255, 255, 0.30) inset,
-    0  2px   12px    0   rgba(0, 0, 0, 0.20) !important;
+    0  2px   12px    0   rgba(0,   0,   0,   0.20) !important;
 }
 
-/* ── Bouton individuel ──────────────────────────── */
+/* ── Bouton individuel dans la pill ─────────────── */
 #app-mount [class*="panels_"] [class*="buttons_"] [class*="button_"] {
   background:  transparent !important;
   box-shadow:
@@ -153,7 +161,7 @@
   background: rgba(255, 255, 255, 0.12) !important;
 }
 
-/* ── Disconnect — rouge ─────────────────────────── */
+/* ── Bouton disconnect — rouge ───────────────────── */
 #app-mount [class*="panels_"] [class*="buttons_"] [class*="redGlow_"],
 #app-mount [class*="panels_"] [class*="disconnect_"] {
   background: rgba(240, 50, 50, 0.18) !important;
@@ -163,11 +171,13 @@
   background: rgba(240, 50, 50, 0.32) !important;
 }
 
-/* ── Voix connectée ─────────────────────────────── */
+/* ── Voix connectée — texte + nom salon ─────────── */
 #app-mount [class*="voiceContainer_"] [class*="voiceConnectedText_"],
 #app-mount [class*="voiceContainer_"] [class*="channelName_"] {
   color: var(--online) !important;
 }
+
+/* ── Conteneur voix actif — glass pill ──────────── */
 #app-mount [class*="voiceContainer_"] {
   background:    rgba(255, 255, 255, 0.08) !important;
   border:        1px solid rgba(255, 255, 255, 0.16) !important;
@@ -180,7 +190,7 @@
   padding:         6px 8px !important;
 }
 
-/* ── Game activity ──────────────────────────────── */
+/* ── Game activity panel — glass card ──────────── */
 #app-mount [class*="activityPanel_"],
 #app-mount [class*="gameActivity_"] {
   background:    rgba(255, 255, 255, 0.07) !important;
@@ -196,18 +206,18 @@
   border-color: rgba(255, 255, 255, 0.24) !important;
 }
 
-
 /* ═══════════════════════════════════════════════════
-   B. POPUP PROFIL (petit popup au clic avatar)
-   outer_c0bea0, inner_c0bea0, container_df39b2
+ *  POPUP PROFIL (click sur avatar)
+ *  Midnight: outer_c0bea0, inner_c0bea0, container_df39b2
  * ═══════════════════════════════════════════════════ */
 
-/* Outer card */
+/* ── Popup profil — outer card ───────────────────── */
+/* Midnight: outer_c0bea0 { border-radius; border } */
 .outer_c0bea0,
 #app-mount [class*="outer_c0bea0"] {
   border-radius: var(--lg-r) !important;
   border:        1px solid rgba(255, 255, 255, 0.20) !important;
-  background-color: rgba(6, 6, 16, 0.88) !important;
+  background-color: rgba(6, 6, 16, 0.90) !important;
   backdrop-filter:  blur(32px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
   box-shadow:
@@ -216,18 +226,22 @@
     0  8px  40px   0 rgba(0, 0, 0, 0.65) !important;
 }
 
-/* Inner */
+/* ── Popup profil — inner ────────────────────────── */
+/* Midnight: inner_c0bea0 { border-radius: calc(--radius-lg - 4px) } */
 .inner_c0bea0,
 #app-mount [class*="inner_c0bea0"] {
   border-radius: calc(var(--lg-r) - 4px) !important;
 }
 
-/* Nameplate */
+/* ── Popup profil — nameplate container ──────────── */
+/* Midnight: container__37e49 { margin-inline-start: 0 } */
 .container__37e49,
 #app-mount [class*="container__37e49"] {
   margin-inline-start: 0 !important;
   -webkit-margin-start: 0 !important;
 }
+
+/* Midnight: container__37e49 .container_df39b2 { border-radius; width; height; top; left } */
 .container__37e49 .container_df39b2,
 #app-mount [class*="container__37e49"] [class*="container_df39b2"] {
   border-radius: var(--lg-rsm) !important;
@@ -237,7 +251,7 @@
   left:   0 !important;
 }
 
-/* Banner popup */
+/* ── Popup profil — banner ───────────────────────── */
 #app-mount [class*="userPopout_"] [class*="banner_"],
 #app-mount [class*="topSectionNormal_"],
 #app-mount [class*="profileBannerPremiumNoBanner_"] {
@@ -245,17 +259,19 @@
   overflow: hidden !important;
 }
 
-/* Sections popup */
+/* ── Popup profil — corps / bio ──────────────────── */
 #app-mount [class*="userPopout_"] [class*="body_"],
 #app-mount [class*="profileBody_"] {
   background: transparent !important;
 }
+
+/* ── Popup profil — séparateurs ──────────────────── */
 #app-mount [class*="userPopout_"] [class*="divider_"],
 #app-mount [class*="profileDivider_"] {
   border-color: rgba(255, 255, 255, 0.10) !important;
 }
 
-/* Pills rôle popup */
+/* ── Popup profil — pills de rôle ────────────────── */
 #app-mount [class*="userPopout_"] [class*="role_"] {
   background:    rgba(255, 255, 255, 0.08) !important;
   border:        1px solid rgba(255, 255, 255, 0.14) !important;
@@ -267,15 +283,23 @@
   border-color: rgba(255, 255, 255, 0.24) !important;
 }
 
-/* Note popup */
+/* ── Popup profil — note textarea ────────────────── */
 #app-mount [class*="userPopout_"] [class*="note_"] textarea,
-#app-mount [class*="note_c0bea0"] textarea {
+#app-mount [class*="note_"] textarea {
   background:    rgba(255, 255, 255, 0.06) !important;
   border-radius: var(--lg-rxs) !important;
   border:        1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
-/* Boutons popup */
+/* ── Popup profil — badges ───────────────────────── */
+#app-mount [class*="profileBadges_"] [class*="badge_"],
+#app-mount [class*="userBadge_"] {
+  background:    rgba(255, 255, 255, 0.08) !important;
+  border-radius: 4px !important;
+  padding:       2px 4px !important;
+}
+
+/* ── Popup profil — boutons action (Envoyer msg…) ── */
 #app-mount [class*="userPopout_"] [class*="buttonContainer_"] [class*="button_"],
 #app-mount [class*="profileActions_"] [class*="button_"] {
   background:    rgba(255, 255, 255, 0.08) !important;
@@ -289,7 +313,7 @@
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
-/* Mutual servers / friends popup */
+/* ── Mutual servers / friends ────────────────────── */
 #app-mount [class*="mutualGuild_"],
 #app-mount [class*="mutualFriendItem_"] {
   border-radius: var(--lg-rsm) !important;
@@ -300,364 +324,11 @@
   background: var(--lg-hover) !important;
 }
 
-
-/* ═══════════════════════════════════════════════════
-   C. GRAND MODAL PROFIL
-   .user-profile-sidebar + classes wildcard
-   → outer wrapper, banner, avatar, username,
-     badges, boutons, tabs, widget cards, note
- * ═══════════════════════════════════════════════════ */
-
-/* ── Outer du grand modal — glass complet ─────────── */
-.user-profile-sidebar .outer_c0bea0,
-.user-profile-sidebar .inner_c0bea0,
-#app-mount [class*="userProfileModal_"],
-#app-mount [class*="profileModal_"] {
-  background:    rgba(8, 8, 20, 0.72) !important;
-  backdrop-filter:         blur(48px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
-  border-radius: var(--lg-r) !important;
-  border:        1px solid rgba(255, 255, 255, 0.18) !important;
-  box-shadow:
-    0 -1px   1.5px 0 rgba(255, 255, 255, 0.22) inset,
-    0  1px   1.5px 0 rgba(255, 255, 255, 0.36) inset,
-    0 24px  80px   0 rgba(0, 0, 0, 0.75) !important;
-}
-
-/* ── Panneau gauche — fond légèrement distinct ─────── */
-#app-mount [class*="userProfileModal_"] [class*="leftColumn_"],
-.user-profile-sidebar [class*="leftColumn_"],
-#app-mount [class*="profilePanel_"]:first-child,
-#app-mount [class*="profileSidebar_"] {
-  background:   rgba(0, 0, 0, 0.22) !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
-}
-
-/* ── Panneau droit — transparent ──────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="rightColumn_"],
-.user-profile-sidebar [class*="rightColumn_"],
-#app-mount [class*="profilePanel_"]:last-child {
-  background: transparent !important;
-}
-
-/* ── BANNER ────────────────────────────────────────── */
-/* Sans bannière : dégradé accent bleu-violet */
-#app-mount [class*="userProfileModal_"] [class*="banner_"]:not([style*="background-image"]),
-.user-profile-sidebar [class*="banner_"]:not([style*="background-image"]),
-#app-mount [class*="premiumBannerNitro_"],
-#app-mount [class*="bannerPremium_"]:not([style*="background-image"]),
-#app-mount [class*="topSection_"]:not([style*="background-image"]):not([style*="background-color"]) {
-  background: linear-gradient(135deg,
-    color-mix(in srgb, var(--accent-2), transparent 20%) 0%,
-    color-mix(in srgb, var(--blue-1),   transparent 30%) 50%,
-    color-mix(in srgb, var(--purple-2), transparent 25%) 100%
-  ) !important;
-}
-
-/* Avec bannière : juste le border-radius */
-#app-mount [class*="userProfileModal_"] [class*="banner_"],
-.user-profile-sidebar [class*="banner_"] {
-  border-radius: calc(var(--lg-r) - 1px) calc(var(--lg-r) - 1px) 0 0 !important;
-  overflow: hidden !important;
-}
-
-/* ── AVATAR — anneau lumineux ──────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="avatarWrapper_"],
-#app-mount [class*="userProfileModal_"] [class*="avatarWrapperNormal_"],
-.user-profile-sidebar [class*="avatarWrapper_"] {
-  border-radius: 50% !important;
-  box-shadow:
-    0 0 0 4px rgba(8, 8, 20, 0.85),
-    0 0 0 6px rgba(255, 255, 255, 0.28),
-    0 0 22px rgba(100, 160, 255, 0.35) !important;
-  transition: box-shadow 200ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="avatarWrapper_"]:hover,
-.user-profile-sidebar [class*="avatarWrapper_"]:hover {
-  box-shadow:
-    0 0 0 4px rgba(8, 8, 20, 0.85),
-    0 0 0 6px rgba(255, 255, 255, 0.45),
-    0 0 30px rgba(100, 160, 255, 0.55) !important;
-}
-
-/* ── USERNAME ──────────────────────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="username_"],
-#app-mount [class*="userProfileModal_"] [class*="userTagUsername_"],
-#app-mount [class*="userProfileModal_"] h2[class],
-.user-profile-sidebar [class*="username_"] {
-  color:       rgba(255, 255, 255, 0.96) !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 12px rgba(100, 160, 255, 0.28) !important;
-}
-
-/* Discriminator / handle */
-#app-mount [class*="userProfileModal_"] [class*="discriminator_"],
-#app-mount [class*="userProfileModal_"] [class*="usernameTag_"],
-#app-mount [class*="userProfileModal_"] [class*="subText_"],
-.user-profile-sidebar [class*="discriminator_"] {
-  color:   rgba(255, 255, 255, 0.50) !important;
-  opacity: 1 !important;
-}
-
-/* ── BADGES (icônes Discord, Nitro, boosts…) ───────── */
-#app-mount [class*="userProfileModal_"] [class*="profileBadges_"] [class*="badge_"],
-#app-mount [class*="userProfileModal_"] [class*="badge_"],
-.user-profile-sidebar [class*="profileBadges_"] [class*="badge_"] {
-  background:    rgba(255, 255, 255, 0.10) !important;
-  border:        1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: 6px !important;
-  padding:       3px 5px !important;
-  transition:    background 120ms, border-color 120ms, transform 120ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="profileBadges_"] [class*="badge_"]:hover,
-.user-profile-sidebar [class*="profileBadges_"] [class*="badge_"]:hover {
-  background:   rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.30) !important;
-  transform:    translateY(-1px) scale(1.08) !important;
-}
-
-/* ── BOUTONS D'ACTION (Modifier le profil, …) ──────── */
-/* Bouton principal "Modifier le profil" */
-#app-mount [class*="userProfileModal_"] [class*="editProfileButton_"],
-.user-profile-sidebar [class*="editProfileButton_"],
-#app-mount [class*="userProfileModal_"] button[class*="lookFilled_"],
-.user-profile-sidebar button[class*="lookFilled_"] {
-  background:    linear-gradient(135deg, var(--accent-3), var(--accent-4)) !important;
-  border:        1px solid rgba(255, 255, 255, 0.22) !important;
-  border-radius: 20px !important;
-  box-shadow:
-    0 -0.5px 1px 0 rgba(255, 255, 255, 0.20) inset,
-    0  0.5px 1px 0 rgba(255, 255, 255, 0.36) inset,
-    0  4px  16px 0 rgba(88, 101, 242, 0.35) !important;
-  transition:    all 150ms ease !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="editProfileButton_"]:hover,
-.user-profile-sidebar [class*="editProfileButton_"]:hover {
-  filter: brightness(1.15) !important;
-  transform: translateY(-1px) !important;
-}
-
-/* Boutons icônes (grille, ...) */
-#app-mount [class*="userProfileModal_"] button[class*="lookOutlined_"],
-#app-mount [class*="userProfileModal_"] button[class*="lookBlank_"],
-.user-profile-sidebar button[class*="lookOutlined_"],
-.user-profile-sidebar button[class*="lookBlank_"],
-#app-mount [class*="userProfileModal_"] [class*="iconButton_"] {
-  background:    rgba(255, 255, 255, 0.07) !important;
-  border:        1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: var(--lg-rxs) !important;
-  transition:    background 120ms, border-color 120ms !important;
-}
-#app-mount [class*="userProfileModal_"] button[class*="lookOutlined_"]:hover,
-#app-mount [class*="userProfileModal_"] button[class*="lookBlank_"]:hover,
-.user-profile-sidebar button[class*="lookBlank_"]:hover {
-  background:   rgba(255, 255, 255, 0.13) !important;
-  border-color: rgba(255, 255, 255, 0.28) !important;
-}
-
-/* ── SECTION "Membre depuis" ───────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="memberSince_"],
-#app-mount [class*="userProfileModal_"] [class*="memberSinceItem_"],
-.user-profile-sidebar [class*="memberSince_"] {
-  background:    rgba(255, 255, 255, 0.05) !important;
-  border:        1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: var(--lg-rxs) !important;
-  padding:       6px 10px !important;
-}
-
-/* Label "Membre depuis" */
-#app-mount [class*="userProfileModal_"] [class*="memberSinceLabel_"],
-#app-mount [class*="userProfileModal_"] [class*="overline_"],
-.user-profile-sidebar [class*="memberSinceLabel_"] {
-  color:           rgba(255, 255, 255, 0.38) !important;
-  font-size:       10px !important;
-  font-weight:     700 !important;
-  text-transform:  uppercase !important;
-  letter-spacing:  0.06em !important;
-}
-
-/* Date */
-#app-mount [class*="userProfileModal_"] [class*="memberSinceDate_"],
-.user-profile-sidebar [class*="memberSinceDate_"] {
-  color: rgba(255, 255, 255, 0.80) !important;
-}
-
-/* ── NOTE TEXTAREA ─────────────────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="note_"],
-#app-mount [class*="userProfileModal_"] [class*="note_"] textarea,
-.user-profile-sidebar [class*="note_"],
-.user-profile-sidebar [class*="note_"] textarea {
-  background:    rgba(255, 255, 255, 0.06) !important;
-  border:        1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--lg-rxs) !important;
-  color:         rgba(255, 255, 255, 0.80) !important;
-  transition:    border-color 200ms, background 200ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="note_"] textarea:focus,
-.user-profile-sidebar [class*="note_"] textarea:focus {
-  background:   rgba(255, 255, 255, 0.10) !important;
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  outline:      none !important;
-}
-
-/* Label "Note" */
-#app-mount [class*="userProfileModal_"] [class*="note_"] [class*="label_"],
-.user-profile-sidebar [class*="note_"] [class*="label_"] {
-  color:          rgba(255, 255, 255, 0.40) !important;
-  font-size:      10px !important;
-  font-weight:    700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-}
-
-/* ── TABS (Tableau / Activité / Liste de souhaits) ─── */
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"],
-.user-profile-sidebar [class*="tabBar_"] {
-  background:    transparent !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
-  padding:       0 2px !important;
-  gap:           4px !important;
-}
-
-/* Tab individuel */
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"] [class*="tab_"],
-#app-mount [class*="userProfileModal_"] [class*="tabItem_"],
-.user-profile-sidebar [class*="tabBar_"] [class*="tab_"] {
-  color:         rgba(255, 255, 255, 0.50) !important;
-  font-weight:   500 !important;
-  border-radius: var(--lg-rxs) var(--lg-rxs) 0 0 !important;
-  padding:       8px 12px !important;
-  transition:    color 150ms, background 150ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"] [class*="tab_"]:hover,
-.user-profile-sidebar [class*="tabBar_"] [class*="tab_"]:hover {
-  color:       rgba(255, 255, 255, 0.80) !important;
-  background:  rgba(255, 255, 255, 0.06) !important;
-}
-
-/* Tab actif */
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"] [class*="tab_"][class*="selected_"],
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"] [class*="tab_"][aria-selected="true"],
-.user-profile-sidebar [class*="tabBar_"] [class*="tab_"][aria-selected="true"] {
-  color:       rgba(255, 255, 255, 0.98) !important;
-  font-weight: 600 !important;
-}
-
-/* Indicateur (underline) de l'onglet actif */
-#app-mount [class*="userProfileModal_"] [class*="tabBar_"] [class*="indicator_"],
-#app-mount [class*="userProfileModal_"] [class*="selectionIndicator_"],
-.user-profile-sidebar [class*="indicator_"] {
-  background:    var(--accent-2) !important;
-  border-radius: 2px 2px 0 0 !important;
-  height:        2px !important;
-}
-
-/* ── WIDGET CARDS (jeux, activités) ────────────────── */
-#app-mount [class*="profileGameCard_"],
-#app-mount [class*="widgetCard_"],
-#app-mount [class*="userProfileModal_"] [class*="card_"],
-.user-profile-sidebar [class*="profileGameCard_"] {
-  background:    rgba(255, 255, 255, 0.06) !important;
-  border:        1px solid rgba(255, 255, 255, 0.10) !important;
-  border-radius: var(--lg-rsm) !important;
-  overflow:      hidden !important;
-  transition:    background 150ms, border-color 150ms, transform 150ms, box-shadow 150ms !important;
-}
-#app-mount [class*="profileGameCard_"]:hover,
-#app-mount [class*="widgetCard_"]:hover,
-.user-profile-sidebar [class*="profileGameCard_"]:hover {
-  background:   rgba(255, 255, 255, 0.10) !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
-  transform:    translateY(-2px) !important;
-  box-shadow:   0 8px 24px rgba(0, 0, 0, 0.35) !important;
-}
-
-/* Label des cards ("Jeu favori", "Envie de jouer"…) */
-#app-mount [class*="profileGameCard_"] [class*="cardLabel_"],
-#app-mount [class*="widgetCard_"] [class*="label_"],
-#app-mount [class*="profileGameCard_"] [class*="title_"] {
-  color:          rgba(255, 255, 255, 0.90) !important;
-  font-weight:    600 !important;
-  text-shadow:    0 1px 6px rgba(0, 0, 0, 0.70) !important;
-}
-
-/* Bouton "+" pour ajouter */
-#app-mount [class*="profileGameCard_"] [class*="addButton_"],
-#app-mount [class*="widgetCard_"] [class*="addButton_"],
-#app-mount [class*="addWidgetButton_"] {
-  background:    rgba(255, 255, 255, 0.12) !important;
-  border:        1px solid rgba(255, 255, 255, 0.22) !important;
-  border-radius: 50% !important;
-  transition:    background 150ms, transform 150ms !important;
-}
-#app-mount [class*="profileGameCard_"] [class*="addButton_"]:hover,
-#app-mount [class*="addWidgetButton_"]:hover {
-  background:  rgba(255, 255, 255, 0.22) !important;
-  transform:   scale(1.12) !important;
-}
-
-/* ── ÉTAT VIDE ("Personnalise ton profil avec des widgets") */
-#app-mount [class*="userProfileModal_"] [class*="emptyState_"],
-#app-mount [class*="userProfileModal_"] [class*="emptyPlaceholder_"],
-.user-profile-sidebar [class*="emptyState_"] {
-  color:      rgba(255, 255, 255, 0.45) !important;
-  text-align: center !important;
-}
-
-/* ── BOUTON FERMER (×) ─────────────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="closeButton_"],
-#app-mount [class*="profileModal_"] [class*="closeButton_"],
-#app-mount [class*="layerContainer_"] [class*="closeButton_"] {
-  background:    rgba(255, 255, 255, 0.08) !important;
-  border:        1px solid rgba(255, 255, 255, 0.18) !important;
-  border-radius: 50% !important;
-  transition:    background 150ms, border-color 150ms, transform 150ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="closeButton_"]:hover,
-#app-mount [class*="layerContainer_"] [class*="closeButton_"]:hover {
-  background:   rgba(237, 66, 69, 0.28) !important;
-  border-color: rgba(237, 66, 69, 0.55) !important;
-  transform:    scale(1.10) !important;
-}
-
-/* ── SÉPARATEURS ───────────────────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="divider_"],
-.user-profile-sidebar [class*="divider_"] {
-  border-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-/* ── SCROLLBAR dans le modal ───────────────────────── */
-#app-mount [class*="userProfileModal_"] [class*="scrollerBase_"],
-.user-profile-sidebar [class*="scrollerBase_"] {
-  background: transparent !important;
-}
-
-/* ── CONNECTED ACCOUNTS (comptes liés) ─────────────── */
-#app-mount [class*="userProfileModal_"] [class*="connectedAccount_"],
-.user-profile-sidebar [class*="connectedAccount_"] {
-  background:    rgba(255, 255, 255, 0.06) !important;
-  border:        1px solid rgba(255, 255, 255, 0.10) !important;
-  border-radius: var(--lg-rxs) !important;
-  transition:    background 120ms !important;
-}
-#app-mount [class*="userProfileModal_"] [class*="connectedAccount_"]:hover,
-.user-profile-sidebar [class*="connectedAccount_"]:hover {
-  background: rgba(255, 255, 255, 0.10) !important;
-}
-
-/* ── STATUS TOOLTIP (bulle custom status) ──────────── */
-#app-mount [class*="userProfileModal_"] [class*="statusTooltip_"],
-#app-mount [class*="userProfileModal_"] [class*="customStatusTooltip_"] {
-  background:    rgba(8, 8, 20, 0.90) !important;
-  border:        1px solid rgba(255, 255, 255, 0.16) !important;
-  border-radius: var(--lg-rxs) !important;
-  backdrop-filter: blur(12px) !important;
-}
-
-/* ── Fond body du grand modal profil ───────────────── */
+/* ── Profile modal (grand profil) ────────────────── */
+/* Séparateur et fond body dans le grand modal */
 #app-mount [class*="profileModalInner_"],
 #app-mount [class*="userProfileModal_"] {
-  background: rgba(8, 8, 20, 0.72) !important;
-  backdrop-filter:         blur(48px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
+  background: rgba(6, 6, 16, 0.90) !important;
+  backdrop-filter:  blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
 }
