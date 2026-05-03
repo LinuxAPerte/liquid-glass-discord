@@ -76,39 +76,6 @@
   padding: 6px !important;
 }
 
-/* ── Bouton DM home (icône lune) ────────────────── */
-/* Midnight: dms-button.css — custom moon SVG */
-.wrapper__6e9f8[data-list-item-id='guildsnav___home'] > .childWrapper__6e9f8 > svg,
-#app-mount [class*="wrapper_"][data-list-item-id='guildsnav___home'] > [class*="childWrapper_"] > svg {
-  display: none !important;
-}
-
-.wrapper__6e9f8[data-list-item-id='guildsnav___home'] > .childWrapper__6e9f8::before,
-#app-mount [class*="wrapper_"][data-list-item-id='guildsnav___home'] > [class*="childWrapper_"]::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute !important;
-  width: 65% !important;
-  height: 65% !important;
-  background: var(--dms-icon-color-before) !important;
-  mask-image: var(--dms-icon-svg-url) !important;
-  mask-size: var(--dms-icon-svg-size) !important;
-  mask-position: center !important;
-  mask-repeat: no-repeat !important;
-  transition: background-color 0.15s ease-out, transform var(--dms-icon-svg-transition) !important;
-}
-
-.wrapper__6e9f8[data-list-item-id='guildsnav___home']:hover > .childWrapper__6e9f8::before,
-.wrapper__6e9f8[data-list-item-id='guildsnav___home'].selected__6e9f8 > .childWrapper__6e9f8::before,
-#app-mount [class*="wrapper_"][data-list-item-id='guildsnav___home']:hover > [class*="childWrapper_"]::before,
-#app-mount [class*="wrapper_"][data-list-item-id='guildsnav___home'][class*="selected_"] > [class*="childWrapper_"]::before {
-  background: var(--dms-icon-color-after) !important;
-  transform: rotate(-360deg) scale(0.8) !important;
-}
-
-/* ── Fond dégradé coloré derrière le bouton DM ─── */
-/* Midnight: custom-dms-background: color */
-.wrapper__6e9f8[data-list-item-id='guildsnav___home'] > .childWrapper__6e9f8,
-#app-mount [class*="wrapper_"][data-list-item-id='guildsnav___home'] > [class*="childWrapper_"] {
-  background: var(--dms-background-color) !important;
-}
+/* ── Bouton DM home — icône Discord originale ────── */
+/* Les overrides Midnight (lune + dégradé) sont désactivés :
+   le SVG natif Discord s'affiche normalement.               */
